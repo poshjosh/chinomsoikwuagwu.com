@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2020/03/02/Notes-on-Amazon-Web-Services_3_Managment-tools-app-integration-and-customer-engagement.md"
+path: "./2020/03/02/Notes-on-Amazon-Web-Services_3_Managment-tools-app-integration-and-customer-engagement.md"
 date: "2020-03-02"
 title: "Notes on Amazon Web Services 3 - Managment Tools, App Integration and Customer Engagement"
 description: "Poshjoshs-Blog - Notes on Amazon Web Services 3 - Managment tools app integration and customer engagement"

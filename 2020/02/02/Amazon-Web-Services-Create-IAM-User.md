@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2020/02/02/Amazon-Web-Services-Create-IAM-User.md"
+path: "./2020/02/02/Amazon-Web-Services-Create-IAM-User.md"
 date: "2020-02-02"
 title: "Amazon Web Services - Create IAM User"
 description: "Poshjoshs-Blog - Amazon Web Services - Create IAM User"

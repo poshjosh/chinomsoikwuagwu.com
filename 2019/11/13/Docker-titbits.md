@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2019/11/13/Docker-titbits.md"
+path: "./2019/11/13/Docker-titbits.md"
 date: "2019-11-13"
 title: "Docker Titbits"
 description: "Poshjoshs-Blog - Docker Titbits"

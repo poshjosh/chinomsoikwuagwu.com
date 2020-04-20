@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2020/03/09/AWS-lamda-limitations-and-use-cases.md"
+path: "./2020/03/09/AWS-lamda-limitations-and-use-cases.md"
 date: "2020-03-09"
 title: "AWS Lamda - Limitations and Use Cases"
 description: "Poshjoshs-Blog - AWS lamda limitations and use cases"

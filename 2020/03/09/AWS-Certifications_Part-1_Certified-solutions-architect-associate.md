@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2020/03/09/AWS-Certifications_Part-1_Certified-solutions-architect-associate.md"
+path: "./2020/03/09/AWS-Certifications_Part-1_Certified-solutions-architect-associate.md"
 date: "2020-03-09"
 title: "AWS Certifications - Part 1 - Certified solutions architect associate"
 description: "Poshjoshs-Blog - AWS Certifications - Part 1 - Certified solutions architect associate"

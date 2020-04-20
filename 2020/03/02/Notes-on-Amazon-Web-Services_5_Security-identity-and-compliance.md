@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2020/03/02/Notes-on-Amazon-Web-Services_5_Security-identity-and-compliance.md"
+path: "./2020/03/02/Notes-on-Amazon-Web-Services_5_Security-identity-and-compliance.md"
 date: "2020-03-02"
 title: "Notes on Amazon Web Services 5 - Security, Identity and Compliance"
 description: "Poshjoshs-Blog - Notes on Amazon Web Services 5 - Security identity and compliance"

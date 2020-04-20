@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2019/11/19/Introduction-to-Jenkins.md"
+path: "./2019/11/19/Introduction-to-Jenkins.md"
 date: "2019-11-19"
 title: "Introduction to Jenkins"
 description: "Poshjoshs-Blog - Introduction to Jenkins"

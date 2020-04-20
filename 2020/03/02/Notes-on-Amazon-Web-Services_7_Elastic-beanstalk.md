@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2020/03/02/Notes-on-Amazon-Web-Services_7_Elastic-beanstalk.md"
+path: "./2020/03/02/Notes-on-Amazon-Web-Services_7_Elastic-beanstalk.md"
 date: "2020-03-02"
 title: "Notes on Amazon Web Services 7 - Elastic Beanstalk"
 description: "Poshjoshs-Blog - Notes on Amazon Web Services 7 - Elastic beanstalk"

@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2020/03/09/AWS_Virtual-private-cloud-vpc-examples.md"
+path: "./2020/03/09/AWS_Virtual-private-cloud-vpc-examples.md"
 date: "2020-03-09"
 title: "AWS Virtual Private Cloud (VPC) Examples"
 description: "Poshjoshs-Blog - AWS Virtual Private Cloud - VPC - examples"
@@ -24,22 +24,24 @@ subnets, route tables, gateways, and CIDR ranges. This account is also
 responsible for allowing other accounts in the same AWS Organization use the
 subnets.
 
-A VPC owner (Account A) creates the routing infrastructure, including the VPCs,
-subnets, route tables, gateways, and network ACLs. Account A can use the AWS Resource
-Access Manager to create a Resource Share for sharing a private subnet with Accounts
-B and C as well as a public subnet with with Account D. Accounts B, C and D can create
-and manage resources (e.g instances, security groups etc) in the subnets that are
-shared with them.
+Account A (VPC Owner) uses `AWS Resource Access Manager` to create a Resource
+Share for sharing private and public subnets.
+
+- Private subnet shared with Accounts B and C.
+
+- Public subnet shared with Account D
 
 Account A manages the IP infrastructure, including the route tables for both the public
 and private subnets. There is no additional configuration required for shared subnets,
 so the route tables are the same as unshared subnet route tables.
 
+Each account can only see the subnets that are shared with them, for example, Account D can only see the public subnet. Each of the accounts can control their resources, including instances, and security groups
+
 AWS VPC - Share internet gateway example
 <br/>
 ![AWS VPC - Share internet gateway example](https://docs.aws.amazon.com/vpc/latest/userguide/images/VPC-share-internet-gateway-example.png "AWS VPC - Share internet gateway example")
 <br/>
-_AWS VPC - Share internet gateway example. Source: https://docs.aws.amazon.com/../VPC-share-internet-gateway-example.png_
+AWS VPC - Share internet gateway example. Source: _docs.aws.amazon.com_
 
 ### Controlling Access to Instances in a Subnet ###
 

@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-3_Storage-services.md"
+path: "./2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-3_Storage-services.md"
 date: "2020-03-09"
 title: "AWS Certified Solutions Architect Associate - Part 3 - Storage services"
 description: "Poshjoshs-Blog - AWS Certified Solutions Architect Associate - Part 3 - Storage services"

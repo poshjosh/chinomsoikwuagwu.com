@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-2_Introduction-to-Security.md"
+path: "./2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-2_Introduction-to-Security.md"
 date: "2020-03-09"
 title: "AWS Certified Solutions Architect Associate - Part 2 - Introduction to Security"
 description: "Poshjoshs-Blog - AWS Certified Solutions Architect Associate - Part 2 - Introduction to Security"

@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2019/11/12/Add-chat-functionality-to-a-maven-java-web-app.md"
+path: "./2019/11/12/Add-chat-functionality-to-a-maven-java-web-app.md"
 date: "2019-11-12"
 title: "How to Add Chat Functionality to a Maven Java Web App"
 description: "Poshjoshs-Blog - How to add chat functionality to a maven java web app"

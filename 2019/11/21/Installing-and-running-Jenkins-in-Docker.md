@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2019/11/21/Installing-and-running-Jenkins-in-Docker.md"
+path: "./2019/11/21/Installing-and-running-Jenkins-in-Docker.md"
 date: "2019-11-21"
 title: "Installing and running Jenkins in Docker"
 description: "Poshjoshs-Blog - Installing and running Jenkins in Docker"

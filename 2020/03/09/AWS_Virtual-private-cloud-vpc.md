@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2020/03/09/AWS_Virtual-private-cloud-vpc.md"
+path: "./2020/03/09/AWS_Virtual-private-cloud-vpc.md"
 date: "2020-03-09"
 title: "AWS Virtual Private Cloud (VPC)"
 description: "Poshjoshs-Blog - AWS Virtual Private Cloud (VPC)"
@@ -75,8 +75,6 @@ VPC Limits
 - Internet gateways per Region - 5
 - [View more AWS VPC Limits](https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits/)
 
-### How VPCs Work ###
-
 VPCs and Subnets
 
 A virtual private cloud (VPC) is a virtual network dedicated to your AWS account. It is
@@ -102,8 +100,7 @@ see [Internetwork Traffic Privacy in Amazon VPC](https://docs.aws.amazon.com/vpc
 
 Difference between Security Groups and NACLs
 
-#### TL;DR: #### Security group is the firewall of EC2 Instances whereas Network ACL
-is the firewall of the Subnet.
+_TL;DR: Security group is the firewall of EC2 Instances whereas Network ACL is the firewall of the Subnet._
 
 Difference between Security Groups and NACLs
 <br/>
@@ -134,7 +131,7 @@ You cannot deny a certain IP address from establishing a connection.
 
 Network ACL support allow and deny rules. By deny rules, you could explicitly deny
 a certain IP address to establish a connection example: Block IP address
-```123.201.57.39``` from establishing a connection to an EC2 Instance.
+`123.201.57.39` from establishing a connection to an EC2 Instance.
 
 - Rules _Process order_
 
@@ -150,14 +147,12 @@ traffic on port 80 and 443:
 
 Inbound rules
 
-------------------------------------------------------
-Type   	 	| Protocol  | Port Range | Source
-------------------------------------------------------
-HTTP (80) 	| TCP (6)   | 	80   	 | 0.0.0.0/0
-HTTP (80) 	| TCP (6)   |	80   	 | ::/0
-HTTPS (443) 	| TCP (6)   |	443  	 | 0.0.0.0/0
-HTTPS (443) 	| TCP (6)   |	443  	 | ::/0
-------------------------------------------------------
+| Type   	 	  | Protocol  | Port Range | Source     |
+|-------------|-----------|------------|------------|
+| HTTP (80) 	| TCP (6)   | 80   	     | 0.0.0.0/0  |
+| HTTP (80) 	| TCP (6)   |	80   	     | ::/0       |
+| HTTPS (443) |	TCP (6)   |	443  	     | 0.0.0.0/0  |
+| HTTPS (443) |	TCP (6)   |	443  	     | ::/0       |
 
 For an NACL example, [click here](https://aws.amazon.com/premiumsupport/knowledge-center/connect-http-https-ec2/)
 
@@ -187,7 +182,10 @@ The following rules apply:
 
 - Names and descriptions can be up to 255 characters in length.
 
-- Names and descriptions are limited to the following characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*.
+- Names and descriptions are limited to the following characters:
+```
+a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*.
+```
 
 - A security group name cannot start with sg-.
 
@@ -231,7 +229,7 @@ Default VPC
 <br/>
 ![Default VPC](https://docs.aws.amazon.com/vpc/latest/userguide/images/default-vpc-diagram.png "Default VPC")
 <br/>
-_Default VPC. Source: https://docs.aws.amazon.com/../default-vpc-diagram.png_
+Default VPC. Source: _docs.aws.amazon.com_
 
 By default, each instance that you launch into a nondefault subnet has a private IPv4 address,
 but no public IPv4 address, unless you specifically assign one at launch, or you modify the
@@ -242,7 +240,7 @@ Non-Default VPC
 <br/>
 ![Non Default VPC](https://docs.aws.amazon.com/vpc/latest/userguide/images/nondefault-vpc-diagram.png "Non-Default VPC")
 <br/>
-_Non Default VPC. Source: https://docs.aws.amazon.com/../nondefault-vpc-diagram.png_
+Non Default VPC. Source: _docs.aws.amazon.com_
 
 On the otherhand, to allow an instance in your VPC to initiate outbound connections to the
 internet but prevent unsolicited inbound connections from the internet, you can use a
@@ -266,29 +264,11 @@ Classless Inter-Domain Routing (CIDR) is a method for allocating IP addresses an
 CIDR notation is a compact representation of an IP address and its associated routing prefix.
 The notation is constructed from an IP address, a slash ('/') character, and an integer.
 
-An IPv4 address has 4 parts (```e.g192.168.100.0```), each of which is 8 bits. Hence and
+An IPv4 address has 4 parts (e.g `192.168.100.0`), each of which is 8 bits. Hence an
 IPv4 address is 32 bits in total. On the other hand, a CIDR block may be represented thus:
-```192.168.100.14/24``` The integer ```24``` after the slash ```/``` tells us that 24 out
-of 32 bits of the ip address identify the network, wile 8 out of 32 bits identify the host.
-
-- 192.168.100.14/24 represents the IPv4 address 192.168.100.14 and its associated routing
-prefix 192.168.100.0, or equivalently, its subnet mask 255.255.255.0, which has 24 leading 1-bits.
-
-- The IPv4 block 192.168.100.0/22 represents the 1024 IPv4 addresses from 192.168.100.0 to 192.168.103.255.
-
-- The IPv6 block 2001:db8::/48 represents the block of IPv6 addresses from 2001:db8:0:0:0:0:0:0
-to 2001:db8:0:ffff:ffff:ffff:ffff:ffff.
-
-- ::1/128 represents the IPv6 loopback address. Its prefix length is 128 which is the number
-of bits in the address.
-
-For IPv4, CIDR notation is an alternative to the older system of representing networks
-by their starting address and the subnet mask, both written in dot-decimal notation.
-192.168.100.0/24 is equivalent to 192.168.100.0/255.255.255.0.
-
-The number of addresses of a subnet may be calculated as 2 ```power``` (address length − prefix length),
-where address length is 128 for IPv6 and 32 for IPv4. For example, in IPv4, the prefix
-length /29 gives: 2 ```power``` 32 − 29 = 2 ```power``` 3 = 8 addresses.
+`192.168.100.14/24` The integer `24` after the slash `/` tells us that `24` out
+of `32` bits of the ip address identify the network, wile `8` out of `32` bits identify the host.
+[Click here for more on CIDR](./2020/03/09/CIDR-Blocks)
 
 Accessing a Corporate or Home Network
 
@@ -313,7 +293,7 @@ an entry point for traffic destined to the service. For more info see
 VPC Endpoint Privatelink
 <br/>
 ![VPC Endpoint Privatelink](https://docs.aws.amazon.com/vpc/latest/userguide/images/vpc-endpoint-privatelink-diagram.png "VPC Endpoint Privatelink")
-_VPC Endpoint Privatelink. Source: https://docs.aws.amazon.com/../vpc-endpoint-privatelink-diagram.png_
+VPC Endpoint Privatelink. Source: _docs.aws.amazon.com_
 
 You can create your own AWS PrivateLink-powered service (endpoint service) and enable other AWS
 customers to access your service. For more information, see
@@ -367,5 +347,7 @@ network address translation (NAT) device for IPv4 traffic.
 - [Medium.com - Difference between Security Group and NACL](https://medium.com/awesome-cloud/aws-difference-between-security-groups-and-network-acls-adc632ea29ae)
 
 - [AWS - Connect to EC2 via HTTP and HTTPS](https://aws.amazon.com/premiumsupport/knowledge-center/connect-http-https-ec2/)
+
+- [CIDR Blocks](./2020/03/09/CIDR-Blocks)
 
 - [Wikipedia - Class Inter-Domain Routing](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing "Wikipedia - Class Inter-Domain Routing")

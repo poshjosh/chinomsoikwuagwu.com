@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2020/03/10/Jenkins-on-AWS_Setup.md"
+path: "./2020/03/10/Jenkins-on-AWS_Setup.md"
 date: "2020-03-10"
 title: "Jenkins on AWS - Setup"
 description: "Poshjoshs-Blog - Jenkins on AWS Setup"

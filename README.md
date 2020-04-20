@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/README.md"
+path: "./README.md"
 date: "2019-11-11"
 title: "README"
 description: "Information for the author of this blog"
@@ -11,7 +11,7 @@ a single line of 3 hyphens `---` and ends with same. Example of `frontmatter`
 
 ```
 ---
-path: "./default-site/content/blog/README.md"
+path: "./README.md"
 date: "2019-11-11"
 title: "README"
 description: "Information for the author of this blog"

@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2019/11/23/Preparing-Jenkins-after-installation.md"
+path: "./2019/11/23/Preparing-Jenkins-after-installation.md"
 date: "2019-11-23"
 title: "Preparing Jenkins after Installation"
 description: "Poshjoshs-Blog - Preparing Jenkins after installation"

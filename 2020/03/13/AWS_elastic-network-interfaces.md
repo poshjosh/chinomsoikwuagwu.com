@@ -1,5 +1,5 @@
 ---
-path: "./default-site/content/blog/2020/03/13/AWS_elastic-network-interfaces.md"
+path: "./2020/03/13/AWS_Elastic-Network-Interfaces.md"
 date: "2020-03-13"
 title: "AWS Elastic Network Interfaces"
 description: "Poshjoshs-Blog - AWS elastic network interfaces"
