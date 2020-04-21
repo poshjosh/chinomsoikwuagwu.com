@@ -41,3 +41,61 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
 docker exec -u 0 -it <container_name_or_id> /bin/bash
 ```
 Here, the -u 0 flag specifies that the root user with id 0 be used to run /bin/bash
+
+### Notes on docker `build` command ###
+
+Docker builds images in layers.
+
+```
+FROM node:10-alpine
+
+LABEL maintainer="https://github.com/poshjosh <posh.bc@gmail.com>"
+
+RUN mkdir ./config && ls -a
+
+RUN ls -a
+
+CMD ["/bin/bash"]
+```
+
+At step 3 i.e (`RUN mkdir ./config && ls -a`) the output of `ls -a` will be:
+
+```
+.
+..
+config
+```
+
+At step 4 i.e (`RUN ls -a`) the output of `ls -a` will be:
+
+```
+.
+..
+```
+
+Actual command and output
+```
+docker build -t posjosh/jelly-bean .
+Step 1/5 : FROM node:10-alpine
+ ---> d9f9ac153d4e
+Step 2/5 : LABEL maintainer="https://github.com/poshjosh <posh.bc@gmail.com>"
+ ---> Using cache
+ ---> a4d5e3f83375
+Step 3/5 : RUN mkdir ./config && ls -a
+ ---> Running in 031276dbcdc3
+.
+..
+config
+Removing intermediate container 031276dbcdc3
+ ---> 4d084c8280d8
+Step 4/5 : RUN ls -a
+ ---> Running in dfa696788d39
+.
+..
+---> f8a989e7962b
+Step 5/5 : ENTRYPOINT ["./docker-entrypoint.sh"]
+---> Running in d159420d7aae
+Removing intermediate container d159420d7aae
+---> e117d69b8a7d
+Successfully built e117d69b8a7d
+```
