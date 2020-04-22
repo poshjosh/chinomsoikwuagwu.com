@@ -268,7 +268,7 @@ An IPv4 address has 4 parts (e.g `192.168.100.0`), each of which is 8 bits. Henc
 IPv4 address is 32 bits in total. On the other hand, a CIDR block may be represented thus:
 `192.168.100.14/24` The integer `24` after the slash `/` tells us that `24` out
 of `32` bits of the ip address identify the network, wile `8` out of `32` bits identify the host.
-[Click here for more on CIDR](./2020/03/09/CIDR-Blocks)
+[Click here for more on CIDR](/2020/03/09/CIDR-Blocks)
 
 Accessing a Corporate or Home Network
 
@@ -348,6 +348,6 @@ network address translation (NAT) device for IPv4 traffic.
 
 - [AWS - Connect to EC2 via HTTP and HTTPS](https://aws.amazon.com/premiumsupport/knowledge-center/connect-http-https-ec2/)
 
-- [CIDR Blocks](./2020/03/09/CIDR-Blocks)
+- [CIDR Blocks](/2020/03/09/CIDR-Blocks)
 
 - [Wikipedia - Class Inter-Domain Routing](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing "Wikipedia - Class Inter-Domain Routing")

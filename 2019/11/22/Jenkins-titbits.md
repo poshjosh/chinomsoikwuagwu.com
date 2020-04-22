@@ -8,7 +8,7 @@ lang: "en-us"
 
 ### What is Jenkins? ###
 
-Jenkins is used to automate all sorts of tasks related to building, testing, and delivering or deploying software. Read an [Introduction to Jenkins](/2019/11/19/Introduction to Jenkins/), if you haven't already done so.
+Jenkins is used to automate all sorts of tasks related to building, testing, and delivering or deploying software. Read an [Introduction to Jenkins](/2019/11/19/Introduction-to-Jenkins/), if you haven't already done so.
 
 ### Titbits ###
 - You could mount your local system home dir to docker container home via ```-v “%HOMEDRIVE%%HOMEPATH%”:/home``` when running the container. This is no longer recommended as per [this post](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) by [jpetazzo](https://github.com/jpetazzo).

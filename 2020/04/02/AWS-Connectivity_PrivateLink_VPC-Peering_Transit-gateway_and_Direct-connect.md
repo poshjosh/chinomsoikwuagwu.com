@@ -37,7 +37,7 @@ AWS PrivateLink-powered service (referred to as an endpoint service). Other AWS
 principals can create a connection from their VPC to your endpoint service using
 an interface [VPC Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html).
 You are the _service provider_, and the AWS principals that create connections
-to your service are _service consumers_. [More on VPC Endpoints and Endpoint services](./2020/03/16/AWS_VPC-endpoints-and-VPC-endpoint-services)
+to your service are _service consumers_. [More on VPC Endpoints and Endpoint services](/2020/03/16/AWS_VPC-endpoints-and-VPC-endpoint-services)
 
 ### VPC Peering ###
 
@@ -56,7 +56,7 @@ go through the internet.
 
 - VPC Peering - applies to VPC
 
-[Click here for more on the differences between VPC Peering and PrivateLink](./2020/04/02/AWS_VPC-peering_vs_PrivateLink)
+[Click here for more on the differences between VPC Peering and PrivateLink](/2020/04/02/AWS_VPC-peering_vs_PrivateLink)
 
 ### Transit Gateways ###
 
@@ -120,9 +120,9 @@ resource types that you can share in this fashion.
 
 - [VPC Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html)
 
-- [VPC Endpoints and Endpoint services](./2020/03/16/AWS_VPC-endpoints-and-VPC-endpoint-services)
+- [VPC Endpoints and Endpoint services](/2020/03/16/AWS_VPC-endpoints-and-VPC-endpoint-services)
 
-- [AWS VPC Peering vs PrivateLink](./2020/04/02/AWS_VPC-peering_vs_PrivateLink)
+- [AWS VPC Peering vs PrivateLink](/2020/04/02/AWS_VPC-peering_vs_PrivateLink)
 
 - [Use AWS Transite Gateway to simplify your network architecture](https://aws.amazon.com/blogs/aws/new-use-an-aws-transit-gateway-to-simplify-your-network-architecture/)
 

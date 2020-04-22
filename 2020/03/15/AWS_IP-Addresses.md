@@ -62,7 +62,7 @@ over the Internet.
 ### CIDR Blocks ###
 
 CIDR Blocks enable you specify an IP address range. This is done using an IP
-address and a forward slash. [Read this for more information on CIDR Blocks](./2020/03/09/CIDR-Blocks)  
+address and a forward slash. [Read this for more information on CIDR Blocks](/2020/03/09/CIDR-Blocks)  
 
 ### References ###
 
@@ -72,4 +72,4 @@ address and a forward slash. [Read this for more information on CIDR Blocks](./2
 
 - [AWS EC2 - Bringing your own IP Addresses](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html)
 
-- [CIDR Blocks](./2020/03/09/CIDR-Blocks)
+- [CIDR Blocks](/2020/03/09/CIDR-Blocks)
