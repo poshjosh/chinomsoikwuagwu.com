@@ -2,7 +2,7 @@
 path: "./2019/11/13/Docker-titbits.md"
 date: "2019-11-13"
 title: "Docker Titbits"
-description: "Poshjoshs-Blog - Docker Titbits"
+description: "Curated information on Docker"
 lang: "en-us"
 ---
 
@@ -98,4 +98,25 @@ Step 5/5 : ENTRYPOINT ["./docker-entrypoint.sh"]
 Removing intermediate container d159420d7aae
 ---> e117d69b8a7d
 Successfully built e117d69b8a7d
+```
+
+### Passing environment variables to docker run ###
+
+```
+$ docker run  --name <CONTAINER_NAME> -e JAVA_OPTS='-Xmx3g -Xms3g' <IMAGE_NAME>
+```
+
+### Useful for Docker java ###
+
+Remember java syntax for executing a jar file?
+
+```
+java <JAVA SYSTEM PROPERTY> -jar <path/to/my/jar> <COMMAND LINE ARGS>
+java -Dserver.port=7788 -jar <path/to/my/jar> --server-port=7788
+```
+
+Use the following command to unpack all jar files in target folder of workspace directory to the current directory:
+
+```
+sh "find ${WORKSPACE}/target -type f -name '*.jar' -exec jar -xf {} ';'"
 ```
