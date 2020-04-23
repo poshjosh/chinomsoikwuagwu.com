@@ -1,6 +1,6 @@
 ---
 path: "./2020/03/02/Notes-on-Amazon-Web-Services_5_Security-identity-and-compliance.md"
-date: "2020-03-02"
+date: "2020-03-02T14:33:00"
 title: "Notes on Amazon Web Services 5 - Security, Identity and Compliance"
 description: "Poshjoshs-Blog - Notes on Amazon Web Services 5 - Security identity and compliance"
 lang: "en-us"

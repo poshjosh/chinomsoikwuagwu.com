@@ -1,6 +1,6 @@
 ---
 path: "./2020/03/02/Notes-on-Amazon-Web-Services_8_Command-line-interface.md"
-date: "2020-03-02"
+date: "2020-03-02T18:28:00"
 title: "Notes on Amazon Web Services 8 - Command Line Interface (CLI)"
 description: "Poshjoshs-Blog - Notes on Amazon Web Services 8 - Command line interface"
 lang: "en-us"

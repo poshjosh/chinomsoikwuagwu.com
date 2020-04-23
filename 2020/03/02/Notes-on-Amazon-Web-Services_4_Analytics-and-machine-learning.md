@@ -1,6 +1,6 @@
 ---
 path: "./2020/03/02/Notes-on-Amazon-Web-Services_4_Analytics-and-machine-learning.md"
-date: "2020-03-02"
+date: "2020-03-02T12:15:00"
 title: "Notes on Amazon Web Services 4 - Analytics and Machine Learning"
 description: "Poshjoshs-Blog - Notes on Amazon Web Services 4 - Analytics and machine learning"
 lang: "en-us"

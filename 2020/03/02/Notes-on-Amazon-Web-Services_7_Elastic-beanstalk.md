@@ -1,6 +1,6 @@
 ---
 path: "./2020/03/02/Notes-on-Amazon-Web-Services_7_Elastic-beanstalk.md"
-date: "2020-03-02"
+date: "2020-03-02T17:10:00"
 title: "Notes on Amazon Web Services 7 - Elastic Beanstalk"
 description: "Poshjoshs-Blog - Notes on Amazon Web Services 7 - Elastic beanstalk"
 lang: "en-us"

@@ -1,6 +1,6 @@
 ---
 path: "./2020/03/02/Notes-on-Amazon-Web-Services_6_Developer-media-migration-productivity-iot-and-gaming.md"
-date: "2020-03-02"
+date: "2020-03-02T15:49:00"
 title: "Notes on Amazon Web Services 6 - Developer, Media, Migration, Productivity, IoT and Gaming"
 description: "Poshjoshs-Blog - Notes on Amazon Web Services 6 - Developer, media, migration, productivity, IoT and gaming"
 lang: "en-us"
