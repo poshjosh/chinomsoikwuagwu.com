@@ -6,8 +6,6 @@ description: "Poshjoshs-Blog - How to add chat functionality to a maven java web
 lang: "en-us"
 ---
 
-This happens to be my first blog on GitHub Pages &#127881; Hurray!
-
 Today we learn how to add chat functionality to a java web application. We do
 this by using a java library based on CometD chat libraries. This is a 2 part tutorial.
 
