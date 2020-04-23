@@ -1,6 +1,6 @@
 ---
 path: "./2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-9_Databases.md"
-date: "2020-03-09"
+date: "2020-03-09T18:02:00"
 title: "AWS Certified Solutions Architect Associate - Part 9 - Databases"
 description: "Poshjoshs-Blog - AWS Certified Solutions Architect Associate - Part 9 - Databases"
 lang: "en-us"

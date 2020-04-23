@@ -1,6 +1,6 @@
 ---
 path: "./2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-5_Compute-services-design.md"
-date: "2020-03-09"
+date: "2020-03-09T11:59:58"
 title: "AWS Certified Solutions Architect Associate - Part 5 - Compute services design"
 description: "Poshjoshs-Blog - AWS Certified Solutions Architect Associate - Part 5 - Compute services design"
 lang: "en-us"

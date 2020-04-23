@@ -1,6 +1,6 @@
 ---
 path: "./2020/03/09/AWS_Virtual-private-cloud-vpc.md"
-date: "2020-03-09"
+date: "2020-03-09T22:20:40"
 title: "AWS Virtual Private Cloud (VPC)"
 description: "Poshjoshs-Blog - AWS Virtual Private Cloud (VPC)"
 lang: "en-us"

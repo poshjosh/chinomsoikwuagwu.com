@@ -1,6 +1,6 @@
 ---
 path: "./2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-6_Identity-and-access-management.md"
-date: "2020-03-09"
+date: "2020-03-09T14:20:50"
 title: "AWS Certified Solutions Architect Associate - Part 6 - Identity and access management"
 description: "Poshjoshs-Blog - AWS Certified Solutions Architect Associate - Part 6 - Identity and access management"
 lang: "en-us"

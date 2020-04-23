@@ -1,6 +1,6 @@
 ---
 path: "./2020/03/09/AWS_Virtual-private-cloud-vpc-examples.md"
-date: "2020-03-09"
+date: "2020-03-09T22:42:10"
 title: "AWS Virtual Private Cloud (VPC) Examples"
 description: "Poshjoshs-Blog - AWS Virtual Private Cloud - VPC - examples"
 lang: "en-us"
