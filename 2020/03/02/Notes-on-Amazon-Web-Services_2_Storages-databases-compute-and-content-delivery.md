@@ -7,14 +7,30 @@ lang: "en-us"
 ---
 
 ### AWS Storages ###
-- S3 - Store and access any type of data over the internet. Create a bucket and upload objects to the bucket. The bucket grows as objects are added.. theoritically unlimited size.
-- Glacier - Cheapest storage, designed for archiving of data (so not readily accessible). One could set up lifecycle rule to auto migrate old data from S3 to glacier for archiving.
-- Elastic Block Store (EBS) - Highly available, low latency storage for attaching to servers launched via EC2 service. Like attaching a hard drive to computer system.
-- Elastic File System (EFS) - Network attached storage for EC2 service. Allows multiple servers access same data source.
-Storage Gateway - Enables hybrid storage between on premises local and AWS cloud. More frequently accessed data stored on premises while less frequently accessed data is stored on the AWS cloud.
-- Snowball - Portable peta byte scale data storage. Download your data to a Snow ball device and send to AWS which will upload the data to you S3 bucket.
+
+- S3 - Store and access any type of data over the internet. Create a bucket and
+upload objects to the bucket. The bucket grows as objects are added.. theoritically
+unlimited size.
+
+- Glacier - Cheapest storage, designed for archiving of data (so not readily
+  accessible). One could set up lifecycle rule to auto migrate old data from S3
+  to glacier for archiving.
+
+- Elastic Block Store (EBS) - Highly available, low latency storage for attaching
+to servers launched via EC2 service. Like attaching a hard drive to computer system.
+
+- Elastic File System (EFS) - Network attached storage for EC2 service. Allows
+multiple servers access same data source.
+
+- Storage Gateway - Enables hybrid storage between on premises local and AWS
+cloud. More frequently accessed data stored on premises while less frequently
+accessed data is stored on the AWS cloud.
+
+- Snowball - Portable peta byte scale data storage. Download your data to a Snow
+ball device and send to AWS which will upload the data to you S3 bucket.
 
 ### AWS Clould Sample Usage ###
+
 Create own VPC in AWS. Our VPC is a secure fortress.
 Launch servers in the VPC
 Attach EBS device, one for each server. Each server then has access to own EBS.
