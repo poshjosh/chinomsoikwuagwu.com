@@ -6,31 +6,52 @@ description: "Poshjoshs-Blog - AWS Certified Solutions Architect Associate - Par
 lang: "en-us"
 ---
 
+### Acronyms ###
+
+- ACL - Access Control List
+- ARN - Amazon Resource Name
+- AZ - Availability Zone
+- EBS - Elastic Block Store
+- IA - Amazon S3 Infrequent Access
+- MFA - Multi-Factor Authentication
+- NAS - Network Attached Storage
+- NFSv4 - Network File System version 4
+- Provisioned IOPS - GUARANTEED Input/output operations per seconds
+- REST - Representational State Transfer
+- RRS - Reduced Redundancy Storage
+- S3 - Simple Storage Service
+- SNS - Simple Notification Service
+- SSD - Solid State Drive
+- URL - Uniform Resource Location
+
 ### Storage Services ###
 
-- Simple Storage Service (Object level access)
+- __Simple Storage Service__ (Object level access)
 
-- Glacier - For archive data
+- __Glacier__ - For archive data
 
-- CloudFront - Data accessed frequently is cached at an edge location
+- __CloudFront__ - Data accessed frequently is cached at an edge location
 
-- Elastic Block Store - Very fast access (block level access)
+- __Elastic Block Store__ - Very fast access (block level access)
 
-- Storage Gateway - An appliance you put on your local network that acts as a VPN connection into the amazon clould so you can access your storage as if its local storage.
+- __Storage Gateway__ - An appliance you put on your local network that acts as
+a VPN connection into the amazon clould so you can access your storage as if its
+local storage.
 
-- Snow Family - A collection of primary products used to migrate large amounts of data from local data stores into the cloud.
+- __Snow Family__ - A collection of primary products used to migrate large
+amounts of data from local data stores into the cloud.
 
-- Databases
+- __Databases__
 
 ### Characteristics of Storage ###
 
-- Block Storage
+- __Block Storage__
 
   * Block Storage is used on local networks. Accessing the data in a similar way to local hard drives. e.g iSCSI, Fibre channel.
 
   * AWS can use block storage with virtual machines within the AWS cloud using EBS.
 
-- File Storage.
+- __File Storage__
 
   * Here we are dealing with objects, or chunks of information.
 
@@ -40,11 +61,11 @@ lang: "en-us"
 
 ### Selecting Storage ###
 
-- Size. How big are the objects and how much total storage is needed
+- __Size__. How big are the objects and how much total storage is needed
 
-- Performance. Speed of access (EBS gives better performance for instances) but don't forget cost.. which becomes obvious for large amounts of data.
+- __Performance__. Speed of access (EBS gives better performance for instances) but don't forget cost.. which becomes obvious for large amounts of data.
 
-- Cost
+- __Cost__
 
 ### Simple Storage Service (S3) ###
 
@@ -60,17 +81,19 @@ lang: "en-us"
 
 #### Getting Data into S3 ####
 
-- Use AWS APIs. API calls from your applications
+- __AWS APIs__. API calls from your applications
 
-- Amazon Direct Connect. A VPN from enterprise/business network to AWS
+- __Amazon Direct Connect__. A VPN from enterprise/business network to AWS
 
-- Storage Gateway. With storage gateway, in addition to VPN connection, there could also be data stored locally and synchronized/replicated into the S3.
+- __Storage Gateway__. With storage gateway, in addition to VPN connection,
+there could also be data stored locally and synchronized/replicated into the S3.
 
-- Kinesis Firehose. A way to get a large amount of analytical data into the S3 bucket.
+- __Kinesis Firehose__. A way to get a large amount of analytical data into the S3 bucket.
 
-- Transfer Acceleration. Works based on CloudFront tech. Optimized route using edge location for uploading data to S3 bucket... Costs more.
+- __Transfer Acceleration__. Works based on CloudFront tech. Optimized route
+using edge location for uploading data to S3 bucket... Costs more.
 
-- Snow Family. These are actual physical hardware.
+- __Snow Family__. These are actual physical hardware.
 
   * Snowball. Petabyte scale.
 
@@ -80,24 +103,27 @@ lang: "en-us"
 
 #### S3 Features ####
 
-- Prefixes and Delimiters
+- __Prefixes and Delimiters__. S3 doesn't actually have folder hierarchy.
+Organization and identification is achieved by prefixes and delimiters. With
+prefixes and delimiters give   the impression of folders.
 
-S3 doesn't actually have folder hierarchy. Organization and identification   is achieved by prefixes and delimiters. With prefixes and delimiters give   the impression of folders.
+- __S3 Storage Classes__. From most expensive at the top to least expensive.
 
-- S3 Storage Classes. From most expensive at the top to least expensive.
+  * `S3 Standard` - Durability 99.999999999%, Availability 99.99%
+  * `S3 Infrequent Access (IA)` - Durability 99.999999999%, Availability 99.9%
+    - `S3 One Zone IA` - Durability 99.999999999%, Availability 99.5%
+  * `S3 Reduced Redundancy Storage (RRS)`
+  * `S3 Glacier`
 
-  * Amazon S3 Standard
-  * Amazon S3 Infrequent Access (IA)
-  * Amazon S3 Reduced Redundancy Storage (RRS)
-  * Amazon S3 Glacier
+_Though glacier is the least expensive, if accessed frequently then the price
+shoots up due to the access charge_.
 
-Though glacier is the least expensive, if accessed frequently then the price shoots up due to the access charge.
+- __Object Lifecycle Management__
 
-- Object Lifecycle Management
+The standard is to add info to S3 Standard, migrate to S3 IA after some months
+and further move the data to Glacier after some months.
 
-The standard is to add info to S3 Standard, migrate to S3 IA after some months and further move the data to Glacier after some months.
-
-- Encryption
+- __Encryption__
 
 Server side and Client side.
 
@@ -105,33 +131,40 @@ Server side and Client side.
 
   * Client side. You encrypt the file before uploading to S3.
 
-- Versioning
+- __Versioning__
 
-Maintains multiple versions of objects. Turned off by default. Once you enable it, you can't disable it. But you can suspend it so that new versions are no longer created.
+Maintains multiple versions of objects. Turned off by default. Once you enable
+it, you can't disable it. But you can suspend it so that new versions are no
+longer created.
 
-- Multi-Factor Authentication (MFA) Delete
+- __Multi-Factor Authentication (MFA)__
 
-- Multi-part upload. Giga bytes of data upload in parts
+- __Multi-part upload__. Giga bytes of data upload in parts
 
-- Range GETs. E.g get the range from 10kb to 20kb.
+- __Range GETs__. E.g get the range from 10kb to 20kb.
 
-- Cross region Replication. Replicate data accross S3 buckets in different regions. When enabled it doesn't replicate existing data but newly added data.
+- __Cross region Replication__. Replicate data accross S3 buckets in different
+regions. When enabled it doesn't replicate existing data but newly added data.
 
-- Logging. Log addition, deletion, changes etc
+- __Logging__. Log addition, deletion, changes etc
 
-- Event Notifications
+- __Event Notifications__
 
-Enabling Encryption (Server side encryption) Encryption Options are:
+### S3 Bucket Usage ###
+
+__Enabling Encryption (Server side encryption)__
+
+Encryption Options are:
 
 - AES Option - Managed by Amazon. Easier.
 - KMS Option - Managed by you. More Flexible. You have the ability to archive or restore your key.
 
-Permissions
+__Permissions__
 
 - Bucket level permission
 - Object level permission. Will override bucket level per object.
 
-Manage Lifecycle
+__Manage Lifecycle__
 
 Tags or prefixes could be used to apply rules to a group of objects in a bucket.
 
@@ -141,7 +174,7 @@ Tags or prefixes could be used to apply rules to a group of objects in a bucket.
   * To Glacier after 90 days
   * You could also set for deletion after a set amount of time (It is advisable to have a backup)
 
-Bucket Policy
+__Bucket Policy__
 
 - JSON policies could be done, but we have visual editors to help build JSON policies
 
@@ -149,7 +182,7 @@ Bucket Policy
 
 - Others Management, Analytics, Metrics, Inventory
 
-Adding objects
+__Adding objects__
 
 - Object duration is specified at creation time.
 
@@ -162,7 +195,10 @@ Adding objects
 - Objects.
 - Keys. Objects have keys, like filenames for files
 - Object URLs
-- Eventual consistency. S3 objects have eventual consistency while Elastic Block Store (EBS) objects are consistent. Eventual consistency means there is a lag between when the operation is carried out on one location (originating location) and when the new state becomes consistent with redundant locations.
+- Eventual consistency. S3 objects have eventual consistency while Elastic
+Block Store (EBS) objects are consistent. Eventual consistency means there is a
+lag between when a new state is introduced on one location (originating location)
+and when the new state becomes consistent with redundant locations.
 
 #### Common S3 Operations ####
 
@@ -212,40 +248,41 @@ Representational State Transfer (REST) uses HTTP methods.
 
 ### Elastic Block Store (EBS) ###
 
-- Each instance uses EBS. EBS used for durable/persistent storage in the instance.
+- Each EC2 instance uses EBS. EBS used for durable/persistent storage in the instance.
 
 - EBS is block level storage from one AWS service to another
 
-- EBS Volume Types:
+- __EBS Volume Types__:
 
   * Magnetic, slowest, cheapest
-    . Standard (54 rpm like in computer hard drive)
-    . Throughput optimized (10k rpm +)
+    - Standard (54 rpm like in computer hard drive)
+    - Throughput optimized (10k rpm +)
   * SSD
-    . General Purpose
-    . Provisioned IOPS
+    - General Purpose
+    - Provisioned IOPS
 
 - Generally
   * Cold Hard Disk Drive - (Really large and really slow)
   * Throughput Optimized - (Potentially large, really fast) e.g 10000+ rpm
   * Magnetic Standard - (Middle of the road) like a typical 5400rmp hard drive found in local computers
-  * If you use SSD, to take advantage of the additional performance, you need and EBS optimzed instance.
+  * If you use SSD, to take advantage of the additional performance, you need an EBS optimized instance.
   * EBS volume type: Magnetic Standard SSD is free tier.
 
-Protecting EBS Data
+__Protecting EBS Data__
 
-- Snapshots.
+- `Snapshots`.
   * Take a snapshot, then restore to that point in time later.
-  * Take a snapshot, create another EBS volume from the snapshot. Create an instance and used the newly created EBS volume.
+  * Take a snapshot, create another EBS volume from the snapshot. Create an
+  instance and used the newly created EBS volume.
 
-- Volume recovery
+- `Volume recovery`
   * Attach volumes from one instance to another.
 
 - Encryption methods
 
 #### Creating EBS Volumes ####
 
-Note: No link to EBS volumes under storages in AWS Services. EBS links are under EC2.
+_No link to EBS volumes under storages in AWS Services. EBS links are under EC2._
 
 Management Console -> Compute -> EC2 -> Volumes -> Create Volume
 
@@ -267,36 +304,33 @@ During instance creation attach the newly created EBS volume.
 
 ### Elastic File System ###
 
-- EFS is different from other storage because it is sharable. This means that multiple devices can access it at the same time.
-- EFS is heirarchichal in nature, unlike S3 which uses prefix and delimiters
+- EFS is different from other storage because it is sharable. This means that
+multiple devices can access it at the same time.
+- EFS is heirarchical in nature, unlike S3 which uses prefix and delimiters
 - EFS can be accessed through NFSv4 (Network File System version 4)
 - EFS could be used by EC2 instances
 - EFS not supported on windows instances
   For windows, create an EBS volume and use shared folders from the windows instance itself.
 
-Comparison      | Type                            | EFS                    	| S3                  		| EBS
--------------------------------------------------------------------------------------------------------------------------------------------------------
-Performance     | Per ops			  | low, consistent		| low for mixed req & CloudFront| lowest, consistent 	
-                | Thoughput scale		  | Multiple Gigabytes/sec	| Multiple Gigabytes/sec	| Single Gigabytes/sec
-Characteristics | Data Availability & Durability  | Multiple AZ redundancy	| Multiple AZ redundancy        | Single AZ & hardware based redundancy
-                | Access			  | Thousands from multiple AZs	| Millions over the web		| Single EC2 in single AZ
-                | Use cases			  | Web serving, content mgt,   | Web serv(static), content mgt,| Boot volumes, transactional & NoSQL
-                | 				  | enterprise apps, media &    | media & entertainment, backups| db, data warehouse & ETL
-                |                                 | entertainment, home dirs, db| big data analytics, data lake |
-                |                                 | backup, dev tools, container|				|
-                |				  | storage, big data analysis	|				|
---------------------------------------------------------------------------------------------------------------------------------------------------------
+Comparison      | Type                             | EFS                    	    | S3                  		       | EBS
+----------------|----------------------------------|------------------------------|--------------------------------|----------------------------------------
+Performance     | `Per ops`		                     | low, consistent		          | low for mixed req & CloudFront | lowest, consistent 	
+                | `Thoughput scale`	               | Multiple Gigabytes/sec	      | Multiple Gigabytes/sec	       | Single Gigabytes/sec
+Characteristics | `Data Availability & Durability` | Multiple AZ redundancy	      | Multiple AZ redundancy         | Single AZ & hardware based redundancy
+                | `Access`		                     | Thousands from multiple AZs  | Millions over the web		       | Single EC2 in single AZ
+                | `Use cases`		                   | Web serving, content mgt, enterprise apps, media & entertainment, home dirs, db backup, dev tools, container storage, big data analysis | Static website, content mgt, media & entertainment, backups, big data analytics, data lake | Boot volumes, transactional & NoSQL db, data warehouse & ETL
+
 
 #### Create EFS File System ####
 
 - Management Console -> Storage -> EFS -> Create EFS File System
   * Select VPC
   * Performance Mode
-    . General Purpose
-    . Max IO - Good to use when large number of access.
+    - General Purpose
+    - Max IO - Good to use when large number of access.
   * Throughput mode:
-    . Bursting - Increase or decrease with demand.
-    . Provisioned - fixed at a certain amount.
+    - Bursting - Increase or decrease with demand.
+    - Provisioned - fixed at a certain amount.
 
 ### Integrating Cloud with On-premises Storage ###
 
@@ -308,9 +342,7 @@ Storage Gateway - Software appliance that creates a gateway on the customers loc
 
 File gateway provides interface to S3 buckets.
 
-Must Read
-
-AWS Storage Gateway -> Planning your storage gateway deployment
+__Must Read: AWS Storage Gateway -> Planning your storage gateway deployment__
 
 ### Storage Access Security ###
 
@@ -325,8 +357,8 @@ To add permissions you need the person's email address or canonical id. Some use
   * Type of Policy
   * Allow/Deny or both
   * Principal (the user's ARN). To get the ARN of the user:
-    . Management Console -> Services -> IAM  -> Users -> Select paticulary user
-    . The user's ARN will be displayed at the top.
+    - Management Console -> Services -> IAM  -> Users -> Select paticulary user
+    - The user's ARN will be displayed at the top.
   * Amazon Resource Name (ARN of the current resource)
 - Copy the JSON code generated, go back to the S3 management console and paste the copied JSON policy.
 
@@ -340,45 +372,43 @@ Command Line Parameters/Tools Avaialable for S3 Buckets
 
 Storage Performance Management is about selecting the right type and class of storage.
 
-SSD vs HDD (Magnetic)
+__SSD vs HDD (Magnetic)__
 
-- Amazon EBS Volume Type Performance
+- Amazon EBS Volume Type Performance. _Any question above 10k IOPs use provisioned SSD._
 
-Any question above 10k IOPs use provisioned SSD.
+  * __SSD__
+    - GP2 - General purpose - max 10k IOPs
+    - Provisioned - max 32k IOPs
 
-  * SSD
-    . GP2 - General purpose - max 10k IOPs
-    . Provisioned - max 32k IOPs
-
-  * HDD(Magnetic) - Various types have 250 - 500 IOPs (not high)
+  * __HDD (Magnetic)__ - Various types have 250 - 500 IOPs (not high)
 
 - Volume Size Constraints
 
-  * SDD
-    . General - 1GiB - 16TiB
-    . Provisioned IOPs - 4GiB - 16TiB
+  * __SDD__
+    - General - 1GiB - 16TiB
+    - Provisioned IOPs - 4GiB - 16TiB
 
-  * HDD (Magnetic) - Various types have  500GiB - 16TiB
+  * __HDD (Magnetic)__ - Various types have  500GiB - 16TiB
 
 The default of General Purpose SSD is usually adequate.
 
-- Difference between MB and MiB
+- __Difference between MB and MiB__
 
   * KB = 1000B, KiB =1024B
   * MB = 1000k, MiB = 1024k
   * GB = 1000B, KiB =1024B
 
-- Storage Class Differences
+- __Storage Class Differences__
 
   * S3 standard
-    . Durability   - 99.999_999_999%
-    . Availability - 99.99%
+    - Durability   - 99.999999999%
+    - Availability - 99.99%
   * S3 standard IA
-    . Durability   - 99.999_999_999%
-    . Availability - 99.9%
+    - Durability   - 99.999999999%
+    - Availability - 99.9%
   * S3 One Zone IA
-    . Durability   - 99.999_999_999%
-    . Availability - 99.5%
+    - Durability   - 99.999999999%
+    - Availability - 99.5%
 
 ### Notes ###
 
@@ -396,9 +426,12 @@ The default of General Purpose SSD is usually adequate.
 
 - S3 bucket names must be globally unique
 
-- All Amazon S3 resources and sub-resources are private by default, but you can configure security features, such as access control lists (ACLs) and bucket policies, to allow public access to your buckets or objects.
+- All Amazon S3 resources and sub-resources are private by default, but you can
+configure security features, such as access control lists (ACLs) and bucket
+policies, to allow public access to your buckets or objects.
 
-- When you see 1 grantee under permission, the obviously it is the owner who has permission.
+- When you see 1 grantee under permission, the obviously it is the owner who
+has permission.
 
 - Default max amount of bucket is 100
 
@@ -412,31 +445,16 @@ The default of General Purpose SSD is usually adequate.
 
 - What is the maximum number of vaults an AWS account can create in a region? 1000
 
-- What is the expected recovery window for a Glacier restore with standard access? 3 - 5 hours
+- What is the expected recovery window for a Glacier restore with standard
+access? 3 - 5 hours
 
 - To guarantee IOPS use SSD type provisioned IOPS
 
-- If you use SSD, to take advantage of the additional performance, you need and EBS optimzed instance.
+- If you use SSD, to take advantage of the additional performance, you need
+and EBS optimzed instance.
 
 - EBS volume type: Magnetic Standard SSD is free tier
 
 - EFS shares can be limited to a VPC.
 
 - Storage security could be managed through Management Console / CLI
-
-### Acronyms ###
-
-- NAS - Network Attached Storage
-- AZ - Availability Zone
-- IA - Amazon S3 Infrequent Access
-- RRS - Amazon S3 Reduced Redundancy Storage
-- MFA - Multi-Factor Authentication
-- URL - Uniform Resource Location
-- REST - Representational State Transfer
-- SNS - Simple Notification Service
-- ARN - Amazon Resource Name
-- EBS - Elastic Block Store
-- SSD - Solid State Drive
-- Provisioned IOPS - GUARANTEED Input/output operations per seconds
-- NFSv4 - Network File System version 4
-- ACL - Access Control List
