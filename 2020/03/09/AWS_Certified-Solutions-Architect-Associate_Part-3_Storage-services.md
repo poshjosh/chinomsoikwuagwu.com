@@ -236,16 +236,6 @@ Representational State Transfer (REST) uses HTTP methods.
 
   * Settings
 
-#### Q and A ####
-
-- What is the maximum number of vaults an AWS account can create in a region?
-
-  * 1000
-
-- What is the expected recovery window for a Glacier restore with standard access?
-
-  * 3 - 5 hours
-
 ### Elastic Block Store (EBS) ###
 
 - Each EC2 instance uses EBS. EBS used for durable/persistent storage in the instance.
@@ -280,7 +270,7 @@ __Protecting EBS Data__
 
 - Encryption methods
 
-#### Creating EBS Volumes ####
+__Creating EBS Volumes__
 
 _No link to EBS volumes under storages in AWS Services. EBS links are under EC2._
 
@@ -298,7 +288,7 @@ or
 
 During instance creation attach the newly created EBS volume.
 
-#### EBS Volume Types ####
+__EBS Volume Types__
 
 ![EBS Volume Types](https://secureservercdn.net/160.153.138.177/3d9.249.myftpupload.com/wp-content/uploads/2016/03/EBS_Volume_Types.png "EBS Volume Types")
 
@@ -312,16 +302,15 @@ multiple devices can access it at the same time.
 - EFS not supported on windows instances
   For windows, create an EBS volume and use shared folders from the windows instance itself.
 
-Comparison      | Type                             | EFS                    	    | S3                  		       | EBS
-----------------|----------------------------------|------------------------------|--------------------------------|----------------------------------------
-Performance     | `Per ops`		                     | low, consistent		          | low for mixed req & CloudFront | lowest, consistent 	
-                | `Thoughput scale`	               | Multiple Gigabytes/sec	      | Multiple Gigabytes/sec	       | Single Gigabytes/sec
-Characteristics | `Data Availability & Durability` | Multiple AZ redundancy	      | Multiple AZ redundancy         | Single AZ & hardware based redundancy
-                | `Access`		                     | Thousands from multiple AZs  | Millions over the web		       | Single EC2 in single AZ
-                | `Use cases`		                   | Web serving, content mgt, enterprise apps, media & entertainment, home dirs, db backup, dev tools, container storage, big data analysis | Static website, content mgt, media & entertainment, backups, big data analytics, data lake | Boot volumes, transactional & NoSQL db, data warehouse & ETL
+| Type                             | EFS                    	    | S3                  		       | EBS
+|----------------------------------|-----------------------------|--------------------------------|----------------------------------------
+| `Performance per ops`            | low, consistent		          | low for mixed req & CloudFront | lowest, consistent 	
+| `Thoughput scale`                | Multiple Gigabytes/sec	    | Multiple Gigabytes/sec	       | Single Gigabytes/sec
+| `Data Availability & Durability` | Multiple AZ redundancy	    | Multiple AZ redundancy         | Single AZ & hardware based redundancy
+| `Access`		                     | Thousands from multiple AZs | Millions over the web		       | Single EC2 in single AZ
+| `Use cases`		                   | Web serving, content mgt, enterprise apps, media & entertainment, home dirs, db backup, dev tools, container storage, big data analysis | Static website, content mgt, media & entertainment, backups, big data analytics, data lake | Boot volumes, transactional & NoSQL db, data warehouse & ETL
 
-
-#### Create EFS File System ####
+__Create EFS File System__
 
 - Management Console -> Storage -> EFS -> Create EFS File System
   * Select VPC
