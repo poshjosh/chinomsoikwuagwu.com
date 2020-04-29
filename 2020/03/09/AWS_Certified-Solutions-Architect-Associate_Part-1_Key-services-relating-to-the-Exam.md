@@ -106,7 +106,9 @@ Questions about the cheapest way to do something
 - Difference Between EC2 and Elastic Beanstalk
 Elastic Beanstalk automates what is done manually via EC2 i.e manual set up and configuration etc
 
-- Glacier is not readily accessible.. Response time to access data is 3 - 5 hours... A request needs to be made to access
+- Glacier is not readily accessible.. Response time to access data is between
+minutes and 12 hours. A request needs to be made to access. 
+
 
 ### Links ###
 
