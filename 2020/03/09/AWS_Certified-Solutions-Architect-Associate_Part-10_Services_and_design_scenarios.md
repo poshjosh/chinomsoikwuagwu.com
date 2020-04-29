@@ -267,14 +267,12 @@ Auto Scaling
 - Make sure DB services can be scaled quickly by monitoring them
 - Make sure to use the right storage for your performance needs
 
---------------------------------------------------------------------------------
-Storage	 Services                Latency            Throughput         Shareable
---------------------------------------------------------------------------------
-Block	 EBS, EC2 instance store lowest consistency Single instance    Mounted on single instance, copies via snapshot
-File     EFS  			 low consistency    Multiple instances Many clients
-Object   S3			 low latency	    Web-scale	       Many clients
-Archival Glacier		 Min to Hrs	    High	       No	 
---------------------------------------------------------------------------------
+| Storage |	 Services              |  Latency          |  Throughput         Shareable
+|---------|------------------------|-------------------|-------------------|-----------
+| Block	  | EBS, EC2 instance store| Lowest consistency| Single instance   | Mounted on single instance, copies via snapshot
+| File    | EFS  			             | Low consistency   | Multiple instances| Many clients
+| Object  | S3			               | Low latency	     | Web-scale	       | Many clients
+| Archival| Glacier		           	 | Min to Hrs        | High              | No
 
 #### Performant Design Scenario ####
 
