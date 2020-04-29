@@ -69,15 +69,46 @@ amounts of data from local data stores into the cloud.
 
 ### Simple Storage Service (S3) ###
 
-- Object Storage. S3 is about object storage. The object could be a file or any chunk of data.
+- `Object Storage`. S3 is about object storage. The object could be a file or any chunk of data.
 
-- High availability. Automatically distributed accross at least 3 availability zones (AZ) by default. (Class 1A = 1 AZ, least expensive)
+- `High availability`. Automatically distributed across at least 3 availability
+zones (AZ) (except One Zone IA) by default.
 
-- Encryption
+- `Encryption`. Objects are encrypted using server-side encryption with either Amazon S3-managed keys (SSE-S3) or customer master keys (CMKs) stored in AWS Key Management Service (AWS KMS).
 
 - Automatic data classification
 
 - Big data analytics could be done directly against the data stored in an S3 bucket. This means you don't have to put it in a database first.
+
+- `Billing`. You pay for storing objects in your S3 buckets. The rate you’re
+charged depends on your objects' size, how long you stored the objects during
+the month, and the storage class. There are also per-request ingest fees when
+using PUT, COPY, or lifecycle rules to move data into any S3 storage class.
+When using Transfer Acceleration, additional data transfer charges may apply.
+You pay for all bandwidth into and out of Amazon S3, except for the following:
+  * Data transferred in from the internet
+  * Data transferred out to an Amazon Elastic Compute Cloud (Amazon EC2) instance, when the instance is in the same AWS Region as the S3 bucket
+  * Data transferred out to Amazon CloudFront (CloudFront)
+  * Data transferred using Amazon S3 Transfer Acceleration.
+
+- `Object Locking`. Amazon S3 does not currently support object locking. If two
+PUT requests are simultaneously made to the same key, the request with the latest timestamp wins. If this is an issue, you will need to build an object-locking mechanism into your application.
+
+- `IPv6`
+  * Static website hosting from an S3 bucket is not supported over IPv6.
+  * BitTorrent is not supported over IPv6
+
+- `Transfer Acceleration` Enables fast, easy, and secure transfers of ﬁles over
+long distances between your client and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront’s globally distributed edge locations. As the
+data arrives at an edge location, data is routed to Amazon S3 over an optimized network path. When using Transfer Acceleration, additional data transfer charges may apply.   
+
+#### S3 Consistency Model ####
+
+| Action          | Consistency
+|-----------------|-----------------
+| PUT new object  | Read after write
+| PUT overwrite   | Eventual
+| DELETE          | Eventual
 
 #### Getting Data into S3 ####
 
@@ -109,11 +140,21 @@ prefixes and delimiters give   the impression of folders.
 
 - __S3 Storage Classes__. From most expensive at the top to least expensive.
 
-  * `S3 Standard` - Durability 99.999999999%, Availability 99.99%
-  * `S3 Infrequent Access (IA)` - Durability 99.999999999%, Availability 99.9%
-    - `S3 One Zone IA` - Durability 99.999999999%, Availability 99.5%
-  * `S3 Reduced Redundancy Storage (RRS)`
-  * `S3 Glacier`
+| Class                       | Retrieval fee | Availability (%) | Min capacity charge per object (KB) | Min storage duration charge (days)
+|-----------------------------|---------------|------------------|-------------------------------------|-----------------------------------
+| S3 Standard                 | N/A           | 99.99            | N/A   | N/A
+| S3 Intelligent-Tiering      | N/A           | 99.9             | N/A   | 30
+| S3 Standard - IA            | per GB        | 99.9             | 128KB | 30
+| S3 One Zone - IA            | per GB        | 99.5             | 128KB | 30
+| S3 Glacier                  | per GB        | 99.9             | 40KB  | 90
+| S3 Glacier - Deep Archive   | per GB        | 99.9             | 40KB  | 180
+| Reduced Redundancy Storage  |               |                  |       |
+
+- All storage classes have 99.999999999 percent (11 9s) durability.
+
+- `S3 Intelligent-Tiering`. The S3 Intelligent-Tiering storage class is designed
+to optimize costs by automatically moving data to the most cost-effective
+access tier, without performance impact or operational overhead.
 
 _Though glacier is the least expensive, if accessed frequently then the price
 shoots up due to the access charge_.
@@ -150,7 +191,7 @@ regions. When enabled it doesn't replicate existing data but newly added data.
 
 - __Event Notifications__
 
-### S3 Bucket Usage ###
+#### S3 Bucket Usage ####
 
 __Enabling Encryption (Server side encryption)__
 
@@ -195,7 +236,7 @@ __Adding objects__
 - Objects.
 - Keys. Objects have keys, like filenames for files
 - Object URLs
-- Eventual consistency. S3 objects have eventual consistency while Elastic
+- `Eventual consistency`. S3 objects have eventual consistency while Elastic
 Block Store (EBS) objects are consistent. Eventual consistency means there is a
 lag between when a new state is introduced on one location (originating location)
 and when the new state becomes consistent with redundant locations.
@@ -243,6 +284,13 @@ Representational State Transfer (REST) uses HTTP methods.
 - EBS is block level storage from one AWS service to another
 
 - __EBS Volume Types__:
+
+- SSD-backed volumes optimized for transactional workloads involving frequent
+read/write operations with small I/O size, where the dominant performance
+attribute is IOPS
+
+- HDD-backed volumes optimized for large streaming workloads where throughput
+(measured in MiB/s) is a better performance measure than IOPS
 
   * Magnetic, slowest, cheapest
     - Standard (54 rpm like in computer hard drive)
@@ -303,11 +351,11 @@ multiple devices can access it at the same time.
   For windows, create an EBS volume and use shared folders from the windows instance itself.
 
 | Type                             | EFS                    	    | S3                  		       | EBS
-|----------------------------------|-----------------------------|--------------------------------|----------------------------------------
+|----------------------------------|------------------------------|--------------------------------|----------------------------------------
 | `Performance per ops`            | low, consistent		          | low for mixed req & CloudFront | lowest, consistent 	
-| `Thoughput scale`                | Multiple Gigabytes/sec	    | Multiple Gigabytes/sec	       | Single Gigabytes/sec
-| `Data Availability & Durability` | Multiple AZ redundancy	    | Multiple AZ redundancy         | Single AZ & hardware based redundancy
-| `Access`		                     | Thousands from multiple AZs | Millions over the web		       | Single EC2 in single AZ
+| `Thoughput scale`                | Multiple Gigabytes/sec	      | Multiple Gigabytes/sec	       | Single Gigabytes/sec
+| `Data Availability & Durability` | Multiple AZ redundancy	      | Multiple AZ redundancy         | Single AZ & hardware based redundancy
+| `Access`		                     | Thousands from multiple AZs  | Millions over the web		       | Single EC2 in single AZ
 | `Use cases`		                   | Web serving, content mgt, enterprise apps, media & entertainment, home dirs, db backup, dev tools, container storage, big data analysis | Static website, content mgt, media & entertainment, backups, big data analytics, data lake | Boot volumes, transactional & NoSQL db, data warehouse & ETL
 
 __Create EFS File System__
@@ -435,7 +483,8 @@ has permission.
 - What is the maximum number of vaults an AWS account can create in a region? 1000
 
 - What is the expected recovery window for a Glacier restore with standard
-access? 3 - 5 hours
+access?
+S3 Glacier provides three retrieval options that range from a few minutes to hours.
 
 - To guarantee IOPS use SSD type provisioned IOPS
 
