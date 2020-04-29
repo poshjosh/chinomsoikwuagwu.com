@@ -28,9 +28,17 @@ GOOGLE THIS -> How to protect EBS data - Snapshots, Volume recovery etc
    - DynamoDB
    - ElasticCache
 
-4. What is the expected recovery window for a Glacier restore with standard access?
+4. Standard retrieval of S3 Glacier data typically completes between.
+   - 1 - 24 hours
+   - 3 - 5 hours
+   - 1 - 5 hours
+   - 5 - 24 hours              
 
-5. ADD QUESTION HERE
+5. Which of the following are true?
+  - Transfer Acceleration is only supported on virtual style requests.
+  - Transfer Acceleration is only supported on path style requests.
+  - Transfer Acceleration is supported for both virtual and path style requests.
+  - The name of the bucket used for Transfer Acceleration must be DNS-compliant and must not contain periods (".").
 
 6. Which of the following 3 API actions in AWS STS return temporary security
 credentials with a default expiration time of one hour
@@ -40,7 +48,13 @@ credentials with a default expiration time of one hour
    - AssumeRoleWithWebIdentity
    - GetSessionToken
 
-7. ADD QUESTION HERE
+7. Which of the following are true
+
+   - S3 One Zone Infrequent Access does not support SSL
+   - S3 Intelligent-Tiering accrues a small monthly monitoring and auto-tiering fee
+   - S3 Glacier provides three retrieval options that range from a few minutes to hours.
+   - Data stored in S3 One Zone Infrequent Access will be lost in the event of
+   Availability Zone destruction.
 
 8. Database requires occasional internet connection to download system and
 database updates
@@ -114,10 +128,17 @@ possible causes? Check the:
    - DynamoDB
    - ElasticCache
 
-4. What is the expected recovery window for a Glacier restore with standard access?
-3- 5hours *
+4. Standard retrieval of S3 Glacier data typically completes between.
+   - 1 - 24 hours
+   - 3 - 5 hours *
+   - 1 - 5 hours
+   - 5 - 24 hours              
 
-5. ADD QUESTION HERE
+5. Which of the following are true?
+   - Transfer Acceleration is only supported on virtual style requests.
+   - Transfer Acceleration is only supported on path style requests.
+   - Transfer Acceleration is supported for both virtual and path style requests.
+   - The name of the bucket used for Transfer Acceleration must be DNS-compliant and must not contain periods ("."). 
 
 6. Which of the following 3 API actions in AWS STS return temporary security
 credentials with a default expiration time of one hour
@@ -127,7 +148,12 @@ credentials with a default expiration time of one hour
    - AssumeRoleWithWebIdentity *
    - GetSessionToken
 
-7. ADD QUESTION HERE
+7. Which of the following are true
+   - S3 One Zone Infrequent Access does not support SSL
+   - S3 Intelligent-Tiering accrues a small monthly monitoring and auto-tiering fee *
+   - S3 Glacier provides three retrieval options that range from a few minutes to hours. *
+   - Data stored in S3 One Zone Infrequent Access will be lost in the event of
+   Availability Zone destruction. *
 
 8. Database requires occaissional internet connection to download system and
 database updates
