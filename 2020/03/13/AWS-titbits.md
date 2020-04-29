@@ -8,25 +8,36 @@ lang: "en-us"
 
 ### Acronyms ###
 
-- S3 - Simple Storage Service
-- S3 Standard IA - S3 Standard Infrequent Access
-- DNS - Domain Name Server
-- VPC - Virtual Private Cloud
 - CDN - Content Delivery Network
-- ELB - Elastic Load Balancer
-- EC2 - Elastic Cloud Compute
 - CIDR - Class Inter-Domain Routing
+- DNS - Domain Name Server
 - ENI - Elastic Network Interface
+- EC2 - Elastic Cloud Compute
+- ELB - Elastic Load Balancer
+- IA - Infrequent Access
 - IP - Internet Protocol
 - NACL - Network Access Control List
+- S3 - Simple Storage Service
+- TB - Terra bytes
+- VPC - Virtual Private Cloud
 
 ### This is not an Introduction ###
 
-Hi, this article contains game changing tips for those who would like to get
-AWS Certified Cloud Architect certified. It is not an introduction to AWS or
-any of the core concepts of the AWS Cloud. In order words, if you are not
-familiar with the AWS cloud, you need to read the series of articles beginning
-at [AWS Certified Solutions Architect Associate - Part 1](/2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-1_Key-services-relating-to-the-Exam)
+- Hi, this article contains game changing tips for those who would like to get
+AWS Certified Cloud Architect certified.
+
+- It is an estimated 15 minute read.
+
+It is not an introduction to AWS or any of the core concepts of the AWS Cloud.
+You need to be already familiar with some core concepts of AWS Cloud. In order
+words, if you are not familiar with the AWS cloud, you need to read the series
+of articles beginning at:
+
+- [Notes on Amazon Web Services - 1](/2020/03/02/Notes-on-Amazon-Web-Services_1_Introduction)
+
+- [AWS Certified Solutions Architect Associate - Part 1](/2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-1_Key-services-relating-to-the-Exam)
+
+- [AWS Architect 1 - Architecting for Reliability](/2020/04/14/AWS-Architect-1_Architecting-for-Reliability)
 
 ### Best Practices ###
 
@@ -34,30 +45,43 @@ at [AWS Certified Solutions Architect Associate - Part 1](/2020/03/09/AWS_Certif
 
 ### Storage ###
 
+__Storage Types__
+
+| Storage |	 Services              |  Latency          |  Throughput         Shareable
+|---------|------------------------|-------------------|-------------------|-----------
+| Block	  | EBS, EC2 instance store| Lowest consistency| Single instance   | Mounted on single instance, copies via snapshot
+| File    | EFS  			             | Low consistency   | Multiple instances| Many clients
+| Object  | S3			               | Low latency	     | Web-scale	       | Many clients
+| Archival| Glacier		           	 | Min to Hrs        | High              | No
+
+| Type                             | EFS                    	    | S3                  		       | EBS
+|----------------------------------|------------------------------|--------------------------------|----------------------------------------
+| `Performance per ops`            | low, consistent		          | low for mixed req & CloudFront | lowest, consistent 	
+| `Thoughput scale`                | Multiple Gigabytes/sec	      | Multiple Gigabytes/sec	       | Single Gigabytes/sec
+| `Data Availability & Durability` | Multiple AZ redundancy	      | Multiple AZ redundancy         | Single AZ & hardware based redundancy
+| `Access`		                     | Thousands from multiple AZs  | Millions over the web		       | Single EC2 in single AZ
+| `Use cases`		                   | Web serving, content mgt, enterprise apps, media & entertainment, home dirs, db backup, dev tools, container storage, big data analysis | Static website, content mgt, media & entertainment, backups, big data analytics, data lake | Boot volumes, transactional & NoSQL db, data warehouse & ETL
+
+__AWS S3 Bucket__
+
 - S3 buckets are located in the AWS cloud not our VPC. So, when you want to access
 s3 bucket objects from an EC2 instance in your VPC, create a VPC endpoint to allow
 traffic flow in and out of our VPC.
 
-__AWS S3 Bucket__
-
-- S3 Bucket names must be unique across the existing buckets for entire AWS Cloud. Names must also be DNS compliant.
+- S3 Bucket names must be unique across the existing buckets for entire AWS
+Cloud. Names must also be DNS compliant.
 
 - Default max amount of bucket is 100
 
 - Default max amount of objects in bucket is infinity (theoritically)
 
-- S3 Storage Classes. From most expensive at the top to least expensive.
+- `S3 Storage Classes`. From most expensive at the top to least expensive.
 
-  - S3 Standard
-  - S3 Infrequent Access (IA)
+  - S3 Standard     - Durability - 99.999999999% . Availability - 99.99%
+  - S3 Standard IA  - Durability - 99.999999999% . Availability - 99.9%
+  - S3 One Zone IA  - Durability - 99.999999999% . Availability - 99.5%
   - S3 Reduced Redundancy Storage (RRS)
   - S3 Glacier
-
-- S3 Storage Differences
-
-  - S3 standard . Durability - 99.999999999% . Availability - 99.99%
-  - S3 standard IA . Durability - 99.999999999% . Availability - 99.9%
-  - S3 One Zone IA . Durability - 99.999999999% . Availability - 99.5%
 
 - Though glacier is the least expensive, if accessed frequently then the price
 shoots up due to the access charge.
@@ -102,6 +126,21 @@ __EBS__
   found in local computers
   * If you use SSD, to take advantage of the additional performance, you need
   an EBS optimized instance.
+
+__SSD vs HDD__
+
+| SSD | Type                 | Max IOPs/Volume | Volume Size  | Use Cases
+|-----|----------------------|-----------------|--------------|---------
+| SSD | Provisioned IOPs     | 64K             | 4GB - 16TB   | IO intensive, critical apps, large database workloads
+| SSD | General purpose      | 16k             | 1GB - 16TB   | Low latency, interactive apps
+| HDD | Throughput optimized | 500             | 500GB - 16TB | Big data, streaming workloads, log processing
+| HDD | Cold                 | 250             | 500GB - 16TB | Infrequently accessed data, when lowest cost needed
+
+- HDD can't be boot volume
+
+- For all types - Max IOPS/Instance = 80k
+
+- For all types - Max Throughput/Instance = 2,375 MB/s
 
 __Elastic File System (EFS)__
 
@@ -231,6 +270,8 @@ You can associate a network ACL with multiple subnets. However, a subnet can be 
 
 ### References ###
 
+- [Notes on Amazon Web Services - 1](/2020/03/02/Notes-on-Amazon-Web-Services_1_Introduction)
+
 - [AWS Certified Solutions Architect Associate - Part 1](/2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-1_Key-services-relating-to-the-Exam)
 
-- [AWS Certified Solutions Architect Associate - Part 3 - Storage Services](/2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-3_Storage-services)
+- [AWS Architect 1 - Architecting for Reliability](/2020/04/14/AWS-Architect-1_Architecting-for-Reliability)
