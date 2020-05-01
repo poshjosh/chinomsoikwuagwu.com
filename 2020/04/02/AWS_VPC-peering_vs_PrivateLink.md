@@ -3,6 +3,7 @@ path: "./2020/04/02/AWS_VPC-peering_vs_PrivateLink.md"
 date: "2020-04-02"
 title: "AWS - VPC peering vs PrivateLink"
 description: "Easily understand - AWS VPC peering vs PrivateLink"
+tags: ["Virtual Private Cloud (VPC)", "VPC Peering", "PrivateLInk", "Virtual Private Network (VPN)", "VPC Endpoint Service"]
 lang: "en-us"
 ---
 

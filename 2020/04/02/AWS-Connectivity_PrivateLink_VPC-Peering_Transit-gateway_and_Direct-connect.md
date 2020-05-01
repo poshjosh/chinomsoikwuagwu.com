@@ -3,6 +3,7 @@ path: "./2020/04/02/AWS-Connectivity_PrivateLink_VPC-Peering_Transit-gateway_and
 date: "2020-04-02"
 title: "AWS Connectivity - PrivateLink, VPC-Peering, Transit-gateway and Direct-connect"
 description: "Simplified - AWS PrivateLink, VPC Peering, Transit Gateway, Direct connect"
+tags: ["Virtual Private Cloud (VPC)", "AWS Connectivity", "PrivateLink", "VPC Peering", "Transit Gateway", "Direct Connect", "Virtual Private Network (VPN)", "Network Address Transation (NAT)", "AWS Resource Manager"]
 lang: "en-us"
 ---
 

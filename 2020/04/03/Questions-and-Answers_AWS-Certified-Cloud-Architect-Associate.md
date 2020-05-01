@@ -3,6 +3,7 @@ path: "./2020/04/03/Questions-and-Answers_AWS-Certified-Cloud-Architect-Associat
 date: "2020-04-03"
 title: "Questions and Answers - AWS Certified Cloud Architect Associate"
 description: "Questions and Answers - AWS Certified Cloud Architect Associate"
+tags: ["AWS", "Certification", "Certified Cloud Architect", "Questions", "Answers"]
 lang: "en-us"
 ---
 
@@ -138,7 +139,7 @@ possible causes? Check the:
    - Transfer Acceleration is only supported on virtual style requests.
    - Transfer Acceleration is only supported on path style requests.
    - Transfer Acceleration is supported for both virtual and path style requests.
-   - The name of the bucket used for Transfer Acceleration must be DNS-compliant and must not contain periods ("."). 
+   - The name of the bucket used for Transfer Acceleration must be DNS-compliant and must not contain periods (".").
 
 6. Which of the following 3 API actions in AWS STS return temporary security
 credentials with a default expiration time of one hour
