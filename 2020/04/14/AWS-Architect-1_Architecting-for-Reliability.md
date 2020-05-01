@@ -1,8 +1,9 @@
 ---
 path: "./2020/04/14/AWS-Architect-1_Architecting-for-Reliability.md"
-date: "2020-04-14T08:25:00"
+date: "2020-04-14T08:15:00"
 title: "AWS Achitect 1 - Architecting for Reliability"
 description: "Game changing tutorial on AWS - Architecting for Reliability"
+tags: ["AWS", "tutorial", "architect", "reliability", "availability", "fault tolerance", "game changing", "certified solutions architect associate", "must read", "core concepts", "Identity and Access Management (IAM)", "CloudTrail", "Web Application AWS Filter", "AWS shield", "AWS Config", "Trusted Advisor", "vertical scaling", "horizontal scaling", "loose coupling", "CloudFormation", "Availability Zone", "Elastic  Load Balancer", "Network Address Translation (NAT)", "Relational Database Service (RDS)", "Simple Storage Service (S3)"]
 lang: "en-us"
 ---
 
@@ -23,6 +24,8 @@ lang: "en-us"
 
 ### Before we set off ###
 
+__About this Artcile__
+
 - Hi, this article contains game changing information for those who would like
 to get AWS Certified Cloud Architect certified.
 
@@ -32,12 +35,13 @@ to get AWS Certified Cloud Architect certified.
 
 - It is an estimated 35 minute read.
 
-### This is not an Introduction ###
+__This Article is not an Introduction to AWS__
 
 This series of articles is not an introduction to AWS or any of the core
 concepts of the AWS Cloud. You need to be already familiar with some core
-concepts of AWS Cloud. In order words, if you are not familiar with the AWS
-cloud, you need to read the series of articles beginning at:
+concepts of AWS Cloud to fully benefit from this article. In order words,
+if you are not familiar with the AWS cloud, you should read the series of
+articles beginning at:
 
 - [Notes on Amazon Web Services - 1](/2020/03/02/Notes-on-Amazon-Web-Services_1_Introduction)
 
@@ -119,10 +123,9 @@ __Identity and Access Management (IAM)__
 
   * Use `users` for single user access when very specific access is required.
 
-  * Use `roles` for applications, multiple users, federated access. Here
-  and here for more on federated access
-  https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html
-  https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html
+  * Use `roles` for applications, multiple users, federated access. For more on
+  federated access [click here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html)
+  and [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html)
 
 - Do not carryout day to day administration from your root account. Rather
 use an IAM account.
@@ -299,7 +302,14 @@ By using queues we can implement loose coupling.
 Web Server -> Queue -> Lamda Function -> Database Server
 ```
 
-By using microservices architecture we can implement loose coupling.
+By using [microservices](https://microservices.io/) architecture we can
+implement loose coupling.
+
+_Eample of Microservices architecture_
+<br/>
+![Microservices Architecture](https://microservices.io/i/Microservice_Architecture.png)
+<br/>
+_Eample of Microservices architecture. Source: microservices.io_
 
 Each component in a microservices architecture is a microservice and can
 enjoy custom scaling, security, technologies etc
@@ -464,10 +474,16 @@ for the load balancer to point to `/index.html`
 
 __Hybrid Networking with Amazon VPC__
 
-- VPN gateway will allow you define a VPN tunnel to a customer gateway
-You define a customer gateway which is usually an ip sec capable device eg. cisco router etc
+- __VPN Gateway__ allows you define a VPN tunnel to a customer gateway
+You define a customer gateway which is usually an ip sec capable device eg.
+cisco router etc
 
-- AWS Direct Connect @TODO
+> __AWS Direct Connect__ is a cloud service solution that makes it easy to
+> establish a   dedicated network connection from your premises to AWS. Using
+> AWS Direct Connect, you   can establish private connectivity between AWS and
+> your datacenter, office, or  colocation environment, which in many cases can
+> reduce your network costs, increase  bandwidth throughput, and provide a
+> more consistent network experience than Internet  based connections.
 
 ### Architecting a Multi Tier Application ###
 
@@ -609,12 +625,42 @@ use an IAM account.
 
 - Implement multi - AZ redundancy via horizontal scaling.
 
-- Use amazon managed services like RDS, S3 where possible.
+- Deploy across multiple AZs and regions
 
-- Implement loose coupling with queues and microservices where possible.
+- Use auto-scaling groups
+
+- Automate Deployments with Auto Scaling Groups
+
+- Scale dynamically based on resource utilization
+
+- Prefer services like RDS, S3, DynamoDB, ELB, which automate auto-scaling
+
+- Implement louse coupling with SQS and/or microservices
+
+- Use security groups
+
+- Implement shared storage using EFS
+
+- Load balance the application tier with ELB
+
+- Configure SSL on the load balancer not EC2 instances
 
 - Auto scaling groups carry out system checks to ensure the server is running,
 whereas ELBs carry out health checks to ensure you application is running.
+
+- Validate automatically using self healing servers
+
+- Automatically recover a failed AZ
+
+- Automate infrastructure with CloudFront
+
+- Use blue/green or canary deployment patterns
+
+- Use multi-region architecture like Pilot Light, Warm Standby and Active/Active
+
+- Setup health checks in Route 53
+
+- Create a Route 53 failover record set.
 
 ### Recommended Reading ###
 
@@ -640,6 +686,8 @@ whereas ELBs carry out health checks to ensure you application is running.
 
 - [About SAML2 Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html)
 
+- [Microservices](https://microservices.io/)
+
 - [AWS Config](https://aws.amazon.com/config/)
 
 - [AWS Regions and Availability Zones](/2020/03/17/AWS_Regions-Availability-Zones-and-Local-Zones)
@@ -647,3 +695,5 @@ whereas ELBs carry out health checks to ensure you application is running.
 - [GitHub - AWS Sample Reference Architectures](https://github.com/search?q=org%3Aaws-samples+refarch)
 
 - [GitHub - AWS CloudFormation Reference Architectures](https://github.com/aws-samples/ecs-refarch-cloudformation)
+
+- [AWS Direct Connect](https://aws.amazon.com/directconnect/)
