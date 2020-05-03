@@ -3,7 +3,7 @@ path: "./2020/04/01/Designing-Low-Latency-Systems.md"
 date: "2020-04-01"
 title: "Designing Low Latency Systems"
 description: "Quickly get started designing low latency systems"
-tags: ["AWS", "low latency", "designing low latency", "java memory model", "java.nio" "Financial Information Exchange (FIX)", "High Frequency Trading (HFT)"]
+tags: ["AWS", "low latency", "designing low latency", "java memory model", "java.nio", "Financial Information Exchange (FIX)", "High Frequency Trading (HFT)"]
 lang: "en-us"
 ---
 

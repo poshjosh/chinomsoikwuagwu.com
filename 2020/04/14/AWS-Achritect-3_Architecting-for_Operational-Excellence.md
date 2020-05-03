@@ -237,6 +237,8 @@ __Best Practices enabled by AWS Systems Manager__
 
 - Maintain a consistent configuration state across a fleet of EC2 instances.
 
+__Systems Manager vs CloudWatchEvents + AWSConfig__
+
 System Manager enables you do a lot. However it is schedule based. This means
 that we can set actions to take place at specific times. What happens when
 we want an action to take place when, for example, a new EC2 instance is
