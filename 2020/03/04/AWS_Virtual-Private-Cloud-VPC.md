@@ -1,21 +1,25 @@
 ---
-path: "./2020/03/09/AWS_Virtual-private-cloud-vpc.md"
-date: "2020-03-09T22:20:40"
-title: "AWS Virtual Private Cloud (VPC)"
-description: "Poshjoshs-Blog - AWS Virtual Private Cloud (VPC)"
+path: "./2020/03/04/AWS_Virtual-Private-Cloud-VPC.md"
+date: "2020-03-04T22:20:40"
+title: "Curated info on AWS Virtual Private Cloud (VPC)"
+description: "Curated info on AWS Virtual Private Cloud (VPC)"
+tags: ["Virtual Private Cloud (VPC)", "vpc pricing", "vpc limits", "vpc security", "security group", "network access control list (NACL)", "private subnet", "public subnet", "Network Address Translation", "Classless Inter-domain Routing", "aws private link"]
 lang: "en-us"
 ---
 
-__A 25 minute read, to expose you to the Amazon cloud network. Within the amazon network, each private network is designated as a Virtual Private Cloud (VPC)__
+__A 15 minute read, aimed at exposing you to the Amazon cloud network.
+Within the amazon cloud network, each private network is designated as a
+Virtual Private Cloud (VPC)__
 
 ### Acronyms ###
 
-- VPC - Virtual Private Cloud
+- API - Application Programming Interface
+- CIDR - Classless Inter-Domain Routing
+- CLI - Command Line Interface
 - IP - Internet Protocol
 - NAT - Network Address Translation
-- CLI - Command Line Interface
 - SDK - Software Development Kit
-- CIDR - Classless Inter-Domain Routing
+- VPC - Virtual Private Cloud
 
 ### What is AWS Virtual Private Cloud (VPC)? ###
 
@@ -47,14 +51,14 @@ between your VPC and the other service does not leave the Amazon network.
 
 You can create, access, and manage your VPCs using any of the following interfaces:
 
-- AWS Management Console — Provides a web interface that you can use to access your VPCs.
+- __AWS Management Console__ — Provides a web interface that you can use to access your VPCs.
 
-- AWS Command Line Interface (AWS CLI) — Provides a command line interface and commands
+- __AWS Command Line Interface (AWS CLI)__ — Provides a command line interface and commands
 to access VPCs as well as a broad set of AWS services.
 
-- AWS SDKs — Provides language-specific APIs for accessing VPCs and other AWS services.
+- __AWS SDKs__ — Provides language-specific APIs for accessing VPCs and other AWS services.
 
-- Query API— Provides low-level API actions that you call using HTTPS requests.
+- __Query API__ — Provides low-level API actions that you call using HTTPS requests.
 
 #### VPC Pricing ####
 
@@ -64,7 +68,7 @@ Site-to-Site VPN connection and using a NAT gateway.
 
 ### How Amazon VPCs Work ###
 
-VPC Limits
+__VPC Limits__
 
 - Subnets per VPC - 200
 - Route tables per VPC - 200
@@ -75,7 +79,7 @@ VPC Limits
 - Internet gateways per Region - 5
 - [View more AWS VPC Limits](https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits/)
 
-VPCs and Subnets
+__VPCs and Subnets__
 
 A virtual private cloud (VPC) is a virtual network dedicated to your AWS account. It is
 logically isolated from other virtual networks in the AWS Cloud.
@@ -85,7 +89,7 @@ specified subnet. Use a public subnet for resources that must be connected to th
 and a private subnet for resources that won't be connected to the internet. For more
 information about public and private subnets, see [VPC and Subnet Basics](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets/#vpc-subnet-basics).
 
-Deafult VPCs and Subnets
+__Default VPCs and Subnets__
 
 Each amazon account has a default VPC that has a default subnet in each Availability Zone.
 A default VPC has the benefits of the advanced features provided by EC2-VPC, and is ready
@@ -98,23 +102,23 @@ To protect the AWS resources in each subnet, you can use multiple layers of secu
 including security groups and network access control lists (ACL). For more information,
 see [Internetwork Traffic Privacy in Amazon VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security/).
 
-Difference between Security Groups and NACLs
+__Difference between Security Groups and NACLs__
 
-_TL;DR: Security group is the firewall of EC2 Instances whereas Network ACL is the firewall of the Subnet._
+__TL;DR__: _Security group is the firewall of EC2 Instances whereas Network ACL is the firewall of the Subnet._
 
 Difference between Security Groups and NACLs
 <br/>
 ![Difference between Security Groups and NACLs](https://miro.medium.com/max/944/1*pwAjuZMHsDJV6XckZGARxA.png "Difference between Security Groups and NACLs")
 <br/>
-_Difference between Security Groups and NACLs. Source: https://miro.medium.com/../1*pwAjuZMHsDJV6XckZGARxA.png_
+Difference between Security Groups and NACLs. Source: _miro.medium.com_
 
-- Scope: _Subnet or EC2 Instance_
+- __Scope__: _Subnet or EC2 Instance_
 
 When you apply an NACL to a subnet, it's rules apply to all instances in the
 subnet. On the other hand, security groups have to be applied to each instance.
 If you have many instances, managing the firewalls using NACL could be very useful
 
-- State: _Stateful vs Stateless_
+- __State__: _Stateful vs Stateless_
 
 Security groups are stateful. This means any changes applied to an incoming rule
 will be automatically applied to the outgoing rule. e.g. If you allow an incoming
@@ -124,7 +128,7 @@ Network ACLs are stateless. This means any changes applied to an incoming rule
 will not be applied to the outgoing rule. e.g. If you allow an incoming port 80,
 you would also need to apply the rule for outgoing traffic.
 
-- Rules: _Allow or Deny_
+- __Rules__: _Allow or Deny_
 
 Security group support allow rules only (by default all rules are denied). e.g.
 You cannot deny a certain IP address from establishing a connection.
@@ -133,19 +137,19 @@ Network ACL support allow and deny rules. By deny rules, you could explicitly de
 a certain IP address to establish a connection example: Block IP address
 `123.201.57.39` from establishing a connection to an EC2 Instance.
 
-- Rules _Process order_
+- __Rules__: _Process order_
 
 All rules in a security group are applied whereas rules are applied in their order
 (the rule with the lower number gets processed first) in Network ACL.i.e. Security
 groups evaluate all the rules in them before allowing a traffic whereas NACLs do it
 in the number order, from top to bottom.
 
-Example Security Group Configuration
+__Example Security Group Configuration__
 
 The following example shows the security group rules for allowing both IPv4 and IPv6
 traffic on port 80 and 443:
 
-Inbound rules
+__Inbound rules__
 
 | Type   	 	  | Protocol  | Port Range | Source     |
 |-------------|-----------|------------|------------|
@@ -175,6 +179,8 @@ interface. By default, when you create a network interface, it's associated with
 default security group for the VPC, unless you specify a different security group.
 For more information about network interfaces, see
 [Elastic Network Interfaces](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni/ "Elastic Network Interfaces").
+
+__Security Group Names__
 
 When you create a security group, you must provide it with a name and a description.
 
@@ -242,7 +248,7 @@ Non-Default VPC
 <br/>
 Non Default VPC. Source: _docs.aws.amazon.com_
 
-On the otherhand, to allow an instance in your VPC to initiate outbound connections to the
+On the other hand, to allow an instance in your VPC to initiate outbound connections to the
 internet but prevent unsolicited inbound connections from the internet, you can use a
 network address translation (NAT) device for IPv4 traffic. NAT maps multiple private IPv4
 addresses to a single public IPv4 address. A NAT device has an Elastic IP address and is
@@ -258,7 +264,7 @@ egress-only internet gateway. For more information, see Egress-Only Internet Gat
 traffic is separate from IPv4 traffic; your route tables must include separate routes for
 IPv6 traffic.
 
-CIDR Notation
+__CIDR Notation__
 
 Classless Inter-Domain Routing (CIDR) is a method for allocating IP addresses and IP routing.
 CIDR notation is a compact representation of an IP address and its associated routing prefix.
@@ -270,14 +276,14 @@ IPv4 address is 32 bits in total. On the other hand, a CIDR block may be represe
 of `32` bits of the ip address identify the network, wile `8` out of `32` bits identify the host.
 [Click here for more on CIDR](/2020/03/09/CIDR-Blocks)
 
-Accessing a Corporate or Home Network
+__Accessing a Corporate or Home Network__
 
 You can optionally connect your VPC to your own data center using an IPsec AWS Site-to-Site
 VPN connection, making the AWS Cloud an extension of your data center. A Site-to-Site VPN
 connection consists of a virtual private gateway attached to your VPC and a customer gateway
 device located in your data center.
 
-Accessing Services Through AWS PrivateLink
+__Accessing Services through AWS PrivateLink__
 
 AWS PrivateLink enables you to privately connect your VPC to supported AWS services, services
 hosted by other AWS accounts (VPC endpoint services), and supported AWS Marketplace partner
@@ -299,8 +305,8 @@ You can create your own AWS PrivateLink-powered service (endpoint service) and e
 customers to access your service. For more information, see
 [VPC Endpoint Services - AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service/).
 
-A private link could be used on a global scale, bearing the following considerations
-in mind:
+A private link could be used on a global scale, bearing the following
+considerations in mind:
 
 - Traffic that is in an Availability Zone, or between Availability Zones in all Regions,
 routes over the AWS private global network.

@@ -1,5 +1,5 @@
 ---
-path: "./2020/04/14/AWS-Achritect-6_Passing-the-Certification-Exam.md"
+path: "./2020/04/14/AWS-Architect-6_Passing-the-Certification-Exam.md"
 date: "2020-04-14T23:49:28"
 title: "AWS Achritect - 6 - Passing the Certification Exam"
 description: "A guide to help you pass the AWS Certified Solutions Architect Associate exam"

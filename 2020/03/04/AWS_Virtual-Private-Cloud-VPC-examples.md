@@ -1,21 +1,22 @@
 ---
-path: "./2020/03/09/AWS_Virtual-private-cloud-vpc-examples.md"
-date: "2020-03-09T22:42:10"
+path: "./2020/03/04/AWS_Virtual-Private-Cloud-VPC-examples.md"
+date: "2020-03-04T22:42:10"
 title: "AWS Virtual Private Cloud (VPC) Examples"
-description: "Poshjoshs-Blog - AWS Virtual Private Cloud - VPC - examples"
+description: "Explains, with diagrams, scenarios for Virtual Private Clouds (VPC)"
+tags: ["Virtual Private Cloud (VPC)", "private subnet", "public subnet", "AWS Resource Access Manager", "Network Address Translation", "Classless Inter-domain Routing", "sharing subnets", "control access to instances", "vpc security", "aws private link", "vpc peering"]
 lang: "en-us"
 ---
 
-__A 20 minute read, to depict various scenarios for Virtual Private Clouds__
+__A 10 minute read, to depict various scenarios for Virtual Private Clouds__
 
 ### Acronyms ###
 
-- VPC - Virtual Private Cloud
+- CIDR - Classless Inter-Domain Routing
+- CLI - Command Line Interface
 - IP - Internet Protocol
 - NAT - Network Address Translation
-- CLI - Command Line Interface
 - SDK - Software Development Kit
-- CIDR - Classless Inter-Domain Routing
+- VPC - Virtual Private Cloud
 
 ### Sharing Public Subnets and Private Subnets ###
 
@@ -56,7 +57,7 @@ NACL Example
 <br/>
 ![NACL Example](https://docs.aws.amazon.com/vpc/latest/userguide/images/nacl-example-diagram.png)
 <br/>
-_NACL Example. Source: https://docs.aws.amazon.com/../nacl-example-diagram.png_
+NACL Example. Source: _docs.aws.amazon.com_
 
 All instances use the same security group with the following rules:
 
