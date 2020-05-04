@@ -404,8 +404,8 @@ All rules in a security group are applied whereas rules are applied in their ord
 groups evaluate all the rules in them before allowing a traffic whereas NACLs do it
 in the number order, from top to bottom.
 
-[Click here for more VPC Security](/2020/03/09/AWS_Virtual-private-cloud-vpc) including
-[detailed differences between NACL and security groups](/2020/03/09/AWS_Virtual-private-cloud-vpc)   
+[Click here for more VPC Security](/2020/03/04/AWS_Virtual-Private-Cloud-VPC) including
+[detailed differences between NACL and security groups](/2020/03/04/AWS_Virtual-Private-Cloud-VPC)   
 
 ### Protecting Data at Rest ###
 
@@ -627,4 +627,4 @@ automatically delete the replicated instance of the object.
 
 - [AWS Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html)
 
-- [AWS VPC](/2020/03/09/AWS_Virtual-private-cloud-vpc)
+- [AWS VPC](/2020/03/04/AWS_Virtual-Private-Cloud-VPC)
