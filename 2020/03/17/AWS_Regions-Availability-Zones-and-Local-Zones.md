@@ -132,7 +132,7 @@ from a network border group:
 
 - IPv6 Amazon-provided VPC addresses
 
-A network border group limits the addresses to the group. IP addresses cannot 
+A network border group limits the addresses to the group. IP addresses cannot
 move between network border groups.
 
 ### References ###
