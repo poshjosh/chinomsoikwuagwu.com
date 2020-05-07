@@ -92,7 +92,7 @@ Now create a file called `packer.json` and add the following contents:
             "type" : "amazon-ebs",
             "profile" : "default",
             "region" : "us-east-2",
-            "instance_type" : "t2.micro",
+            "instance_type" : "t3a.large",
             "source_ami" : "ami-0e01ce4ee18447327",
             "ssh_username" : "ec2-user",
             "ami_name" : "awslinux-dockerce-jenkins-sonarqube_{{timestamp}}",
@@ -130,6 +130,9 @@ Now create a file called `packer.json` and add the following contents:
 You can download the file for the above `.json` config [here](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/packer.json)
 
 __Notes on packer config__
+
+- We use `t3a.large` as `t2.micro` etc does not have enough capacity for both
+jenkins and sonarqube.
 
 - With the `provisioners.type = file` we are copying files/directories from
 our local machine to the remote server.
@@ -235,7 +238,7 @@ variable "aws_region" {
 
 variable "instance_type" {
     type        = string
-    default     = "t2.micro"
+    default     = "t3a.large"
 }
 
 variable "security_group_name" {
@@ -374,6 +377,9 @@ output "Jenkins_security_group_ID" {
 
 You can download the file for the above terraform config [here](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/terraform.tf)
 
+Values for `aws_region` and `instance_type` must match those in the file
+`packer.json`
+
 Using the `aws` provider, this terraform configuration will provision the
 following AWS resources:
 
@@ -410,6 +416,8 @@ You may now browse to your automatically provisioned jenkins server
 via `http://<public-dns>:8080` and sonarqube server via `http://<public-dns>:9000`
 where public dns is the public dns of the EC2 instance.
 
+If you encounter any problems read the observations section at the end of this article.
+
 Remember,  we hard coded jenkins credentials into the Dockerfile.
 ```
 ENV JENKINS_USER poshjosh
@@ -442,7 +450,21 @@ the AMI by:
 
 ### Observations ###
 
-- Problem:
+__1. Cannot access jenkins or sonarqube via the web browser__
+
+If you can't browse to `http://<public-dns>:8080` or `http://<public-dns>:9000`
+
+  * Confirm that you are using the correct EC2 instance type.
+    - Browse to EC2 console -> Click on the EC2 instance
+    - Click on the Monitoring tab
+    - Check `CPU Utilization (Percent)`. If it is very high, say 90% then you
+    probably have the wrong instance type.
+  * Check that you have selected the correct EC2 instance and thus copied
+  the correct `public-DNS`.  
+  * Confirm that the port numbers for both jenkins and sonarqube are consistent
+  in `setup.sh`, `user-data.txt` and `terraform.tf`   
+
+__2. Terraform cannot find ami built by packer__
 
   * Error
   ```

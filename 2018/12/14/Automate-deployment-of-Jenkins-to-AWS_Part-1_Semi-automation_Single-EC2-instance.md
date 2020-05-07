@@ -68,8 +68,11 @@ need to first create an amazon EC2 instance.
 
   * Browse to AWS Management Console -> Compute -> EC2
   * Click on ```Launch Instance``` (at the top)
-  * Select the Amazon Machine Image (AMI) - Make sure to use an ```Amazon Linux 2``` image or you won't be able to find or install ```amazon-linux-extras``` required later in this article.
-  * Select the instance type
+  * Select the Amazon Machine Image (AMI) - Make sure to use an ```Amazon Linux 2```
+  image or you won't be able to find or install ```amazon-linux-extras```
+  required later in this article.
+  * Select the instance type. Free tier `t2.micro` will not have a enough
+  capacity for both jenkins and sonarqube.
   * Enter other instance details
   * Click on advanced details
   * Enter the bash script below for the user data. It will be run on first launch.
@@ -146,6 +149,8 @@ sudo docker build -t poshjosh/jenkins:lts .
 
 - Browse to ```http://<ec2_public_dns>:8080``` to view your jenkins installation.
 
+- If you encounter any problems read the observations section at the end of this article.
+
 ### Create an Amazon Machin Image (AMI) from EC2 instance ###
 
 Login with the password which we hard coded into the Dockerfile
@@ -163,15 +168,47 @@ ENV JENKINS_PASS UB40-music
 on aws with a semi-automated exampl. The [next](/2018/12/14/Automate-deployment-of-Jenkins-to-AWS_Part-2_Full-automation_Single-EC2-instance) article will involve the fully automated deployment of a single
 jenkins server to an AWS ec2 instance.
 
-### References ###
-
-- [AWSEC2 User Guide - Putty](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html "AWSEC2 User Guide - Putty")
-- [PSCP upload folder windows to linux](https://serverfault.com/questions/295565/pscp-upload-an-entire-folder-windows-to-linux "PSCP upload folder windows to linux")
-- [Linux shell - Bad interpreter error](https://askubuntu.com/questions/304999/not-able-to-execute-a-sh-file-bin-bashm-bad-interpreter "Linux shell - Bad interpreter error")
-
 ### Observations ###
 
-__1. Use Putty to send a directory from windows to remote linux server (AWS)__
+__1. Cannot access jenkins or sonarqube via the web browser__
+
+If you can't browse to `http://<public-dns>:8080` or `http://<public-dns>:9000`
+
+  * Confirm that you are using the correct EC2 instance type.
+    - Browse to EC2 console -> Click on the EC2 instance
+    - Click on the Monitoring tab
+    - Check `CPU Utilization (Percent)`. If it is very high, say 90% then you
+    probably have the wrong instance type.
+  * Check that you have selected the correct EC2 instance and thus copied
+  the correct `public-DNS`.  
+  * Confirm that the port numbers for both jenkins and sonarqube are consistent
+  in `setup.sh`, `user-data.txt` and `terraform.tf`   
+
+__2. Use Putty to execute a shell script from Windows to remote linux (AWS)__
+
+- Linux shell - Bad interpreter error
+```
+[ec2-user@ip-172-31-16-248 ~]$ chmod +x docker_run_jenkins_and_sonarqube.sh
+[ec2-user@ip-172-31-16-248 ~]$ ./docker_run_jenkins_and_sonarqube.sh
+-bash: ./docker_run_jenkins_and_sonarqube.sh: /bin/bash^M: bad interpreter: No such file or directory
+```
+
+- Solution
+
+The script indicates that it must be executed by a shell located at /bin/bash^M.
+There is no such file: it's called /bin/bash.
+
+The ^M is a carriage return character. Linux uses the line feed character to
+mark the end of a line, whereas Windows uses the two-character sequence CR LF.
+Your file has Windows line endings, which is confusing Linux.
+
+Remove the spurious CR characters. You can do it with the following command:
+
+```
+sed -i -e 's/\r$//' create_mgw_3shelf_6xIPNI1P.sh
+```
+
+__3. Use Putty to send a directory from windows to remote linux server (AWS)__
 
 - Space not allowed in file paths. In this case in `.ppk` file path
 ```
@@ -233,28 +270,10 @@ Dockerfile                | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
 jenkins-plugins           | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
 ```
 
-__2. Use Putty to execute a shell script from Windows to remote linux (AWS)__
+### References ###
 
-- Linux shell - Bad interpreter error
-```
-[ec2-user@ip-172-31-16-248 ~]$ chmod +x docker_run_jenkins_and_sonarqube.sh
-[ec2-user@ip-172-31-16-248 ~]$ ./docker_run_jenkins_and_sonarqube.sh
--bash: ./docker_run_jenkins_and_sonarqube.sh: /bin/bash^M: bad interpreter: No such file or directory
-```
+- [AWSEC2 User Guide - Putty](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html "AWSEC2 User Guide - Putty")
 
-- Solution
+- [PSCP upload folder windows to linux](https://serverfault.com/questions/295565/pscp-upload-an-entire-folder-windows-to-linux "PSCP upload folder windows to linux")
 
-The script indicates that it must be executed by a shell located at /bin/bash^M.
-There is no such file: it's called /bin/bash.
-
-The ^M is a carriage return character. Linux uses the line feed character to
-mark the end of a line, whereas Windows uses the two-character sequence CR LF.
-Your file has Windows line endings, which is confusing Linux.
-
-Remove the spurious CR characters. You can do it with the following command:
-
-```
-sed -i -e 's/\r$//' create_mgw_3shelf_6xIPNI1P.sh
-```
-
-Source: [Solution to Linux shell - bad interpreter error](https://askubuntu.com/questions/304999/not-able-to-execute-a-sh-file-bin-bashm-bad-interpreter "Solution to Linux shell - bad interpreter error")
+- [Linux shell - Bad interpreter error](https://askubuntu.com/questions/304999/not-able-to-execute-a-sh-file-bin-bashm-bad-interpreter "Linux shell - Bad interpreter error")
