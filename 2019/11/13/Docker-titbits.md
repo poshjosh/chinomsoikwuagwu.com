@@ -120,3 +120,15 @@ Use the following command to unpack all jar files in target folder of workspace 
 ```
 sh "find ${WORKSPACE}/target -type f -name '*.jar' -exec jar -xf {} ';'"
 ```
+
+### Don'ts ###
+
+Avoid running containers with the `--privileged` flag as it gives all the
+capabilities to the container and also access to the host’s devices
+(everything that’s under the /dev folder).
+
+If you run an image that does not come from a trusted source, be careful if it
+requires the `--privileged` flag. Of course, there are cases when this flag
+is needed, for instance when running containers on devices like Raspberry Pi.
+It is indeed used to access the GPIO interfaces and to be able to interact
+with the external world (and make an LED blink).

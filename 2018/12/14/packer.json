@@ -1,0 +1,46 @@
+{
+    "builders" : [
+        {
+            "type" : "amazon-ebs",
+            "profile" : "default",
+            "region" : "us-east-2",
+            "instance_type" : "t2.micro",
+            "source_ami" : "ami-0e01ce4ee18447327",
+            "ssh_username" : "ec2-user",
+            "ami_name" : "awslinux-dockerce-jenkins-sonarqube_{{timestamp}}",
+            "ami_description" : "Amazon Linux Image with Docker-CE, Jenkins and Sonarqube",
+            "run_tags" : {
+                "Name" : "packer-builder-docker-jenkins-sonarqube"
+            },
+            "tags" : {
+                "Tool" : "Packer",
+                "Author" : "ChinomsoIkwuagwu",
+                "OS_version": "amazon linux 2"
+            }
+        }
+    ],
+    "provisioners" : [
+        {
+            "type" : "file",
+            "source" : "./docker",
+            "destination" : "/tmp/docker"
+        },
+        {
+            "type" : "file",
+            "source" : "./jenkins-auto-install/",
+            "destination" : "/tmp/"
+        },
+        {
+            "type" : "shell",
+            "inline" : [
+                "(cd .. && cd .. && echo $(pwd) && ls -a)",
+                "echo $(pwd) && ls -a"
+            ]
+        },
+        {
+            "type" : "shell",
+            "script" : "./setup.sh",
+            "execute_command" : "sudo -E -S sh '{{ .Path }}'"
+        }
+    ]
+}

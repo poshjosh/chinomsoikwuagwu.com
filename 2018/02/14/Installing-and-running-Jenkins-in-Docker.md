@@ -1,6 +1,6 @@
 ---
-path: "./2019/11/21/Installing-and-running-Jenkins-in-Docker.md"
-date: "2019-11-21"
+path: "./2019/02/14/Installing-and-running-Jenkins-in-Docker.md"
+date: "2019-02-14T13:45:56"
 title: "Installing and running Jenkins in Docker"
 description: "Poshjoshs-Blog - Installing and running Jenkins in Docker"
 lang: "en-us"
@@ -8,7 +8,7 @@ lang: "en-us"
 
 #### Background ####
 
-Jenkins can be used to automate all sorts of tasks related to building, testing, and delivering or deploying software. Read a brief [Introduction to Jenkins](/2019/11/19/Introduction-to-Jenkins/), if you haven't done that already.
+Jenkins can be used to automate all sorts of tasks related to building, testing, and delivering or deploying software. Read a brief [Introduction to Jenkins](/2018/02/05/Introduction-to-Jenkins), if you haven't done that already.
 
 ### Downloading and Running Jenkins in Docker ###
 

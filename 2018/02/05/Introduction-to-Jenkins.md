@@ -1,6 +1,6 @@
 ---
-path: "./2019/11/19/Introduction-to-Jenkins.md"
-date: "2019-11-19"
+path: "./2018/02/05/Introduction-to-Jenkins.md"
+date: "2018-02-05"
 title: "Introduction to Jenkins"
 description: "Poshjoshs-Blog - Introduction to Jenkins"
 lang: "en-us"
