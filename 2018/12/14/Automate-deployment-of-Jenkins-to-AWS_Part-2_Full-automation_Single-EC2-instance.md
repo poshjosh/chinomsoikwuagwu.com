@@ -27,6 +27,8 @@ automation of a Jenkins cluster. Below are the links to each of the 3 parts:
 
 - This article is the second part of the series.
 
+- You can find the source for this article [here](https://github.com/poshjosh/automate-jenkins-to-aws)
+
 - The objective of this first part is to create a re-usable amazon AMI which
 auto installs Jenkins, some specified plugins and omits the initial user
 password.
@@ -125,7 +127,7 @@ Now create a file called `packer.json` and add the following contents:
 }
 ```
 
-You can download the file for the above `.json` config [here](/packer.json)
+You can download the file for the above `.json` config [here](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/packer.json)
 
 __Notes on packer config__
 
@@ -165,28 +167,27 @@ docker run --name jenkins-lts --rm --detach --privileged -p 8080:8080 -p 50000:5
 docker container run --name sonarqube --rm --detach -p 9000:9000 -p 9092:9092 sonarqube
 ```
 
-You can download the file for the above `.sh` commands [here](/setup.sh)
+You can download the file for the above `.sh` commands [here](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/setup.sh)
 
 The following files from the first part of this series of articles is
 also required in the `automate-deployment-of-jenkins-to-aws` directory, so
 download and emplace them accordingly.
 
-  * [/jenkins-auto-install/default-user.groovy](/jenkins-auto-install/default-user.groovy). This file
-  helps create the jenkins default user
+  * [default-user.groovy](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/jenkins-auto-install/default-user.groovy). This file helps create the jenkins default user
 
-  * [/jenkins-auto-install/Dockerfile](/jenkins-auto-install/Dockerfile). This is the docker file
-  that will be used to build the jenkins image
+  * [Dockerfile](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/jenkins-auto-install/Dockerfile).
+  This is the docker file that will be used to build the jenkins image
 
-  * [/jenkins-auto-install/jenkins-plugins](/jenkins-auto-install/jenkins-plugins). This file contains
-  the names of plugins to install, one on each line.
+  * [jenkins-plugins](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/jenkins-auto-install/jenkins-plugins).
+  This file contains the names of plugins to install, one on each line.
 
 These 2 files are also required in the `automate-deployment-of-jenkins-to-aws` directory:
 
-  * [docker](/docker) - Docker system configuration.
+  * [docker](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/docker) - Docker system configuration.
 
-  * [user-data.txt](/user-data.txt) Script, usually to be called on first
-  launch of the EC2 instance, but configured in this case to be called
-  each time the instance launches.
+  * [user-data.txt](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/user-data.txt)
+  Script, usually to be called on first launch of the EC2 instance, but
+  configured in this case to be called each time the instance launches.
 
 The `automate-deployment-of-jenkins-to-aws` directory should look like this:
 
@@ -371,7 +372,7 @@ output "Jenkins_security_group_ID" {
 }
 ```
 
-You can download the file for the above terraform config [here](/terraform.tf)
+You can download the file for the above terraform config [here](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/terraform.tf)
 
 Using the `aws` provider, this terraform configuration will provision the
 following AWS resources:

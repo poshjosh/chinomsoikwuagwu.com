@@ -27,6 +27,8 @@ automation of a Jenkins cluster. Below are the links to each of the 3 parts:
 
 - This article is the first part of the series.
 
+- You can find the source for this article [here](https://github.com/poshjosh/automate-jenkins-to-aws)
+
 - The objective of this first part is to create a re-usable amazon AMI which
 auto installs Jenkins, some specified plugins and omits the initial user
 password.
@@ -87,7 +89,7 @@ echo "... Restarting docker"
 sudo service docker restart
 ```
 
-You can download actual file with the above contents, [here](/first-launch.sh)
+You can download actual file with the above contents, [here](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/first-launch.sh)
 
 - Wait till the EC2 instance is running and has passed status checks
 
@@ -98,14 +100,13 @@ I will be putting mine in `/jenkins-auto-install`.
 
 View the 3 files through the following links:
 
-  * [default-user.groovy](/jenkins-auto-install/default-user.groovy). This file
-  helps create the jenkins default user
+  * [default-user.groovy](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/jenkins-auto-install/default-user.groovy). This file helps create the jenkins default user
 
-  * [Dockerfile](/jenkins-auto-install/Dockerfile). This is the docker file
-  that will be used to build the jenkins image
+  * [Dockerfile](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/jenkins-auto-install/Dockerfile).
+  This is the docker file that will be used to build the jenkins image
 
-  * [jenkins-plugins](/jenkins-auto-install/jenkins-plugins). This file contains
-  the names of plugins to install, one on each line.
+  * [jenkins-plugins](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/jenkins-auto-install/jenkins-plugins).
+  This file contains the names of plugins to install, one on each line.
 
 - Next we transfer the contents of the entire directory we just created to the
 remote EC2 instance. We achieve this using Putty.
@@ -173,7 +174,7 @@ sudo docker container run --name sonarqube --rm --detach -p 9000:9000 -p 9092:90
 --//
 ```
 
-You can download actual file with the above contents, [here](/subsequent-launches.sh "EC2 user - data")
+You can download actual file with the above contents, [here](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/subsequent-launches.sh "EC2 user - data")
 
 - Now start the EC2 instance
 
@@ -196,7 +197,7 @@ ENV JENKINS_PASS UB40-music
 
 - This series was designed to give you a feel of automating jenkins installation
 on aws with a semi-automated exampl. The [next](/2018/12/14/Automate-deployment-of-Jenkins-to-AWS_Part-2_Full-automation_Single-EC2-instance) article will involve the fully automated deployment of a single
-jenkins server to an AWS ec2 instance. 
+jenkins server to an AWS ec2 instance.
 
 ### References ###
 
