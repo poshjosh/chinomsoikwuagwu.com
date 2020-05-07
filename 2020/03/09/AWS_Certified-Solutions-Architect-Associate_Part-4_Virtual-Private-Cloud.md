@@ -2,7 +2,7 @@
 path: "./2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-4_Virtual-Private-Cloud.md"
 date: "2020-03-09T11:20:00"
 title: "AWS Certified Solutions Architect Associate - Part 4 - Virtual Private Cloud"
-description: "Poshjoshs-Blog - AWS Certified Solutions Architect Associate - Part 4 - Virtual Private Cloud"
+description: "Easy to understand tutorial: AWS Certified Solutions Architect Associate - Part 4 - Virtual Private Cloud"
 lang: "en-us"
 ---
 

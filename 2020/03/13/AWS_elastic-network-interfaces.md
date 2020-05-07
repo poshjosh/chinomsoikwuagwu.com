@@ -2,7 +2,7 @@
 path: "./2020/03/13/AWS_Elastic-Network-Interfaces.md"
 date: "2020-03-13"
 title: "AWS Elastic Network Interfaces"
-description: "Poshjoshs-Blog - AWS elastic network interfaces"
+description: "Easy to understand tutorial: AWS elastic network interfaces"
 lang: "en-us"
 ---
 

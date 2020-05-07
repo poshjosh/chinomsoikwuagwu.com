@@ -2,7 +2,7 @@
 path: "./2019/11/23/Preparing-Jenkins-after-installation.md"
 date: "2019-11-23"
 title: "Preparing Jenkins after Installation"
-description: "Poshjoshs-Blog - Preparing Jenkins after installation"
+description: "Easy to understand tutorial: Preparing Jenkins after installation"
 lang: "en-us"
 ---
 

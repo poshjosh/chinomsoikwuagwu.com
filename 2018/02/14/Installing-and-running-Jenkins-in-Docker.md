@@ -2,7 +2,7 @@
 path: "./2019/02/14/Installing-and-running-Jenkins-in-Docker.md"
 date: "2019-02-14T13:45:56"
 title: "Installing and running Jenkins in Docker"
-description: "Poshjoshs-Blog - Installing and running Jenkins in Docker"
+description: "Easy to understand tutorial: Installing and running Jenkins in Docker"
 lang: "en-us"
 ---
 

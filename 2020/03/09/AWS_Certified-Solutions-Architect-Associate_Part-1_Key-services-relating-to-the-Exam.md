@@ -2,7 +2,7 @@
 path: "./2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-1_Key-services-relating-to-the-Exam.md"
 date: "2020-03-09T09:18:22"
 title: "AWS Certified Solutions Architect Associate - Part 1 - Key services relating to the Exam"
-description: "Poshjoshs-Blog - AWS Certified Solutions Architect Associate - Part 1 - Key services relating to the Exam"
+description: "Easy to understand tutorial: AWS Certified Solutions Architect Associate - Part 1 - Key services relating to the Exam"
 lang: "en-us"
 ---
 

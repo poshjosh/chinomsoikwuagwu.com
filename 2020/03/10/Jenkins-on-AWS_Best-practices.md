@@ -2,7 +2,7 @@
 path: "./2020/03/10/Jenkins-on-AWS_Best-practices.md"
 date: "2020-03-10"
 title: "Jenkins on AWS - Best practices"
-description: "Poshjoshs-Blog - Jenkins on AWS Best practices"
+description: "Easy to understand tutorial: Jenkins on AWS Best practices"
 lang: "en-us"
 ---
 

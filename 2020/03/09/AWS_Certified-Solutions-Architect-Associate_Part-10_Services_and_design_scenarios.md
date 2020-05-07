@@ -2,7 +2,7 @@
 path: "./2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-10_Services_and_design_scenarios.md"
 date: "2020-03-09T21:29:00"
 title: "AWS Certified Solutions Architect Associate - Part 10 - Services and design scenarios"
-description: "Poshjoshs-Blog - AWS Certified Solutions Architect Associate - Part 10 - Services and design scenarios"
+description: "Easy to understand tutorial: AWS Certified Solutions Architect Associate - Part 10 - Services and design scenarios"
 lang: "en-us"
 ---
 

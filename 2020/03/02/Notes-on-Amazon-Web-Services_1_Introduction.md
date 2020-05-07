@@ -2,7 +2,7 @@
 path: "./2020/03/02/Notes-on-Amazon-Web-Services_1_Introduction.md"
 date: "2020-03-02T09:00:00"
 title: "Notes on Amazon Web Services 1 - Introduction"
-description: "Poshjoshs-Blog - Notes on Amazon Web Services 1 - Introduction"
+description: "Easy to understand tutorial: Notes on Amazon Web Services 1 - Introduction"
 lang: "en-us"
 ---
 

@@ -2,7 +2,7 @@
 path: "./2018/02/05/Introduction-to-Jenkins.md"
 date: "2018-02-05"
 title: "Introduction to Jenkins"
-description: "Poshjoshs-Blog - Introduction to Jenkins"
+description: "Easy to understand tutorial: Introduction to Jenkins"
 lang: "en-us"
 ---
 

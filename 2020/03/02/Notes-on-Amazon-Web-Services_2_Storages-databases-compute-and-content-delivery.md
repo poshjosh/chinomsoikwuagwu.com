@@ -2,7 +2,7 @@
 path: "./2020/03/02/Notes-on-Amazon-Web-Services_2_Storages-databases-compute-and-content-delivery.md"
 date: "2020-03-02T09:45:00"
 title: "Notes on Amazon Web Services 2 - Storages databases compute and content delivery"
-description: "Poshjoshs-Blog - Notes on Amazon Web Services 2 - Storages databases compute and content delivery"
+description: "Easy to understand tutorial: Notes on Amazon Web Services 2 - Storages databases compute and content delivery"
 lang: "en-us"
 ---
 

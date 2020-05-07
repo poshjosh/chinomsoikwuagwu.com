@@ -2,7 +2,7 @@
 path: "./2020/03/10/Jenkins-on-AWS_Setup.md"
 date: "2020-03-10"
 title: "Jenkins on AWS - Setup"
-description: "Poshjoshs-Blog - Jenkins on AWS Setup"
+description: "Easy to understand tutorial: Jenkins on AWS Setup"
 lang: "en-us"
 ---
 

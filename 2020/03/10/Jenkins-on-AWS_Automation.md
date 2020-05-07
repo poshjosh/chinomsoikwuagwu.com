@@ -2,7 +2,7 @@
 path: "./2020/03/10/Jenkins-on-AWS_Automation.md"
 date: "2020-03-10"
 title: "Jenkins on AWS - Automation"
-description: "Poshjoshs-Blog - Jenkins on AWS Automation"
+description: "Easy to understand tutorial: Jenkins on AWS Automation"
 lang: "en-us"
 ---
 

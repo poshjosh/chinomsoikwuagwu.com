@@ -2,7 +2,7 @@
 path: "./2019/11/22/Jenkins-titbits.md"
 date: "2019-11-22"
 title: "Jenkins titbits, and then some"
-description: "Poshjoshs-Blog - Jenkins titbits, and then some"
+description: "Easy to understand tutorial: Jenkins titbits, and then some"
 lang: "en-us"
 ---
 

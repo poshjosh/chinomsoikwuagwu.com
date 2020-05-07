@@ -2,7 +2,7 @@
 path: "./2020/02/02/Amazon-Web-Services-Create-IAM-User.md"
 date: "2020-02-02"
 title: "Amazon Web Services - Create IAM User"
-description: "Poshjoshs-Blog - Amazon Web Services - Create IAM User"
+description: "Easy to understand tutorial: Amazon Web Services - Create IAM User"
 lang: "en-us"
 ---
 

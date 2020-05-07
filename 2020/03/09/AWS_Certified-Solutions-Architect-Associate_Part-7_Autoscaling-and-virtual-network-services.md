@@ -2,7 +2,7 @@
 path: "./2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-7_Autoscaling-and-virtual-network-services.md"
 date: "2020-03-09T15:50:10"
 title: "AWS Certified Solutions Architect Associate - Part 7 - Autoscaling and virtual network services"
-description: "Poshjoshs-Blog - AWS Certified Solutions Architect Associate - Part 7 - Autoscaling and virtual network services"
+description: "Easy to understand tutorial: AWS Certified Solutions Architect Associate - Part 7 - Autoscaling and virtual network services"
 lang: "en-us"
 ---
 

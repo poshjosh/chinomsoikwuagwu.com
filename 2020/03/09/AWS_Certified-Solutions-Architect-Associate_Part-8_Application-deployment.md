@@ -2,7 +2,7 @@
 path: "./2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-8_Application-deployment.md"
 date: "2020-03-09T16:39:00"
 title: "AWS Certified Solutions Architect Associate - Part - 8 Application deployment"
-description: "Poshjoshs-Blog - AWS Certified Solutions Architect Associate - Part 8 - Application deployment"
+description: "Easy to understand tutorial: AWS Certified Solutions Architect Associate - Part 8 - Application deployment"
 lang: "en-us"
 ---
 

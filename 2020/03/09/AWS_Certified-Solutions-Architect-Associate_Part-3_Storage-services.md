@@ -2,7 +2,7 @@
 path: "./2020/03/09/AWS_Certified-Solutions-Architect-Associate_Part-3_Storage-services.md"
 date: "2020-03-09T10:43:00"
 title: "AWS Certified Solutions Architect Associate - Part 3 - Storage services"
-description: "Poshjoshs-Blog - AWS Certified Solutions Architect Associate - Part 3 - Storage services"
+description: "Easy to understand tutorial: AWS Certified Solutions Architect Associate - Part 3 - Storage services"
 lang: "en-us"
 ---
 

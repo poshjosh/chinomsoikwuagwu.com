@@ -2,7 +2,7 @@
 path: "./2019/11/12/Add-chat-functionality-to-a-maven-java-web-app.md"
 date: "2019-11-12"
 title: "How to Add Chat Functionality to a Maven Java Web App"
-description: "Poshjoshs-Blog - How to add chat functionality to a maven java web app"
+description: "Easy to understand tutorial: How to add chat functionality to a maven java web app"
 lang: "en-us"
 ---
 

@@ -2,7 +2,7 @@
 path: "./2020/03/02/Notes-on-Amazon-Web-Services_3_Managment-tools-app-integration-and-customer-engagement.md"
 date: "2020-03-02T10:55:00"
 title: "Notes on Amazon Web Services 3 - Managment Tools, App Integration and Customer Engagement"
-description: "Poshjoshs-Blog - Notes on Amazon Web Services 3 - Managment tools app integration and customer engagement"
+description: "Easy to understand tutorial: Notes on Amazon Web Services 3 - Managment tools app integration and customer engagement"
 lang: "en-us"
 ---
 
