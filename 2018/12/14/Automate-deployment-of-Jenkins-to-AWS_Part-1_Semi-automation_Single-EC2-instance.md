@@ -1,6 +1,6 @@
 ---
 path: "./2018/12/14/Automate-deployment-of-Jenkins-to-AWS_Part-1_Semi-automation_Single-EC2-instance.md"
-date: "2020-04-14T11:48:00"
+date: "2018-12-14T11:48:00"
 title: "Automate deployment of Jenkins to AWS - Part 1 - Semi automation - Single EC2 instance"
 description: "Automate deployment of Jenkins to AWS - From semi automation of single to full automation of cluster - Part 1"
 tags: ["Jenkins", "Automation", "AWS", "AWS Command Line Interface (CLI)", "jenkins docker image", "Putty", "docker"]
@@ -138,43 +138,7 @@ sudo docker build -t poshjosh/jenkins:lts .
   * Stop the EC2 instance
   * Click Actions
   * View/Edit user data
-  * Update the user data to the following:
-```
-Content-Type: multipart/mixed; boundary="//"
-MIME-Version: 1.0
-
---//
-Content-Type: text/cloud-config; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment; filename="cloud-config.txt"
-
-#cloud-config
-# See https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/
-cloud_final_modules:
-- [scripts-user, always]
-
---//
-Content-Type: text/x-shellscript; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment; filename="userdata.txt"
-
-#!/bin/bash
-#https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html
-@echo off
-echo "... Starting docker"
-sudo service docker start
-echo "... Creatin volume: jenkins-data"
-sudo docker volume create jenkins-data
-echo "... Running container: jenkins"
-sudo docker run --name jenkins-lts --rm --detach --privileged -p 8080:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME":/home poshjosh/jenkins:lts
-echo "Running container: sonarqube"
-sudo docker container run --name sonarqube --rm --detach -p 9000:9000 -p 9092:9092 sonarqube
---//
-```
-
-You can download actual file with the above contents, [here](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/subsequent-launches.sh "EC2 user - data")
+  * Download [this file](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/subsequent-launches.sh "EC2 user - data") and use it to update the user data.
 
 - Now start the EC2 instance
 

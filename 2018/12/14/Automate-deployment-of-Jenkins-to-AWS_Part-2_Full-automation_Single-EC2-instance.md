@@ -1,6 +1,6 @@
 ---
 path: "./2018/12/14/Automate-deployment-of-Jenkins-to-AWS_Part-2_Full-automation_Single-EC2-instance.md"
-date: "2020-04-14T11:48:00"
+date: "2018-12-14T21:51:10"
 title: "Automate deployment of Jenkins to AWS - Part 2 - Full automation - Single EC2 instance"
 description: "Automate deployment of Jenkins to AWS - From semi automation of single to full automation of cluster - Part 2"
 tags: ["Jenkins", "Automation", "AWS", "AWS Command Line Interface (CLI)", "jenkins docker image", "Putty", "docker", "terraform", "packer"]
@@ -164,7 +164,7 @@ mv /tmp/jenkins-plugins ./jenkins-plugins
 docker build -t poshjosh/jenkins:lts .
 docker volume create jenkins-data
 docker run --name jenkins-lts --rm --detach --privileged -p 8080:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME":/home poshjosh/jenkins:lts
-docker container run --name sonarqube --rm --detach -p 9000:9000 -p 9092:9092 sonarqube
+docker run --name sonarqube --rm --detach -p 9000:9000 sonarqube
 ```
 
 You can download the file for the above `.sh` commands [here](https://github.com/poshjosh/automate-jenkins-to-aws/blob/master/setup.sh)
@@ -259,7 +259,7 @@ variable "server_port" {
 variable "sonarqube_port" {
     description = "The port the sonarqube server will use for HTTP requests"
     type        = number
-    default     = 9092
+    default     = 9000
 }
 
 provider "aws" {
@@ -271,7 +271,7 @@ provider "aws" {
 
 resource "aws_security_group" "security_group_1" {
     name        = var.security_group_name
-    description = "security group that allows all egress traffic, ingress for ssh 22 and tcp 8080, 9092"
+    description = "security group that allows all egress traffic, ingress for ssh 22 and tcp 8080, 9000"
 
     # Terraform removes the default rule
     egress {
@@ -379,7 +379,7 @@ following AWS resources:
 
 - __AWS security group__ An AWS security group that allows all egress traffic
 (because Terraform removes the default egress allow-all rule) as well as
-ingress for ssh 22 and tcp 8080, 9092
+ingress for ssh 22 and tcp 8080, 9000
 
 - __AWS EC2 instance__ An AWS EC2 instance to host the jenkins and sonarqube
 server. The provisioned security group will be applied to the EC2 instance.
@@ -407,7 +407,7 @@ terraform apply
 ```
 
 You may now browse to your automatically provisioned jenkins server
-via `http://<public-dns>:8080` and sonarqube server via `http://<public-dns>:9092`
+via `http://<public-dns>:8080` and sonarqube server via `http://<public-dns>:9000`
 where public dns is the public dns of the EC2 instance.
 
 Remember,  we hard coded jenkins credentials into the Dockerfile.
