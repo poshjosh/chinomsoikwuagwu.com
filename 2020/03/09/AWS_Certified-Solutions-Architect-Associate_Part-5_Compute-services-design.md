@@ -86,6 +86,8 @@ You can choose a memory optimized and impl an EBS volume that gives storage opti
 For example, penetration testing with hash cracking -> You use CPU + GPU to
 increase speed.
 
+[Click here for more on EC2 instance types](/2020/02/07/AWS_EC2-Instance-Types_curated) 
+
 #### EC2 Pricing ####
 
 Pricing changes periodically.
@@ -507,8 +509,6 @@ User name for each AMI
     For an Ubuntu AMI, the user name is ubuntu.
 
     Otherwise, if ec2-user and root don't work, check with the AMI provider.
-
-
 
 ### Questions ###
 
