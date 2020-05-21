@@ -3,7 +3,7 @@ path: "./2020/02/07/AWS_EC2-Instance-Types_curated.md"
 date: "2020-02-07T21:05:14"
 title: "AWS EC2 Instance Types - Curated"
 description: "Virtually the best, up-to-date summary of AWS EC2 instance types"
-tags: ["AWS", "FAQ", "EC2", "instance type", "general purpose", "compute optimized", "memory optimized", "accelerated computing", "storage optimized", "SAP certified EC2 instances"]
+tags: ["AWS", "FAQ", "EC2", "instance type", "general purpose", "compute optimized", "memory optimized", "accelerated computing", "storage optimized", "SAP certified EC2 instances", "vCPU"]
 lang: "en-us"
 ---
 
@@ -45,8 +45,14 @@ Memory Optimized      | R, X, High Memory, z
 Accelerated Computing | P, Inf1, G, F
 Storage Optimized     | I, D, H
 
-As a kind of guide, types `C` - for compute, `G` for graphics, `A`, `T` and `M`
-(ATM) for general purpose.
+__Memory Guide__
+
+- `A`, `T` and `M` (ATM) - general purpose.
+- `C` for compute
+- `G` for graphics - accelerated computing
+- `I` for I/O performance - storage optimized
+- `D` for dense storage  - storage optimized
+- `H` for HDD - storage optimized
 
 ### General Purpose ###
 
@@ -161,7 +167,6 @@ volume that gives storage optimization
 - __Development environments__ - `A`, `T`
 - __Web servers__ - `A`
 - __Test and staging environments__ - `T2`
-- __Applications built on open-source software__ - `M6g`
 - __High performance web servers__ - `C`
 - __Distributed analytics__ - `C`
 - __Distributed web scale in-memory caches__ - `R`
@@ -175,9 +180,6 @@ volume that gives storage optimization
 
 ### Specialized Instances ###
 
-- `c4.8xlarge` instance type provides the ability for an operating system to
-control processor C-states and P-states. This feature is currently available
-only on Linux instances.
 - `z1d` - Ideal for electronic design automation (EDA) and certain relational
 database workloads with high per-core licensing costs.
 - `Inf1` - Built from the ground up to support machine learning inference applications.
@@ -186,8 +188,9 @@ database workloads with high per-core licensing costs.
 
 __Network and Storage Specialized__
 
-- n variants (e.g m5n, c5n, R5n) are network optimzed
-- d variants (e.g m5d, c5d, R5dn, R5ad) use NVMe SSD storage
+- n variants (e.g m5n, c5n, R5n) are network optimized.
+- d variants (e.g m5d, c5d, R5ad) use NVMe SSD storage.
+- `I` and `F` instance types use NVMe SSD storage
 
 __SAP Certified__
 
@@ -369,7 +372,6 @@ C5, C4, M5, M4, P3, P2, G3, and D2 instance types.
   - __Development environments__ - `A`, `T`
   - __Web servers__ - `A`
   - __Test and staging environments__ - `T2`
-  - __Applications built on open-source software__ - `M6g`
   - __High performance web servers__ - `C`
   - __Distributed analytics__ - `C`
   - __Distributed web scale in-memory caches__ - `R`
