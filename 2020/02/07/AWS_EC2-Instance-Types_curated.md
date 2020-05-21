@@ -34,8 +34,8 @@ Read the __Takeaways__ at the end of this article.
 
 ### Introduction ###
 
-This is a gentle visual introduction. Start by glancing through the table
-below.
+This is a gentle visual introduction. Start by glancing deliberately through
+the table below.
 
 Class                 | Types
 ----------------------|-------------------------
@@ -81,6 +81,10 @@ C    | Compute optimized (C5n=network optimized)| EBS, C5d.* = NVMe SSD	| Up to 
 
 - Enhanced Networking, AVX and AVX2  are only available on instances launched
 with HVM AMIs.
+
+- `c4.8xlarge` instance type provides the ability for an operating system to
+control processor C-states and P-states. This feature is currently available
+only on Linux instances.
 
 ### Memory Optimized ###
 
@@ -171,7 +175,11 @@ volume that gives storage optimization
 
 ### Specialized Instances ###
 
-- `z1d` - Ideal for electronic design automation (EDA) and certain relational database workloads with high per-core licensing costs.
+- `c4.8xlarge` instance type provides the ability for an operating system to
+control processor C-states and P-states. This feature is currently available
+only on Linux instances.
+- `z1d` - Ideal for electronic design automation (EDA) and certain relational
+database workloads with high per-core licensing costs.
 - `Inf1` - Built from the ground up to support machine learning inference applications.
 - `G3` - 3D visualizations and rendering in addition to other graphics - intensive workloads.
 - `F1` - Offers customizable hardware acceleration with field programmable gate arrays (FPGAs).
