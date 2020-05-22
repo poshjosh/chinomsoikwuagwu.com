@@ -361,3 +361,19 @@ on-premises at you location.
 - NAT - Network Address Translation
 - VPG - Virtual Private Gateway
 - CGW - Customer Gateway
+
+### Good to Read ###
+
+- [AWS VPC](/2020/03/04/AWS_Virtual-Private-Cloud-VPC)
+
+- [AWS VPC Examples](/2020/03/04/AWS_Virtual-Private-Cloud-VPC-examples)
+
+- [How AWS VPC Works](https://docs.aws.amazon.com/vpc/latest/userguide/how-it-works/ "How AWS VPC Works")
+
+- [Medium.com - Difference between Security Group and NACL](https://medium.com/awesome-cloud/aws-difference-between-security-groups-and-network-acls-adc632ea29ae)
+
+- [AWS - VPC share](https://docs.aws.amazon.com/vpc/latest/userguide/example-vpc-share/ "AWS - VPC Share")
+
+- [VPC security best practices](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-best-practices/ "VPC security best practices")
+
+- [AWS Privatelink and VPC peering](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-peer-region-example/ "AWS Privatelink and VPC peering")
