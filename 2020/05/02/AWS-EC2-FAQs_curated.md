@@ -1,9 +1,9 @@
 ---
 path: "./2020/05/02/AWS-EC2-FAQs_curated.md"
 date: "2020-05-02T19:22:10"
-title: "AWS FAQs - Curated"
-description: "Curated FAQs on AWS"
-tags: ["AWS", "FAQ", "NAT", "EC2", "On-Demand Instance limits", "vCPU-based limits", "SMTP endpoint policy", "SLA Credit", "accelerated computing instances", "compute optimized instances", "General Purpose Instances", "High Memory Instances", "Previous Generation Instances", "Memory Optimized Instances", "Amazon Elastic Block Store (EBS)", "Amazon Elastic File System (EFS)", "NVMe Instance storage", "Elastic Fabric Adapter (EFA)", "Elastic IP", "Enhanced Networking",  "Amazon CloudWatch",  "Amazon EC2 Auto Scaling", "Hibernate", "VM Import/Export",  "EC2 Billing",  "EC2 Savings Plans", "Convertible Reserved Instances", "EC2 Fleet", "On-Demand Capacity Reservation", "Reserved Instances", "Reserved Instance Marketplace", "Spot Instances", "Amazon Time Sync Service", "Cluster Instances",  "cluster placement group", "Cluster Compute Instance", "Cluster GPU Instance", "High Memory Cluster Instance", "Micro instances", "Nitro Hypervisor", "Optimize CPUs", "Amazon EC2 running IBM", "EC2 running Microsoft Windows", "EC2 running third-party software"]
+title: "AWS EC2 FAQs - Curated"
+description: "Curated FAQs on AWS EC2, plus a must read summary for quick start"
+tags: ["AWS", "FAQ", "EC2", "On-Demand Instance limits", "vCPU-based limits", "SMTP endpoint policy", "SLA Credit", "accelerated computing instances", "compute optimized instances", "General Purpose Instances", "High Memory Instances", "Previous Generation Instances", "Memory Optimized Instances", "Amazon Elastic Block Store (EBS)", "Amazon Elastic File System (EFS)", "NVMe Instance storage", "Elastic Fabric Adapter (EFA)", "Elastic IP", "Enhanced Networking",  "Amazon CloudWatch",  "Amazon EC2 Auto Scaling", "Hibernate", "VM Import/Export",  "EC2 Billing",  "EC2 Savings Plans", "Convertible Reserved Instances", "EC2 Fleet", "On-Demand Capacity Reservation", "Reserved Instances", "Reserved Instance Marketplace", "Spot Instances", "Amazon Time Sync Service", "Cluster Instances",  "cluster placement group", "Cluster Compute Instance", "Cluster GPU Instance", "High Memory Cluster Instance", "Micro instances", "Nitro Hypervisor", "Optimize CPUs", "Amazon EC2 running IBM", "EC2 running Microsoft Windows", "EC2 running third-party software"]
 lang: "en-us"
 ---
 
