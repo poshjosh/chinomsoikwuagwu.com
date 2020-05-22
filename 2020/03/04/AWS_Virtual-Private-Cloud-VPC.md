@@ -348,6 +348,8 @@ network address translation (NAT) device for IPv4 traffic.
 
 ### References ###
 
+- [AWS VPC Examples](/2020/03/04/AWS_Virtual-Private-Cloud-VPC-examples)
+
 - [How AWS VPC Works](https://docs.aws.amazon.com/vpc/latest/userguide/how-it-works/ "How AWS VPC Works")
 
 - [Medium.com - Difference between Security Group and NACL](https://medium.com/awesome-cloud/aws-difference-between-security-groups-and-network-acls-adc632ea29ae)

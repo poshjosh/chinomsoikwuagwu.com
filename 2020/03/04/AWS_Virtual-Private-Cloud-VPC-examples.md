@@ -133,6 +133,8 @@ _@TODO Explode these examples_
 
 ### References ###
 
+- [AWS VPC](/2020/03/04/AWS_Virtual-Private-Cloud-VPC)
+
 - [AWS - VPC share](https://docs.aws.amazon.com/vpc/latest/userguide/example-vpc-share/ "AWS - VPC Share")
 
 - [VPC security best practices](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-best-practices/ "VPC security best practices")
