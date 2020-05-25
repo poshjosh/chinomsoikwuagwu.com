@@ -10,13 +10,13 @@ lang: "en-us"
 
 - Artifact - Online protal for access to AWS security and compliance documentation.  
 - Cerificate Manager - Issues free SSL certificates. Integrates with Route 53 and Cloud Front.
-- Cloud Directory - Cloud based directory service that can have heirarchies of data in multiple dimensions.
+- Cloud Directory - Cloud based directory service that can have hierarchies of data in multiple dimensions.
 - Directory Service - Fully managed Microsoft active directory service in AWS cloud
 - Could Hardware Security Module (HSM) - Dedicated hardware security module in the AWS cloud.
 - Amazon Cognito - Sign in and sign up capabilities for web apps, Oauth2 and SAML2 supported.
 - Identity and Access Management (IAM) - Allows you to manage user access to AWS services and resources with permissions.
 - AWS Organizations - Provides policy based management for multiple AWS accounts.
-- AWS Inspector - Automated security accessment service. Can identify vulnerabilities and areas needing improvement.
+- AWS Inspector - Automated security assessment service. Can identify vulnerabilities and areas needing improvement.
 - Key Management Service (KMS) - Create and control encryption keys for encrypted data.. uses hardware security module to protect your keys.
 - AWS Shield - Provides protection against DDoS. Standard version of Shield implemented automatically on all AWS accounts.
 - Web Application Firewall - Sits in front of your website to provide additional protection against common attacks such as SQL injection and XSS.
@@ -33,7 +33,8 @@ lang: "en-us"
 
 ### Notes ###
 
-- After creating IAM user, login url will change from ```https://aws.amazon.com/console``` to ```https://<your_aws_account_id>.signin.aws.amazon.com/console/```
+- After creating IAM user, login url will change from ```https://aws.amazon.com/console```
+to ```https://<your_aws_account_id>.signin.aws.amazon.com/console/```
 
 ### Acronyms ###
 - HSM - Hardware Security Module

@@ -254,7 +254,23 @@ and sometimes in the evening.
 
   - AWS Systems manager uses an event based architecture
 
-24. ADD QUESTION HERE
+24. A reporting application runs on EC2 instances behind an application load
+balancer. The EC2 instances are part of an auto scaling group with multi
+Availability Zone deployment. Due to the complexity, the reports take up to
+15 minutes. A solutions architect is concerned users will receive 500 errors
+if a report is requested during scale-in.
+
+  What is the best measure to mitigate this?
+
+  - Use sticky sessions
+
+  - Use connection draining
+
+  - Increase the cool down period for the auto scaling group to greater than
+  1500 seconds.
+
+  - Increase the de-registration delay timeout for the target group to greater
+  than 1500 seconds.
 
 25. A consultant designs large scale architectures using several AWS services
 that include IAM, EC2, RDS, Dynamo DB and VPC. The consultant would like

@@ -164,3 +164,25 @@ Viewer response, Origin request, Origin response.
   View   `<- viewer response -`   CloudFront   `<- origin response -`   Origin Server
 
 - `Price Classes` enable you reduce your delivery prices by excluding Amazon CloudFront’s more expensive edge locations from your Amazon CloudFront distribution.
+
+### EFS vs FSx ###
+
+NFS - Network File System
+SMB - Server Message Block - a protocol
+NTFS - New Technology File System
+
+Property   |      EFS           | FSx
+-----------|--------------------|------------------------------------
+File Sys   | NFSv4              | SMB server with NTFS based storage
+Latency    | Low latency        | Sub-millisecond latencies
+Throughput | 10 GB/sec          | Up to hundreds GB/sec
+IOPs       | greater than 500k  | Millions
+
+### Security ###
+
+An option in the answers could suggest using WAF against DDoS, or AWS Shield
+mitigate SQL injection attacks - Wrong and wrong again.
+
+- AWS Shield - Provides protection against DDoS. Standard version of Shield implemented automatically on all AWS accounts.
+
+- Web Application Firewall - Sits in front of your website to provide additional protection against common attacks such as SQL injection and XSS.

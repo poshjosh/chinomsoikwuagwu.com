@@ -10,12 +10,11 @@ lang: "en-us"
 
 The AWS Certified Cloud Practitioner is AWS's newest certification. This entry-level certification is designed to validate a candidate's overall understanding of the AWS cloud.
 
---------------------------------------------------------------------------------------------------------------
-AWS Certification Category   |	AWS Certification Name				    |	AWS Certification Cost
-Developing		     | 	AWS Certified Developer � Associate		    |	$150
-Operations		     |	AWS Certified SysOps Administrator � Associate	    |	$150
-Architecting		     |	AWS Certified Solutions Architect � Professional    |	$300
---------------------------------------------------------------------------------------------------------------
+Category      |	Name                                           |	Cost
+--------------|------------------------------------------------|--------
+Developing		| 	AWS Certified Developer Associate		         |	$150
+Operations		|	AWS Certified SysOps Administrator Associate	 |	$150
+Architecting	|	AWS Certified Solutions Architect Professional |	$300
 
 The most common approach to begin your cloud career is to start with AWS Solution Architect Associate Certification. Solutions Architect AWS Certification is a great way to familiarize yourself with AWS ecosystem and core AWS services. Moreover, it is mandatory to have an associate certificate before you can take the AWS Solutions Architect Professional Certification.
 
@@ -25,14 +24,14 @@ I have found the following sequence to be the most impactful route for entry int
 
 - The Associate Certificates
 
-  * AWS Certified Solutions Architect�associate
-  * AWS Certified Developer�associate
-  * AWS Certified SysOps Administrator�associate
+  * AWS Certified Solutions Architect associate
+  * AWS Certified Developer associate
+  * AWS Certified SysOps Administrator associate
 
 - The Speciality/Professional Certificates
 
-  * AWS Certified DevOps Engineer�professional
-  * AWS Certified Solutions Architect�professional
+  * AWS Certified DevOps Engineer professional
+  * AWS Certified Solutions Architect professional
 
 Note that this route does not include the AWS Certified Cloud Practitioner exam, as it�s not a terribly technical exam and essentially just covers a basic understanding of the AWS platform. I recommend folks in technical roles to start with the AWS Certified Solutions Architect�associate exam and move on from there.
 

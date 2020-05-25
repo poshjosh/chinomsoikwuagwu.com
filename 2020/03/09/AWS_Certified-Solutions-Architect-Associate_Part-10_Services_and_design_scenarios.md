@@ -106,7 +106,7 @@ Click on Encryption keys to view your keys
 - Key Usage Permission - Who can use this key
 - Preview Key Policy
 
-Cloud Hardware Securit Module (HSM)
+Cloud Hardware Security Module (HSM)
 
 AWS Management Console -> Security Identity & Compliance -> Cloud HSM
 - Create a cluster on which the HSM will run
@@ -115,7 +115,7 @@ AWS Management Console -> Security Identity & Compliance -> Cloud HSM
 the app. The HSM could also be called from an on-premises server
 
 Directory Services are tools that allow you to have a directory of all the resources
-on your network; Resource like user, groups, roles, organizational units, devices
+on your network; Resource like users, groups, roles, organizational units, devices
 (including computers, printers etc) policies amongst others
 
 AWS Management Console -> Security Identity & Compliance -> Directory Services
