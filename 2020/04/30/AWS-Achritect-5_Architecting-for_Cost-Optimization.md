@@ -1,6 +1,6 @@
 ---
-path: "./2020/04/19/AWS-Achritect-5_Architecting-for_Cost-Optimization.md"
-date: "2020-04-19T20:37:49"
+path: "./2020/04/30/AWS-Achritect-5_Architecting-for_Cost-Optimization.md"
+date: "2020-04-30T23:51:09"
 title: "AWS Achritect 5 - Architecting for Cost Optimization"
 description: "Game changing tutorial on AWS - Architecting for Cost Optimization"
 tags: ["AWS", "tutorial", "architect", "cost optimized", "cost optimization", "design principles", "appropriately provisioned resources", "right sizing", "purchasing options", "geographic selection", "managed services", "optimize data transfer", "matching supply and demand", "demand-based", "buffer-based", "time-based", "usage and expenditure awareness", "stakeholders", "visibility and governance", "cost attribution", "tagging", "entity lifecycle tracking", "optimizing over time", "staying ever green"]
@@ -25,8 +25,9 @@ to get AWS Certified Cloud Architect certified.
 
 - It is one of a series of articles.
 
-- _[Updated: 31 April 2020]_ This is the fourth (4th) article in the series and here
-are links to all the articles:
+[Update-2020-04-30]
+
+- This is the fifth (5th) article in the series and here are links to all the articles:
 
   * [Part 1 - Architecting for Reliability](/2020/04/14/AWS-Architect-1_Architecting-for-Reliability)
   * [Part 2 - Architecting for Security](/2020/04/14/AWS-Architect-2_Architecting-for-Security)
@@ -34,6 +35,8 @@ are links to all the articles:
   * [Part 4 - Architecting for Performance Efficiency](/2020/04/19/AWS-Achritect-4_Architecting-for_Performance-Efficiency)
   * [Part 5 - Architecting for Cost Optimization](/2020/04/30/AWS-Achritect-5_Architecting-for_Cost-Optimization)
   * [Part 6 - Passing the Certificate Exam](/2020/04/14/AWS-Architect-6_Passing-the-Certification-Exam)
+
+[/Update-2020-04-30]
 
 - This article is an estimated 18 minute read.
 

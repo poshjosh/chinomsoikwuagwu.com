@@ -29,8 +29,9 @@ Solutions Architect - Associate exam.
 
 - It is one of a series of articles.
 
-- _[Updated: 31 April 2020]_ This is the sixth (6th) article in the series and here
-are links to all the articles:
+[Update-2020-04-30]
+
+- This is the fifth (5th) article in the series and here are links to all the articles:
 
   * [Part 1 - Architecting for Reliability](/2020/04/14/AWS-Architect-1_Architecting-for-Reliability)
   * [Part 2 - Architecting for Security](/2020/04/14/AWS-Architect-2_Architecting-for-Security)
@@ -38,6 +39,8 @@ are links to all the articles:
   * [Part 4 - Architecting for Performance Efficiency](/2020/04/19/AWS-Achritect-4_Architecting-for_Performance-Efficiency)
   * [Part 5 - Architecting for Cost Optimization](/2020/04/30/AWS-Achritect-5_Architecting-for_Cost-Optimization)
   * [Part 6 - Passing the Certificate Exam](/2020/04/14/AWS-Architect-6_Passing-the-Certification-Exam)
+
+[/Update-2020-04-30]
 
 - This article is an estimated 18 minute read.
 

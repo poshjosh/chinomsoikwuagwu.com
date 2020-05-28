@@ -16,8 +16,9 @@ to get AWS Certified Cloud Architect certified.
 
 - It is one of a series of articles.
 
-- _[Updated: 31 April 2020]_ This is the fourth (4th) article in the series and here
-are links to all the articles:
+[Update-2020-04-30]
+
+- This is the fourth (4th) article in the series and here are links to all the articles:
 
   * [Part 1 - Architecting for Reliability](/2020/04/14/AWS-Architect-1_Architecting-for-Reliability)
   * [Part 2 - Architecting for Security](/2020/04/14/AWS-Architect-2_Architecting-for-Security)
@@ -25,6 +26,8 @@ are links to all the articles:
   * [Part 4 - Architecting for Performance Efficiency](/2020/04/19/AWS-Achritect-4_Architecting-for_Performance-Efficiency)
   * [Part 5 - Architecting for Cost Optimization](/2020/04/30/AWS-Achritect-5_Architecting-for_Cost-Optimization)
   * [Part 6 - Passing the Certificate Exam](/2020/04/14/AWS-Architect-6_Passing-the-Certification-Exam)
+
+[/Update-2020-04-30]
 
 - This article is an estimated 40 minute read.
 
@@ -136,7 +139,7 @@ I    | Low latency, high random I/O and sequential disk throughput| NVMe SSD | U
 D    | MPP data warehouse, distributed computing| HDD up to 24 x 2000   | Up to 10     	| 4 - 36   | 30.5 - 244
 H    | high disk throughput, balance of compute & memory| HDD up to 8 x 2000 | Up to 25	| 8 - 64   | 32 - 256
 
-_Source: [EC2 instance types - curated](/2020/02/07/AWS_EC2-Instance-Types_curated)_
+Source: [EC2 instance types - curated](/2020/02/07/AWS_EC2-Instance-Types_curated)
 
 - __Containers__ - You can host multiple containers serving the same service on
 a single Amazon EC2 instance.
