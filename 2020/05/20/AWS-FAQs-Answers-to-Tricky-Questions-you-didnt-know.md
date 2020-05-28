@@ -7,6 +7,16 @@ tags: ["AWS", "FAQ", "EC2", "VPC", "hibernate", "stop", "VPC traffic", "peering"
 lang: "en-us"
 ---
 
+### Network ###
+
+A placement group is within a __single Availability Zone__, enables applications
+participate in low-latency 20 GBps network and has benefit of lowering jitter
+in network communications. This is enabled by __Elastic Network Adapter (ENA)__
+
+__Amazon VPC endpoints__ provide reliable connectivity to AWS services
+(for example,  Amazon S3) without requiring an internet gateway or a Network
+Address Translation (NAT) instance. __Data remains within the AWS network___
+
 ### EC2 ###
 
 - If you are using an Amazon EBS volume as a root partition, you will need to
@@ -177,6 +187,10 @@ File Sys   | NFSv4              | SMB server with NTFS based storage
 Latency    | Low latency        | Sub-millisecond latencies
 Throughput | 10 GB/sec          | Up to hundreds GB/sec
 IOPs       | greater than 500k  | Millions
+
+### EFS ###
+
+You incur access charges when files are transitioned to EFS IA storage from EFS Standard storage. [180](https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
 
 ### Security ###
 

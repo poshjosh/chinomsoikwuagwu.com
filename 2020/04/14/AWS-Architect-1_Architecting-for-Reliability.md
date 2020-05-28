@@ -3,7 +3,7 @@ path: "./2020/04/14/AWS-Architect-1_Architecting-for-Reliability.md"
 date: "2020-04-14T08:15:00"
 title: "AWS Achitect 1 - Architecting for Reliability"
 description: "Game changing tutorial on AWS - Architecting for Reliability"
-tags: ["AWS", "tutorial", "architect", "reliability", "availability", "fault tolerance", "game changing", "certified solutions architect associate", "must read", "core concepts", "Identity and Access Management (IAM)", "CloudTrail", "Web Application AWS Filter", "AWS shield", "AWS Config", "Trusted Advisor", "vertical scaling", "horizontal scaling", "loose coupling", "CloudFormation", "Availability Zone", "Elastic  Load Balancer", "Network Address Translation (NAT)", "Relational Database Service (RDS)", "Simple Storage Service (S3)"]
+tags: ["AWS", "tutorial", "architect", "resilient", "reliability", "availability", "fault tolerance", "game changing", "certified solutions architect associate", "must read", "core concepts", "Identity and Access Management (IAM)", "CloudTrail", "Web Application AWS Filter", "AWS shield", "AWS Config", "Trusted Advisor", "vertical scaling", "horizontal scaling", "loose coupling", "CloudFormation", "Availability Zone", "Elastic  Load Balancer", "Network Address Translation (NAT)", "Relational Database Service (RDS)", "Simple Storage Service (S3)"]
 lang: "en-us"
 ---
 
@@ -31,7 +31,15 @@ to get AWS Certified Cloud Architect certified.
 
 - It is one of a series of articles.
 
-- This is the first article in the series.
+- _[Updated: 31 April 2020]_ This is the first article in the series and here
+are links to all the articles:
+
+  * [Part 1 - Architecting for Reliability](/2020/04/14/AWS-Architect-1_Architecting-for-Reliability)
+  * [Part 2 - Architecting for Security](/2020/04/14/AWS-Architect-2_Architecting-for-Security)
+  * [Part 3 - Architecting for Operational Excellence](/2020/04/14/AWS-Architect-1_Architecting-for-Reliability)
+  * [Part 4 - Architecting for Performance Efficiency](/2020/04/19/AWS-Achritect-4_Architecting-for_Performance-Efficiency)
+  * [Part 5 - Architecting for Cost Optimization](/2020/04/30/AWS-Achritect-5_Architecting-for_Cost-Optimization)
+  * [Part 6 - Passing the Certificate Exam](/2020/04/14/AWS-Architect-6_Passing-the-Certification-Exam)
 
 - It is an estimated 35 minute read.
 

@@ -279,6 +279,12 @@ Representational State Transfer (REST) uses HTTP methods.
 
 ### Elastic Block Store (EBS) ###
 
+[UPDATE-2020-05-28]
+- Amazon EBS is a zonal service. Exists within a zone.
+- Amazon EBS volume data is replicated across multiple servers in an Availability Zone.
+
+[/UPDATE-2020-05-28]
+
 - Each EC2 instance uses EBS. EBS used for durable/persistent storage in the instance.
 
 - EBS is block level storage from one AWS service to another
