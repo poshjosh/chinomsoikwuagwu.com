@@ -237,6 +237,12 @@ __More Notes on Network Load Balancers__
 
 - When you create an Internet-facing load balancer, you can optionally associate one Elastic IP address per subnet.
 
+- Does not support custom security policy
+
+- Security policy should comprise protocols and ciphers
+
+- Does not support certificates with RSA bits higher than 2048 bits
+
 ### Monitoring your Network Load Balancers ###
 
 You can use the following features to monitor your load balancers, analyze traffic patterns, and troubleshoot issues with your load balancers and targets.
@@ -325,6 +331,10 @@ the client must support cookies.
   * The load balancer might reset the sticky sessions for a target group if the health state of any of its targets changes or if you register or deregister targets with the target group.
 
   * Not supported with TLS listeners and TLS target groups.
+
+- Network Load Balancers do not support certificates with RSA bits higher than 2048 bits
+- Network Load Balancers do not support custom security policies. [20](#network-load-balancer-custom-security-policy)
+- Security policy should comprise protocols and ciphers
 
 __Benefits of Migrating from a Classic Load Balancer to a Network Load Balancer__
 
@@ -547,6 +557,8 @@ they contain information only about TLS requests.
 you cannot use the load balancer to provide communication between them unless
 the load balancer is internet-facing or the instances are registered by IP address.
 
+- Network Load Balancers do not support custom security policies. [20](#network-load-balancer-custom-security-policy)
+
 - __Sticky Sessions__ are not supported with TLS listeners and TLS target groups.
 
 __Differences between Network and Application Load Balancers__
@@ -613,3 +625,5 @@ https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balance
 ### End Notes ###
 
 - <a name="network-load-balancer-instance-id-asg">10</a>[AWS Network Load Balancer Target Groups](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html)
+
+- <a name="network-load-balancer-custom-security-policy">20</a>[AWS Docs - TLS listener for Network Load Balacers](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-tls-listener.html)

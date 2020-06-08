@@ -82,8 +82,8 @@ Read the `Takeaways` at the end of the article.
 ### Core Concepts ###
 
 Before delving into reliability proper. Let's take a brief look at some AWS
-core concepts. This include: Identity and Access Management (IAM), CloudTrail, AWS Web Application Firewall (WAF), AWS Shield, AWS Config and AWS
-Trusted Advisor.
+core concepts. This include: Identity and Access Management (IAM), CloudTrail,
+AWS Web Application Firewall (WAF), AWS Shield, AWS Config and AWS Trusted Advisor.
 
 __Identity and Access Management (IAM)__
 
@@ -214,6 +214,15 @@ tolerance and service limits.
 - Check trusted advisor from time to time.
 
 ### Architecting for Availability and Fault Tolerance ###
+
+The desired goal for high availability is to have an independent copy of each
+application stack in two or more AZs, with automated traffic routing to healthy
+resources.
+
+Further increase redundancy and fault tolerance by replicating data between
+geographic Regions. You can do so using both private, high speed networking and
+public internet connections to provide an additional layer of business
+continuity, or to provide low latency access across the globe.
 
 __Regions and Availability Zones__
 
@@ -708,3 +717,5 @@ whereas ELBs carry out health checks to ensure you application is running.
 - [GitHub - AWS CloudFormation Reference Architectures](https://github.com/aws-samples/ecs-refarch-cloudformation)
 
 - [AWS Direct Connect](https://aws.amazon.com/directconnect/)
+
+- [AWS - Building fault tolerant applications](https://d1.awsstatic.com/whitepapers/aws-building-fault-tolerant-applications.pdf)

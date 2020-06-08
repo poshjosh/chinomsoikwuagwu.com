@@ -223,7 +223,7 @@ but AWS advertises it on the internet.
 ### NAT Gateways ###
 
 - Use NAT gateway to enable instances in a private subnet connect to the internet
-or other AWS services, but prevent te internet from initiating a connection to
+or other AWS services, but prevent the internet from initiating a connection to
 those instances.
 
 - __NAT gateways are not supported for IPv6 traffic__  — use an outbound-only (egress-only)

@@ -27,14 +27,14 @@ using the scalable infrastructure of AWS. Read more about
 
 Q. __What are the components of Amazon VPC?__
 
-- A Virtual Private Cloud: A logically isolated virtual network in the AWS cloud. You define a VPC’s IP address space from ranges you select.
-- Subnet: A segment of a VPC’s IP address range where you can place groups of isolated resources.
-- Internet Gateway: The Amazon VPC side of a connection to the public Internet.
-- NAT Gateway: A highly available, managed Network Address Translation (NAT) service for your resources in a private subnet to access the Internet.
-- Virtual private gateway: The Amazon VPC side of a VPN connection.
-- Peering Connection: A peering connection enables you to route traffic via private IP addresses between two peered VPCs.
-- VPC Endpoints: Enables private connectivity to services hosted in AWS, from within your VPC without using an Internet Gateway, VPN, Network Address Translation (NAT) devices, or firewall proxies.
-- Egress-only Internet Gateway: A stateful gateway to provide egress only access for IPv6 traffic from the VPC to the internet
+- `A Virtual Private Cloud`: A logically isolated virtual network in the AWS cloud. You define a VPC’s IP address space from ranges you select.
+- `Subnet`: A segment of a VPC’s IP address range where you can place groups of isolated resources.
+- `Internet Gateway`: The Amazon VPC side of a connection to the public Internet.
+- `NAT Gateway`: A highly available, managed Network Address Translation (NAT) service for your resources in a private subnet to access the Internet.
+- `Virtual private gateway`: The Amazon VPC side of a VPN connection.
+- `Peering Connection`: A peering connection enables you to route traffic via private IP addresses between two peered VPCs.
+- `VPC Endpoints`: Enables private connectivity to services hosted in AWS, from within your VPC without using an Internet Gateway, VPN, Network Address Translation (NAT) devices, or firewall proxies.
+- `Egress-only Internet Gateway`: A stateful gateway to provide egress only access for IPv6 traffic from the VPC to the internet
 
 Q: __What options for network architecture are available?__
 

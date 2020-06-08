@@ -56,6 +56,9 @@ Note that there is a charge for data transfer between Regions
 
 ### Availability Zones ###
 
+- Availability Zones are connected with low latency, high throughput, and
+highly redundant networking.
+
 - If you distribute your instances across multiple AZs and one instance fails,
 you can design your application so that an instance in another AZ can handle
 requests.

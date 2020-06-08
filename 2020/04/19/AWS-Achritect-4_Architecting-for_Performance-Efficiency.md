@@ -658,7 +658,8 @@ For resiliency, the queue should use durable storage.
 - Use a buffer when you have a workload that generates significant write
 load that doesn’t need to be processed immediately.
 
-- On AWS, you can choose from multiple services to implement a buffering approach.
+- On AWS, you can choose `Amazon SQS` or `Amazon Kinesis` amongst other services
+to implement a buffering approach.
 
 - __Amazon SQS__ provides a queue that allows a single consumer to read individual
 messages.
@@ -681,25 +682,16 @@ consumers to read the same message at any one time.
   * Use Spot Instances to optimize the speed with which work items are consumed
   by more consumers
 
+  * To prevent duplicate processing of the same message, either:
+
+    - Provision a table in Amazon DynamoDB that can track the work items that
+    have already been successfully processed
+
+    - Implement idempotent processing.
+
 ### Takeaways ###
 
-Type |    Description				                    |    Storage 		        | Network Gbps	| vCPU	   | Memory (GiB)| GPU      | GPU Mem (GiB)    	
------|------------------------------------------|-----------------------|---------------|----------|-------------|----------|--------------
-A1   | Save cost. For scale out arm workloads.	| EBS only 		          | Up to 10    	| 1 - 16   | 2 - 32      
-T    | Burstable CPU usage			                | EBS only		          | Up to 5 	    | 1 - 8    | 0.5 - 32  
-M    | General purpose (M5n = network optimized)| EBS, m5?d? = NVMe SSD	| Up to 100	    | 1 - 96   | 4 - 384
-C    | Compute optimized (C5n=network optimized)| EBS, C5d.* = NVMe SSD	| Up to 100	    | 2 - 96   | 3.75 - 192
-R    | Memory intensive workloads              	| EBS, R?d.* = NVMe SSD | Up to 100    	| 2 - 96   | 15.25 - 768
-X    | High performance in-mem applications   	| SSD, EBS optimized    | Up to 25     	| 4 -128   | 122 - 3,904
-High Memory | For large in-mem db e.g SAP HANA 	|                       | 100          	|          | 6144 - 24,576
-z1d  | Compute + Memory + High frequency       	| NVMe SSD 		          | Up to 25     	| 2 - 48   | 16 - 384
-P    | General Purpose GPU                      | EBS, p?d.* = NVMe SSD | Up to 100    	| 4 - 96   | 61 - 768    | 1 - 16   | 12 - 256
-Inf1 | For machine learning inference           | EBS                   | Up to 100     | 4 - 96   | 8 - 192     |          |
-G    | Graphics intensive and machine learning  |                       | Up to 100    	| 4 - 96   | 16 - 488    | 1 - 8    | 8 - 128
-F    | Customizable hardware acceleration with FPGAs| SSD up to 4x950GiB| Up to 25      | 8 - 64   | 122 - 976   | 1 - 8 FPGAs |
-I    | Low latency, high random I/O and sequential disk throughput| NVMe SSD | Up to 25 | 2 - 72   | 15.25 - 512
-D    | MPP data warehouse, distributed computing| HDD up to 24 x 2000   | Up to 10     	| 4 - 36   | 30.5 - 244
-H    | high disk throughput, balance of compute & memory| HDD up to 8 x 2000 | Up to 25	| 8 - 64   | 32 - 256
+- Use the right EC2 instance type for your performance needs.
 
 - ECS leverages Auto Scaling Groups and integrates with ELB
 
@@ -751,13 +743,6 @@ and Amazon EC2 instance store.
 - __Storage Performance__ - Performance can be measured by looking at
 `throughput`, input/output operations per second (`IOPS`),  and `latency`.
 
-Storage     | Services               | Latency          | Throughput| Shareable
-------------|------------------------|------------------|-----------|----------
-Block       | EBS,EC2 instance store | Lowest consistent| Single    | Mounted on single instance, copies via snapshots
-File system | EFS                    | Low, consistent  | Multiple  | Many clients
-Object      | S3                     | Low-latency      | Web scale | Many clients
-Archival    | Glacier                | Minutes to hours | High      | No
-
 - For __improved latency__, when data is accessed:
   * By only one instance - use EBS with provisioned IOPs
   * From different geographical regions - S3 with cross-region replication (CRR).
@@ -771,6 +756,7 @@ Archival    | Glacier                | Minutes to hours | High      | No
 
   * Use caches e.g Amazon CloudFront, Amazon ElastiCache or AWS Elemental
   MediaStore:
+
     - `Higher transfer rates` over a single HTTP connection.
     - `Single-digit millisecond latencies`.
     - `Optimized performance`, for repeated GET requests of a common set of objects.
@@ -885,13 +871,6 @@ Amazon recommends that you do `all` of the following:
       * For each client that is making requests, __spread your client requests across
       the set of IP addresses that are returned by DNS__, which ensures that the load
       is distributed across multiple servers in a CloudFront edge location.
-
-Technique | Applies To | Use | Gains
-----------|------------|-----|------
-Caching | Read-heavy | Space (Memory) | Time
-Partitioning or Sharding | Write-heavy | Size & Complexity | Time
-Compression | Large data | Time | Space
-Buffering | Many requests |Space & Time | Efficiency
 
 - Platforms such as `Redis`, `Memcached`, or `Varnish` can be deployed on
 Amazon EC2 to provide robust caching engines for your applications.

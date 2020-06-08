@@ -23,7 +23,7 @@ In the following diagram, the account owner of VPC B is a service provider, and 
 
 __Illustration of VPC Endpoint Service__
 <br/>
-[VPC Endpoint Service](https://docs.aws.amazon.com/vpc/latest/userguide/images/vpc-endpoint-service.png)
+![VPC Endpoint Service](https://docs.aws.amazon.com/vpc/latest/userguide/images/vpc-endpoint-service.png)
 <br/>
 Illustration of VPC Endpoint Service. Source: _docs.aws.amazon.com_
 
@@ -34,7 +34,7 @@ In the following diagram, the owner of VPC B is the service provider, and it has
 
 __Illustration of VPC Endpoint Service - Multi AZ__
 <br/>
-[AWS - VPC Endpoint Service - Multi AZ](https://docs.aws.amazon.com/vpc/latest/userguide/images/vpc-endpoint-service-multi-az.png)
+![AWS - VPC Endpoint Service - Multi AZ](https://docs.aws.amazon.com/vpc/latest/userguide/images/vpc-endpoint-service-multi-az.png)
 <br/>
 Illustration of VPC Endpoint Service - Multi AZ. Source: _docs.aws.amazon.com_
 

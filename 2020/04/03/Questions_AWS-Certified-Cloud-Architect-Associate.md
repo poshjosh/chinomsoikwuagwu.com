@@ -321,7 +321,13 @@ solutions architect ensure tasks are only processed only once?__
 
    - FIFO SQS
 
-27. __@TODO ADD QUESTION HERE__
+27. __How do new instances of an Auto Scaling Group identify their public and
+private IP addresses?__
+
+  - Ipconfig for windows Ifconfig for linux
+  - CloudTrail
+  - Using a Curl or Get command to get the latest meta-data from http://169.254.169.253/latest/meta-data/
+  - Using a Curl or Get command to get the latest user-data from http://169.254.169.253/latest/user-data/
 
 28. __A database application running on an EC2 instance needs to get updates from
 the internet. A solutions architect needs to design a solution to get the
@@ -337,7 +343,22 @@ updates without exposing the instance to the internet.__
 
   - Attach an internet Gateway and add routes for 0.0.0.0./0
 
-29. __@TODO ADD QUESTION HERE__
+29.  __Logs for an application, comprising multiple EC2 instances, are stored
+in an S3 buckets with event setup to trigger a Lambda function. The Lambda
+function submits a new AWS Batch job to Job queue. After a while you notice
+that your job is stuck in runnable state.__
+
+  __What would you do to ensure that your job is moved into starting state?__
+
+  - Disable Events on the S3 bucket and re-enable after some time.
+
+  - Ensure that awslogs log driver is configured on compute resources which will send
+  log information to CloudWatch logs.
+
+  - Disable S3 bucket events.
+
+  - Ensure that awslogs log driver is configured on the Job queue which will send
+  log information to CloudWatch logs.
 
 30. __A solutions architect is designing a system which needs a minimum of 8
 m5.large instances to serve traffic. The system will be deployed in us-eas-1
@@ -352,6 +373,24 @@ and needs to be able to handle the failure of an entire availability zone (AZ)._
   - 8 servers in each AZ (a and b)
   - 2 servers in each AZ (a - e)
   - 4 servers in each AZ (a - c)
+
+31. __As the cloud administrator of a company, you notice that one of the EC2
+instances is restarting frequently. There is need to trouble shoot and analyze
+the system logs.__
+
+  __What can be used in AWS to store and analyze the log files from the EC2 instances?__
+
+  - AWS S3
+  - AWS CloudTrail
+  - AWS SQS
+  - AWS CloudWatch Logs.
+
+32. __How would you increase the number of connections to an RDS instance?__
+
+  - Create a new parameter group, attach it to the DB instance and change the setting.
+  - Login to the RDS instance and modify database config file under `/etc/mysql/my.cnf`
+  - Modify setting in default options group attached to DB instance.
+  - Create a new option group, attach it to DB instance and change the setting.
 
 ### Answers ###
 

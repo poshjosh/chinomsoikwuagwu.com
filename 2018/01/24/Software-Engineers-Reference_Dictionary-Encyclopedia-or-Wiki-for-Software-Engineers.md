@@ -20,6 +20,7 @@ lang: "en-us"
 - HDFS			Hadoop Distributed File System
 - YARN			Yet Another Resource Negotiator
 - YAML 			YAML Ain't Markup Language
+- REST    Representational State Transfer
 
 ### MEANINGS ###
 
@@ -49,6 +50,25 @@ __ACID__: Atomicity, Consistency, Isolation, Durability.
   - `Isolation`: Transactions are often executed concurrently (e.g., multiple transactions reading and writing to a table at the same time). Isolation ensures that concurrent execution of transactions leaves the database in the same state that would have been obtained if the transactions were executed sequentially. Isolation is the main goal of concurrency control; depending on the method used, the effects of an incomplete transaction might not even be visible to other transactions.
 
   - `Durability`: Durability guarantees that once a transaction has been committed, it will remain committed even in the case of a system failure (e.g., power outage or crash). This usually means that completed transactions (or their effects) are recorded in non-volatile memory.
+
+__REST__
+
+  - `REST`: Representational State Transfer. REST is an architectural style, or
+  design pattern.
+
+  - The aim of REST is stateless interaction between the service provider and consumer.
+
+  - In practice, given the URL of a RESTful service, you would be able to interact
+  with that service to create, read, update or delete resources based on
+  REST standards. You would not need to know any other information apart from
+  those provided by the RESTful API.
+
+  - For example, A RESTful web application exposes information about its resources and
+  also enables the client to take actions on those resources, such as create new
+  resources or change existing resources.
+
+  - If well implemented. REST is intended to provide interoperability between
+  computer systems on the internet.
 
 __SOLID__
 

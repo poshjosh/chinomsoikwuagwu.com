@@ -30,6 +30,11 @@ cloud computing. An Elastic IP address is associated with your AWS account. With
 an Elastic IP address, you can mask the failure of an instance or software by
 rapidly remapping the address to another instance in your account.
 
+- Elastic IP addresses are mapped via an Internet Gateway to the private address 
+of the instance. Once you associate an Elastic IP address with an instance, it
+remains associated until you remove the association or associate the address
+with another resource.
+
 - When you associate an Elastic IP address with an instance or its primary
 network interface, the instance's public IPv4 address (if it had one) is
 released back into Amazon's pool of public IPv4 addresses.

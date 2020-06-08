@@ -330,7 +330,13 @@ solutions architect ensure tasks are only processed only once?__
    - `FIFO SQS`
    >FIFO queues provide exactly-once processing, which means that each message is delivered once and remains available until a consumer processes it and deletes it. Duplicates are not introduced into the queue. [26b](#sqs-fifo-exactly-once)
 
-27. __@TODO ADD QUESTION HERE__
+27. __How do new instances of an Auto Scaling Group identify their public and
+private IP addresses?__
+
+   - Ipconfig for windows Ifconfig for linux
+   - CloudTrail
+   - `Using a Curl or Get command to get the latest meta-data from http://169.254.169.253/latest/meta-data/`
+   - Using a Curl or Get command to get the latest user-data from http://169.254.169.253/latest/user-data/
 
 28. __A database application running on an EC2 instance needs to get updates from
 the internet. A solutions architect needs to design a solution to get the
@@ -347,7 +353,22 @@ updates without exposing the instance to the internet.__
 
   - Attach an internet Gateway and add routes for 0.0.0.0./0
 
-29. __@TODO ADD QUESTION HERE__
+29.  __Logs for an application, comprising multiple EC2 instances, are stored
+in an S3 buckets with event setup to trigger a Lambda function. The Lambda
+function submits a new AWS Batch job to Job queue. After a while you notice
+that your job is stuck in runnable state.__
+
+  __What would you do to ensure that your job is moved into starting state?__
+
+  - Disable Events on the S3 bucket and re-enable after some time.
+
+  - `Ensure that awslogs log driver is configured on compute resources which will send
+  log information to CloudWatch logs.`
+
+  - Disable S3 bucket events.
+
+  - Ensure that awslogs log driver is configured on the Job queue which will send
+  log information to CloudWatch logs.
 
 30. __A solutions architect is designing a system which needs a minimum of 8
 m5.large instances to serve traffic. The system will be deployed in us-eas-1
@@ -365,6 +386,30 @@ and needs to be able to handle the failure of an entire availability zone (AZ)._
 
   _Consider what happens when one AZ is lost. The question requires a minimum
   of 8 left when an AZ is lost._
+
+31. __As the cloud administrator of a company, you notice that one of the EC2
+instances is restarting frequently. There is need to trouble shoot and analyze
+the system logs.__
+
+  __What can be used in AWS to store and analyze the log files from the EC2 instances?__
+
+  - AWS S3
+  - AWS CloudTrail
+  - AWS SQS
+  - `AWS CloudWatch Logs.`
+
+    * _You can use Amazon CloudWatch Logs to monitor, store, and access your log files
+    from Amazon EC2 instances, AWS CloudTrail and other sources_.
+    * _CloudTrail would be appropriate if we were auditing or tracking activity by
+    monitoring API calls as it prvides info such as who, when, what relating to the
+    request that was made._
+
+32. __How would you increase the number of connections to an RDS instance?__
+
+  - `Create a new parameter group, attach it to the DB instance and change the setting.`
+  - Login to the RDS instance and modify database config file under /etc/mysql/my.cnf
+  - Modify setting in default options group attached to DB instance.
+  - Create a new option group, attach it to DB instance and change the setting.
 
 ### References ###
 
