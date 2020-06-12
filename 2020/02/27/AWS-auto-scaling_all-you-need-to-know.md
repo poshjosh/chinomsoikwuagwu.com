@@ -22,15 +22,27 @@ __Features of AWS Auto Scaling__
 
 Use AWS Auto Scaling to automatically scale the following resources:
 
-- Amazon EC2 Auto Scaling groups: Launch or terminate EC2 instances in an Auto Scaling group.
+- __Amazon EC2 Auto Scaling groups__: Launch or terminate EC2 instances in an Auto Scaling group.
 
-- Amazon EC2 Spot Fleet requests: Launch or terminate instances from a Spot Fleet request, or automatically replace instances that get interrupted for price or capacity reasons.
+- __Amazon EC2 Spot Fleet requests__: Launch or terminate instances from a Spot Fleet request, or automatically replace instances that get interrupted for price or capacity reasons.
 
-- Amazon ECS: Adjust the ECS service desired count up or down in response to load variations.
+- __Amazon ECS__: Adjust the ECS service desired count up or down in response to load variations.
 
-- Amazon DynamoDB: Enable a DynamoDB table or a global secondary index to increase or decrease its provisioned read and write capacity to handle increases in traffic without throttling.
+  * Amazon ECS can be configured to use Service Auto Scaling to adjust it desired
+  count up or down in response to CloudWatch alarms. Service Auto Scaling leverages
+  the Application Auto Scaling service to provide this functionality.
 
-- Amazon Aurora: Dynamically adjust the number of Aurora read replicas provisioned for an Aurora DB cluster to handle changes in active connections or workload.
+  * Amazon ECS publishes CloudWatch metrics with your service's average CPU and
+  memory usage. Use these service utilization metrics to scale your service.
+
+- __Amazon DynamoDB__: Enable a DynamoDB table or a global secondary index to increase its provisioned read and write capacity to handle increases in traffic without throttling. DynamoDB auto scaling leverages Application Auto Scaling service to `dynamically
+adjust provisioned throughput capacity` on your behalf.
+
+  * Even if DynamoDB auto scaling is managing our table's throughput, you still
+  must provide initial settings for read and write capacity.
+  * You may need to manually adjust throughput capacity to bulk-load data.
+
+- __Amazon Aurora__: Dynamically adjust the number of Aurora read replicas provisioned for an Aurora DB cluster to handle changes in active connections or workload.
 
 - Amazon EC2 Auto Scaling does not support:
 

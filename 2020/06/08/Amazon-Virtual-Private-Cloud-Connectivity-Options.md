@@ -14,47 +14,47 @@ more depending on your network design and requirements. You also have the
 option to choose either AWS managed or user-managed network equipment and routes.
 The following network connectivity options will be considered:
 
--    __Network-to-Amazon VPC connectivity options__
+- __Network-to-Amazon VPC connectivity options__
 
-    *    __AWS Managed VPN__ – Describes establishing a VPN connection from your network equipment on a remote network to AWS managed service attached to your Amazon VPC.
+  * __AWS Managed VPN__ – Describes establishing a VPN connection from your network equipment on a remote network to AWS managed service attached to your Amazon VPC.
 
-    *    __AWS Transit Gateway + VPN__ – Describe establishing a VPN connection from your network equipment on a remote network to a regional network hub for Amazon VPCs, using AWS Transit Gateway.
+  * __AWS Transit Gateway + VPN__ – Describe establishing a VPN connection from your network equipment on a remote network to a regional network hub for Amazon VPCs, using AWS Transit Gateway.
 
-    *    __AWS Direct Connect__ - Describes establishing a private, logical connection from your remote network to Amazon VPC, using AWS Direct Connect.
+  * __AWS Direct Connect__ - Describes establishing a private, logical connection from your remote network to Amazon VPC, using AWS Direct Connect.
 
-    *    __AWS Direct Connect + AWS Transit Gateway__ – Describes establishing a private, logical connect from your remote network to a regional network hub for Amazon VPCs, using AWS Direct Connect and AWS Transit Gateway.
+  * __AWS Direct Connect + AWS Transit Gateway__ – Describes establishing a private, logical connect from your remote network to a regional network hub for Amazon VPCs, using AWS Direct Connect and AWS Transit Gateway.
 
-    *    __AWS Direct Connect + VPN__ – Describes establishing a private, encrypted connection from your remote network to Amazon VPC, using AWS Direct Connect.
+  * __AWS Direct Connect + VPN__ – Describes establishing a private, encrypted connection from your remote network to Amazon VPC, using AWS Direct Connect.
 
-    *    __AWS Direct Connect + AWS Transit Gateway + VPN__ – Describes establishing a private, encrypted connection from your remote network to a regional network hub for Amazon VPCs, using AWS Direct Connect and AWS Transit Gateway.
+  * __AWS Direct Connect + AWS Transit Gateway + VPN__ – Describes establishing a private, encrypted connection from your remote network to a regional network hub for Amazon VPCs, using AWS Direct Connect and AWS Transit Gateway.
 
-    *    __AWS VPN CloudHub__ – Describes establishing a hub-and-spoke model for connecting remote branch offices.
+  * __AWS VPN CloudHub__ – Describes establishing a hub-and-spoke model for connecting remote branch offices.
 
-    *    __Software Site-to-Site VPN__ – Describes establishing a VPN connection from your equipment on a remote network to a user-managed software VPN appliance running inside an Amazon VPC.
+  * __Software Site-to-Site VPN__ – Describes establishing a VPN connection from your equipment on a remote network to a user-managed software VPN appliance running inside an Amazon VPC.
 
--    __Amazon VPC-to-Amazon VPC connectivity options__
+- __Amazon VPC-to-Amazon VPC connectivity options__
 
-    *    __VPC peering__ – Describes connecting Amazon VPCs within and across regions using the Amazon VPC peering feature.
+  * __VPC peering__ – Describes connecting Amazon VPCs within and across regions using the Amazon VPC peering feature.
 
-    *    __AWS Transit Gateway__ – Describes connecting Amazon VPCs within and across regions using AWS Transit Gateway in a hub-and-spoke model.
+  * __AWS Transit Gateway__ – Describes connecting Amazon VPCs within and across regions using AWS Transit Gateway in a hub-and-spoke model.
 
-    *    __Software Site-to-Site VPN__ – Describes connecting Amazon VPCs using VPN connections established between user-managed software VPN appliances running inside of each Amazon VPC.
+  * __Software Site-to-Site VPN__ – Describes connecting Amazon VPCs using VPN connections established between user-managed software VPN appliances running inside of each Amazon VPC.
 
-    *    __Software VPN-to-AWS Managed VPN__ – Describes connecting Amazon VPCs with a VPN connection established between a user-managed software VPN appliance in one Amazon VPC and AWS managed VPN attached to the other Amazon VPC.
+  * __Software VPN-to-AWS Managed VPN__ – Describes connecting Amazon VPCs with a VPN connection established between a user-managed software VPN appliance in one Amazon VPC and AWS managed VPN attached to the other Amazon VPC.
 
-    *    __AWS Managed VPN__ – Describes connecting Amazon VPCs with VPN connections between your remote network and each of your Amazon VPCs.
+  * __AWS Managed VPN__ – Describes connecting Amazon VPCs with VPN connections between your remote network and each of your Amazon VPCs.
 
-    *    __AWS PrivateLink__ – Describes connecting Amazon VPCs with VPC interface endpoints and VPC endpoint services.
+  * __AWS PrivateLink__ – Describes connecting Amazon VPCs with VPC interface endpoints and VPC endpoint services.
 
--    __Software remote access-to-Amazon VPC connectivity options__
+- __Software remote access-to-Amazon VPC connectivity options__
 
-    *    __AWS Client VPN__ – Describes connecting software remote access to Amazon VPC, leveraging AWS Client VPN.
+  * __AWS Client VPN__ – Describes connecting software remote access to Amazon VPC, leveraging AWS Client VPN.
 
-    *    __Software client VPN__ – Describes connecting software remote access to Amazon VPC, leveraging user-managed software VPN appliances.
+  * __Software client VPN__ – Describes connecting software remote access to Amazon VPC, leveraging user-managed software VPN appliances.
 
--    __Transit VPC option__
+- __Transit VPC option__
 
-    *    Describes establishing a global transit network on AWS using a software VPN in conjunction with an AWS-managed VPN.
+  * Describes establishing a global transit network on AWS using a software VPN in conjunction with an AWS-managed VPN.
 
 ### Network-to-VPC connectivity options ###
 

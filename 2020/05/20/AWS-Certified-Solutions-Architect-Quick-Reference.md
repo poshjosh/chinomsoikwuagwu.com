@@ -7,7 +7,22 @@ tags: ["AWS", "FAQ", "EC2", "VPC", "hibernate", "stop", "VPC traffic", "peering"
 lang: "en-us"
 ---
 
+__AWS Single Sign On (SSO)__
+
+- Permission sets can control time duration for user login to the AWS Console
+by setting the session duration. Default session duration is `1 hour`, while
+the maximum that could be set is `12 hours`.
+
+__Elastic Beanstalk__
+
+- Run production RDS database outside the Elastic Beanstalk environment.
+- You configure your application to connect to the database outside of
+functionality provided by Elastic Beanstalk.
+- The database instance remains up and running when the Elastic Beanstalk
+environment is terminated.
+
 __Athena__
+
 - eliminate s3 errors while querying data
 - reduce cost associated with queries
 To achieve the above:
@@ -15,6 +30,7 @@ To achieve the above:
 2. Create separate Workgroups based upon user groups.
 
 __AWS Glue__
+
 - To decrease scanning time while scanning data in S3 buckets (_by ensuring
 ensuring only changes in datasets are scanned_):
   `Enable Job Bookmark in AWS Glue`
@@ -105,6 +121,55 @@ different AZ. In case of an infrastructure failure, Amazon RDS performs an
 
 - Multi-AZ replication - `synchronous`; - Read replica - `asynchronous`.
 
+- The type of storage for a read replica is independent of that on the master DB instance.
+
+- __Allocate enough RAM__ - To optimize performance, allocate enough RAM so that your working set resides almost completely in memory.
+
+- __Set TTL value of less than 30 seconds__ - If your client application is caching the Domain Name Service (DNS) data of your DB instances, set a time-to-live (TTL) value of less than 30 seconds.
+
+- If a DB instance is in a VPC, the option group associated with the instance is linked to that VPC. This means that you can't use the option group assigned to a DB instance if you try to restore the instance to a different VPC or a different platform.
+
+- If you stop your RDS instance, RDS automatically starts your instance after seven days so that it doesn't
+fall behind any required maintenance updates.
+
+- You can't stop a DB instance that has a read replica, or that is a read replica.
+
+- Metrics and events associated with the name of a DB instance are maintained if you `reuse` a DB instance name.
+
+- `Tags are not copied by default`.
+
+- You can restore a DB instance and use a different storage type than the source DB snapshot.
+
+- When you restore a DB instance:
+
+  * Parameter group - you can specify. (It is recommended to retain the source parameter group)
+  * Option group - Same as from the source instance.
+  * Security group - The default is applied.
+
+- Option groups are linked to VPC or EC2-Classic (non-VPC). This means that you can't use the option group assigned to a DB instance if you attempt to restore the instance into a different VPC or onto a different platform.
+
+- You can copy a snapshot within the same AWS Region, you can copy a snapshot across AWS Regions, and you can copy shared snapshots.
+
+- The copy of an encrypted snapshot must also be encrypted.
+
+- You can't restore a DB instance from a DB snapshot that is both shared and encrypted. Instead, you can make a copy of the DB snapshot and restore the DB instance from the copy.
+
+- You can't share encrypted snapshots as public.
+
+- You can't share a snapshot that has been encrypted using the default AWS KMS encryption key of the AWS account that shared the snapshot.
+
+- Amazon RDS doesn't guarantee the order of events sent in an event stream. The event order is subject to change.
+
+- `24 hours` - The AWS __Management Console__, shows events from the past 24 hours.
+
+- `14 days` - The __AWS CLI__ or the __RDS API__ can retrieve events for up to the past 14 days.
+
+- You can only enable encryption for an Amazon RDS DB instance when you create it, not after the DB instance is created.
+
+- DB instances that are encrypted can't be modified to disable encryption.
+
+- Use `customer-managed key`, if you want full control over a key.
+
 __DataSync__
 
 - __AWS DataSync__ - move large amounts of data online between on-premises
@@ -125,6 +190,13 @@ to EFS as data sync manages these for you.
 
 __AWS Organizations__
 
+- __Consolidated Billing__ combines usage of all Accounts within an organization
+& shares Reserved Instances (RIs) between multiple accounts. This discount is valid:
+
+  * The account which purchased the RIs is not using all the RIs.
+  * Other accounts have launched instances in same AZ.
+  * Note that RI scope is either `regional` or `zonal`
+
 - The `master account` cannot be `removed` from an AWS Organization. It can be moved
 to another AWS Organization.
 
@@ -142,11 +214,11 @@ to another AWS Organization.
   account are charged directly to the standalone account.
   * You may need to update payment method and/contact information per member account.
 
-  __Steps - member accounts:__
+  __Steps to move member accounts to another AWS Organization:__
 
   * Remove from old organization -&gt; delete old organization -&gt; accept invite into new organization.
 
-  __Steps - master account:__
+  __Steps to move master accounts to another AWS Organization:__
 
   * Remove all member accounts, -&gt; delete old organization -&gt; accept invite into new organization.
 
@@ -185,6 +257,13 @@ for example you can configure the following pathways:
 
 __Elastic Container Service (ECS)__
 
+- __ECS Auto Scaling__ Amazon ECS can be configured to use Service Auto Scaling
+to adjust it desired count up or down in response to CloudWatch alarms. Service
+Auto Scaling leverages the Application Auto Scaling service to provide this functionality.
+
+- Amazon ECS publishes CloudWatch metrics with your service's average CPU and
+memory usage. Use these service utilization metrics to scale your service.
+
 - __IAM Roles for ECS tasks__ functions similar to how EC2 instance profiles
 provide credentials for EC2 instances.
 
@@ -194,7 +273,7 @@ into a Docker image and deploy it in an ECS task.
 
 __Elastic Block Store (EBS)__
 
-                              | IOPs   | General | Throughput | Cold
+Property                      | IOPs   | General | Throughput | Cold
 ------------------------------|--------|---------|------------|---------
 Volume Size  (TB)             | 4 - 16 | 1 - 16  | 0.5 - 16   | 0.5 - 16
 Max IOPS/Volume               | 64,000 | 16,000  | 500        |	250
@@ -248,8 +327,6 @@ __Dynamo DB__
 
 - Dynamo DB is the most efficient storage mechanism for metadata.
 
-- Multi-region, multi-master database.
-
 - You can configure a global table to DynamoDB as a multi-region, multi-master database.
 
 - No read replica (no need)
@@ -258,6 +335,17 @@ __Dynamo DB__
 an Amzaon DynamoDB table. You can associate the stream ARN with a `Lambda function`
 This way, AWS Lambda polls the stream and invokes your Lambda function
 synchronously when it detects that new stream records.
+
+- __DynamoDB auto scaling__ leverages Application Auto Scaling service to `dynamically
+adjust provisioned throughput capacity` on your behalf.
+
+  * Handle sudden increase in traffic without throttling.
+  * Even if DynamoDB auto scaling is managing our table's throughput, you still
+  must provide initial settings for read and write capacity.
+  * You may need to manually adjust throughput capacity to bulk-load data.
+
+- __Strategy for high read and write__: Use partition keys with a
+large number of distinct values for the underlying DynamoDB table.
 
 __Auto Scaling Group__
 
@@ -278,17 +366,6 @@ __Elastic Load Balancing (ELB)__
 
 - To route domain traffic to an ELB, use Amazon Route 53 to create an alias record
 that points to your load balancer.
-
-__Security__
-
-An option in the answers could suggest using WAF against DDoS, or AWS Shield
-mitigate SQL injection attacks - Wrong and wrong again.
-
-- AWS Shield - Provides protection against DDoS. Standard version of Shield implemented automatically on all AWS accounts.
-
-- Web Application Firewall - Sits in front of your website to provide additional protection against common attacks such as SQL injection and XSS.
-
-- KMS master keys are region-specific
 
 __Elasticbeanstalk__
 
@@ -311,6 +388,12 @@ operation that the URL is based upon. (REST API, CLI, SDK)
 failing to complete in a specific time period. Multipart upload can be used
 for files from 5MB to 5GB.
 
+- __S3 Encryption__
+
+  * SSE - S3  - Amazon S3 manages data and master encryption keys.
+  * SSE - C   - Customer manages encryption key.
+  * SSE - KMS - AWS manages data key but customer manages the master key in AWS KMS.
+
 - __S3 select__ can be used to query subset of data in S3 using simple SQL.
 Objects need to be stored in CSV,JSON or Apache Parquet format. GZIP and
 BZIP2 compression supported with CSV/JSON.
@@ -326,13 +409,14 @@ bucket. Takes advantage of Amazon CloudFront's globally distributed edge locatio
   * You `are unable to utilize all of your available bandwidth` over the Internet
   when uploading to Amazon S3
 
-- __Value lock policy__ can be modified only once initially and thereafter no
-modifications can be done.
+- __S3 Events__ - notifications designed to be delivered at least once.
 
-- __Amazon S3 notifications__ Possible destinations for are:
-  * SNS topic
-  * SQS Queue
-  * Lamda Function
+  * To ensure write event is NOT missed, enable versioning.
+  * Possible destinations for notifications are:
+
+    - SNS topic
+    - SQS Queue
+    - Lamda Function
 
 __Amazon Glacier__
 
@@ -357,10 +441,6 @@ and lock the policy from future edits. `Once locked, the policy can no longer be
   * Both policy types can be used together. For example, `vault lock policy`
   (deny deletes), and `vault access policy` (grant read access) to designated
   third parties or your business partners (allow reads).
-
-- __S3 Events__ - notifications designed to be delivered at least once.
-
-  * To ensure write event is NOT missed, enable versioning.
 
 __Route 53__
 
@@ -395,30 +475,6 @@ __AWS DataSync__
 using AWS DataSync, data verification can be disabled during data transfer
 and can be enabled post data transfer for data integrity checks and ensure
 that all data is properly copied between on-premises and EFS.
-
-### Network ###
-
-- __Internet gateway__
-
-  * One per VPC
-
-- __NAT Gateway__
-
-  * Security groups cannot be associated with NAT Gateways.
-  * One per AZ.
-
-A placement group is within a __single Availability Zone__, enables applications
-participate in low-latency 20 GBps network and has benefit of lowering jitter
-in network communications. This is enabled by __Elastic Network Adapter (ENA)__
-
-__Amazon VPC endpoints__ provide reliable connectivity to AWS services
-(for example,  Amazon S3) without requiring an internet gateway or a Network
-Address Translation (NAT) instance. __Data remains within the AWS network___
-
-__VPN connection__ can be used to establish communications across environments
-(e.g between on-premises and AWS cloud) over the internet.  
-
-__Virtual private gateway__ is the Amazon VPC side of A VPN connection.
 
 ### Elastic Cloud Compute (EC2) ###
 
@@ -455,23 +511,68 @@ but is only charged once for a given instance even if both are true:
   * Public or Elastic IP addresses are used, regardless of which Availability
   Zone the other instance is in.
 
-- __Placement Group placement strategies__ Spread instances:
+- __Placement Group placement strategies__ Placement strategy spreads instances:
 
-  * __Cluster__ – within an AZ for low-latency.
-    HPC,
-  * __Partition__ - across logical partitions. (partitions do not share hardware)     
-    - large distributed workloads e.g Hadoop, Cassandra, Kafka
-  * __Spread__ – across distinct underlying hardware to reduce correlated failures.
+  * __Cluster__ – Within an AZ for low-latency. Within a partition (share hardware).
+  Hardware failure -> entire cluster may fail. Use for `HPC`.
+  * __Partition__ - Across logical partitions. (partitions do not share hardware)     
+  Hardware failure -> only one partition may fail.
+    - `large distributed workloads e.g Hadoop, Cassandra, Kafka`
+  * __Spread__ – Across distinct underlying hardware. Each partition has one instance.
+  Hardware failure -> Only one instance may be affected. `HA and mission critical` applications.
 
-  - __EFA__
+- __EFA__
 
-    * For HPC, machine learning applications
-    * Windows instance not supported. EFA functions as ENA without added capabilities.
+  * For HPC, machine learning applications
+  * Windows instance not supported. EFA functions as ENA without added capabilities.
 
-  - __EFA vs ENA__
+- __EFA vs ENA__
 
-    * ENA - Traditional networking capabilities
-    * EFA - ENA + OS-bypass for lower latency and reliable transport
+  * ENA - Traditional networking capabilities
+  * EFA - ENA + OS-bypass for lower latency and reliable transport
+
+### Security ###
+
+An option in the answers could suggest using WAF against DDoS, or AWS Shield
+mitigate SQL injection attacks - Wrong and wrong again.
+
+- AWS Shield - Provides protection against DDoS. Standard version of Shield implemented automatically on all AWS accounts.
+
+- Web Application Firewall - Sits in front of your website to provide additional protection against common attacks such as SQL injection and XSS.
+
+- KMS master keys are region-specific
+
+__Symmetric vs asymmetric encryption__
+
+- `Symmetric encryption`, the message to be protected can be encrypted and
+decrypted using the same key.
+
+- `Asymmetric encryption`, requires the use of two separate keys: a public key
+and private key. Data is encoded using the public key, and decoded using the private key.
+
+### Network ###
+
+- __Internet gateway__
+
+  * One per VPC
+
+- __NAT Gateway__
+
+  * Security groups cannot be associated with NAT Gateways.
+  * One per AZ.
+
+A placement group is within a __single Availability Zone__, enables applications
+participate in low-latency 20 GBps network and has benefit of lowering jitter
+in network communications. This is enabled by __Elastic Network Adapter (ENA)__
+
+__Amazon VPC endpoints__ provide reliable connectivity to AWS services
+(for example,  Amazon S3) without requiring an internet gateway or a Network
+Address Translation (NAT) instance. __Data remains within the AWS network___
+
+__VPN connection__ can be used to establish communications across environments
+(e.g between on-premises and AWS cloud) over the internet.  
+
+__Virtual private gateway__ is the Amazon VPC side of A VPN connection.
 
 ### Virtual Private Cloud (VPC) ###
 
@@ -481,9 +582,6 @@ but is only charged once for a given instance even if both are true:
   public IP addresses.
   * Different AWS Regions stays within the AWS network, if there is an
   Inter-Region VPC Peering connection between the VPCs where the two instances reside.
-  * Different AWS Regions where there is no Inter-Region VPC Peering connection
-  between the VPCs where these instances reside, is not guaranteed to stay
-  within the AWS network.
 
 - Amazon VPCs do not support EIPs for IPv6 at this time.
 
@@ -610,7 +708,7 @@ access your files through CloudFront, not directly from the S3 bucket.
 
   * Using either __signed URLs__ or __signed cookies__.
 
-    - Only `RSA-SHA1` supported for signing URLs or cookies.
+     - Only `RSA-SHA1` supported for signing URLs or cookies.
 
   * Using __origin access identity__
 
@@ -619,8 +717,6 @@ access your files through CloudFront, not directly from the S3 bucket.
     - Configure your S3 bucket permissions so that CloudFront can use the OAI
     to access the files in your bucket and serve them to our users.
     - `Not applicable` to Amazon S3 bucket configured as a website endpoint
-
-
 
 ### EFS vs FSx ###
 
@@ -675,14 +771,6 @@ resources, reporting on their health and performance.
     - Save money - stop/terminate when you no longer need an instance running
     - If system impairment occurs - reboot, recover
 
-__Symmetric vs asymmetric encryption__
-
-- `Symmetric encryption`, the message to be protected can be encrypted and
-decrypted using the same key.
-
-- `Asymmetric encryption`, requires the use of two separate keys: a public key
-and private key. Data is encoded using the public key, and decoded using the private key.
-
 __Bulk Data Transfer__
 
 - Online
@@ -711,6 +799,7 @@ __Bulk Data Transfer__
 __CloudFront vs S3 Transfer Acceleration__
 
 - __CloudFront__ - `Content delivery`.
+
   * `Caching` on Edge locations leads to improved speed and less load on origin server.
 
 - __Transfer Acceleration__ - `Transfer acceleration`. You use `<bucket>.s3-accelerate.amazonaws.com`
@@ -721,7 +810,7 @@ instead of the default S3 endpoint.
 
 __Scope of Services__
 
-  - __Region__ - VPC, ASG, ELB, S3
+  - __Region__ - VPC, ASG, ELB, S3, KMS keys, RDS Option Groups.
     * ELB within a single AZ or multiple AZs.
 
   - __VPC__ - One Internet gateway per VPC
