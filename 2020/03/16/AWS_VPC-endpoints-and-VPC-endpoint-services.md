@@ -19,6 +19,8 @@ an interface [VPC Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpc
 You are the _service provider_, and the AWS principals that create connections
 to your service are _service consumers_.
 
+Use a VPC endpoint to access AWS resources if you only require access to those resources from within a virtual private cloud (VPC). Doing this prevents that traffic from traversing the open internet
+
 In the following diagram, the account owner of VPC B is a service provider, and has a service running on instances in subnet B. The owner of VPC B has a service endpoint (vpce-svc-1234) with an associated Network Load Balancer that points to the instances in subnet B as targets. Instances in subnet A of VPC A use an interface endpoint to access the services in subnet B.
 
 __Illustration of VPC Endpoint Service__
@@ -51,6 +53,15 @@ names for each AWS account_.
 and consistent identifier for an Availability Zone. For example, `use1-az1` is
 an AZ ID for the `us-east-1` Region and it has the same location in every AWS
 account.
+
+### Security ###
+
+Using a VPC endpoint for AWS resources, allows you to control and limit access using the following:
+
+- VPC endpoint policies – These policies are applied on the VPC endpoint. They allow you to control and limit API access to the AWS resource.
+
+- IAM policies – By using the `aws:sourceVpce` condition on policies attached to IAM users, groups, or roles, you can enforce that all access to specified AWS Resources is via the specified VPC endpoint.
+
 
 ### References ###
 

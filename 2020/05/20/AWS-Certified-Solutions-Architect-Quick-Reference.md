@@ -100,6 +100,9 @@ instance profile with same name as the role is automatically created.
 
   * An instance profile can contain only one IAM role.
 
+- Web identity federation supports the following identity providers:
+  `Amazon`, `Facebook`, `Google`
+
 - __IAM Roles for ECS tasks__ functions similar to how EC2 instance profiles
 provide credentials for EC2 instances.
 
@@ -376,6 +379,15 @@ services like EC2, S3, SNS, CloudWatch, AutoScaling and ELB.
 
 __Simple Storage Service (S3)__
 
+- Cross region replication requires versioning to be enabled on both source
+and destination buckets.
+
+- When you delete an object in a versioning-enabled bucket, all the versions
+remain in the bucket and Amazon S3 creates a delete marker for the object.
+
+  * To delete the object - specify the `versionId` in the `DELETE Object` api call.
+  * To undelete the object - delete the delete marker.
+
 - A __presigned URL__ gives you access to the object identified in the URL,
 provided that the creator of the presigned URL has permissions to perform the
 operation that the URL is based upon. (REST API, CLI, SDK)
@@ -640,6 +652,34 @@ including Internet gateway, virtual private gateway, or peered VPC destinations.
 
 - VPC Flow log data can be published to Amazon CloudWatch Logs or Amazon S3
 
+- Using another VPC's NAT Gateway is not supported.
+
+- NAT Gateway cannot be created without an Elastic IP
+
+- Endpoint connections cannot be used/extended outside a VPC. For example, if
+you have a VPN connection from on-premises network to a VPC with an endpoint
+service to an S3 bucket, you cannot use the endpoint service via the VPN connection.
+
+- To connect to S3 via connections external to VPC, setup an S3 proxy server on
+an EC2 instance. Connections external to VPC include: VPN connections, VPC
+peering connection, AWS Direct Connect connection and ClassicLink connection.
+
+- Custom VPCs do not have DNS hostnames enabled by default.
+
+- You can change the main route table of your VPC to another.
+
+- You can peer a VPC with a specific subnet of another VPC instead of peering
+with the entire VPC.
+
+- VPC flog logs captures IP traffic to and from `network interfaces` in your VPC.
+
+- You can create a flow log for a `VPC`, `subnet` or `network interface`
+
+- Remember -> For IPv6 use egress - only internet gateway not NAT gateway/instance.
+
+- To ensure EC2 instance has fixed MAC address, use a VPC with an elastic network
+interface that has a fixed MAC address.
+
 ### CloudFront ###
 
 - Amazon CloudFront works with non-AWS origin servers
@@ -718,7 +758,7 @@ access your files through CloudFront, not directly from the S3 bucket.
     to access the files in your bucket and serve them to our users.
     - `Not applicable` to Amazon S3 bucket configured as a website endpoint
 
-### EFS vs FSx ###
+### Elastic File System (EFS) vs FSx ###
 
 NFS - Network File System
 SMB - Server Message Block - a protocol
@@ -731,10 +771,31 @@ Latency    | Low latency        | Sub-millisecond latencies
 Throughput | 10 GB/sec          | Up to hundreds GB/sec
 IOPs       | greater than 500k  | Millions
 
-__EFS__
+__Elastic File System (EFS)__
 
-You incur access charges when files are transitioned to EFS IA storage from EFS
+- You can mount EFS on instances in only one VPC at a time.
+- Both the file system and the VPC must be in the same region.
+- You can mount EFS over VPC peering connections within a single AWS Region
+when using instance types T3, C5, C5d, I3.metal, M5, M5d, R5, R5d and z1d.
+- You can access an EFS via a mount target created in another AZ from the EC2
+instance. It is recommended not to, but rather `create one mount target per AZ`.
+- Encryption at rest can only be set during EFS creation.
+- To encrypt existing EFS:
+  * Create encrypted EFS
+  * Copy data from un encrypted to encrypted EFS
+  * Delete un-encrypted EFS
+- EFS uses NFS which is not encrypted.
+- To encrypt traffic between EC2 and EFS:
+  * Unmount unencrypted mount.
+  * Remount using mount helper with encryption during transit enabled.  
+- __General Purpose Performance Mode__. low latency - web serving, home directories etc
+- __Max IO Performance Mode__. higher latency, higher aggregate throughput - big data etc
+- __Bursting Throughput Mode__   
+- __Provisioned Throughput Mode__ 
+
+- You incur access charges when files are transitioned to EFS IA storage from EFS
 Standard storage. [Click for details](https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
+- EFS supports only symmetric CMKs.
 
 __FSx__
 
