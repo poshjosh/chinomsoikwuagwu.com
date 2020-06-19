@@ -8,7 +8,7 @@ lang: "en-us"
 
 ### AWS Lambda Limitations ###
 
-Runtime environment limitations as of 21/01/2020:
+__Runtime environment limitations as of 21/01/2020:__
 
 -    The disk space is limited to 512 MB.
 -    The default deployment package size is 50 MB.
@@ -35,7 +35,7 @@ There are workarounds like persisting your data or state machines that address t
 
 ### Use cases ###
 
-- In combination with other AWS products
+__In combination with other AWS products__
 
 Lambda integrates very well with most other AWS services.
 
@@ -44,27 +44,27 @@ items from a DynamoDB table or messages in an SQS queue, responding to REST API 
 These are all examples of services that work seamlessly with AWS Lambda. For a full list
 of integrations, please refer to the official documentation
 
-- Serverless Website or Mobile App Backend
+__Serverless Website or Mobile App Backend__
 
 While static content can be stored in S3 and CloudFront, dynamic API requests can be served
 by AWS Lambda in combination with API Gateway or AppSync. With this configuration, it is
 possible to have an entire website in serverless platforms.
 
-- Unpredictable, high-variance load
+__Unpredictable, high-variance load__
 
 Lambda is usually a good fit for workloads whose demand is unpredicable and highly variable,
 due to its highly scalable performance. Traditional infrastructures are provisioned accounting
 for peak demand. This leads to waste on idle resources. Although auto-scaling can mitigate,
 it may not be able to cope with rapid spikes in demand.
 
-- File Manipulation
+__File Manipulation__
 
 A Lambda function can provide a quick and stable way to manipulate files. Images stored in an
 S3 bucket, for example, could be automatically converted from JPG to PNG, or have its size and
 quality setting reduced for optimized web navigation. This could work for virtually any kind
 of file: text, video, compressed, etc.
 
-- Artificial intelligence
+__Artificial intelligence__
 
 Implementing and maintaining an infrastructure to run AI systems on a large scale can be
 difficult. Some machine learning frameworks and libraries, such as Scikit Learn, SciPy,
@@ -72,13 +72,13 @@ NumPy, spaCy, etc. can run smoothly on AWS Lambda. Models that are too big to de
 the Lambda package can be stored in S3 and retrieved on demand. It’s possible to keep the
 model in memory for a warm start in the next invocations served by the same Lambda container.
 
-- Disaster recovery
+__Disaster recovery__
 
 AWS Lambda can be used to automate tasks such as EBS snapshot and AMI creation to backup
 resources when configuring EC2 instances. Backup images can be stored in S3, for example.
 Lambda can also be used to restore backup images and run CloudFormation templates.
 
-- Extract, Transform, Load (ETL)
+__Extract, Transform, Load (ETL)__
 
 ETL jobs can be easily automated and scaled with AWS Lambda. A JSON object can be stored in
 S3, normalized in Lambda to insert in an RDS database, or validated to save in a DynamoDB table,

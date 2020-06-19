@@ -284,6 +284,8 @@ Max Throughput/Volume (MB/s)  | 1,000  | 250     | 500        | 250
 
 - __Provisioned IOPs__ for more than `16,000 IOPs` or `250 MiB/s`
 
+- S3 objects have eventual consistency while Elastic Block Store (EBS) objects are consistent.
+
 - EBS volumes are automatically replicated within an Availability Zone
 
 - To mitigate the possibility of a failure:
@@ -791,7 +793,7 @@ instance. It is recommended not to, but rather `create one mount target per AZ`.
 - __General Purpose Performance Mode__. low latency - web serving, home directories etc
 - __Max IO Performance Mode__. higher latency, higher aggregate throughput - big data etc
 - __Bursting Throughput Mode__   
-- __Provisioned Throughput Mode__ 
+- __Provisioned Throughput Mode__
 
 - You incur access charges when files are transitioned to EFS IA storage from EFS
 Standard storage. [Click for details](https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)

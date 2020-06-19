@@ -84,15 +84,15 @@ __IP Address Types__ - `ipv4`, `dual-stack` (ipv4 or ipv6) - Elastic Load
 
 __Connection Idle Timeout__ - `60 seconds` is the default idle timeout for load balancers. For each request that a client makes through a load balancer, the load balancer maintains two connections.
 
-    - `The front-end connection` is between a client and the load balancer.
-    - `The back-end connection` is between the load balancer and a target.
+- `The front-end connection` is between a client and the load balancer.
+- `The back-end connection` is between the load balancer and a target.
 
-    To ensure that lengthy operations such as file uploads have time to complete, send at least 1 byte of data before each idle timeout period elapses, and increase the length of the idle timeout period as needed.
+To ensure that lengthy operations such as file uploads have time to complete, send at least 1 byte of data before each idle timeout period elapses, and increase the length of the idle timeout period as needed.
 
-    For back-end connections, Amazon recommends that you:
+For back-end connections, Amazon recommends that you:
 
-    - `Enable the HTTP keep-alive option for your EC2 instances.` You can enable HTTP keep-alive in the web server settings for your EC2 instances. If you enable HTTP keep-alive, the load balancer can reuse back-end connections until the keep-alive timeout expires.
-    - `Configure the idle timeout of your application to be larger than the idle timeout configured for the load balancer.`
+- `Enable the HTTP keep-alive option for your EC2 instances.` You can enable HTTP keep-alive in the web server settings for your EC2 instances. If you enable HTTP keep-alive, the load balancer can reuse back-end connections until the keep-alive timeout expires.
+- `Configure the idle timeout of your application to be larger than the idle timeout configured for the load balancer.`
 
 ### Application Load Balancer Target Groups ###
 
@@ -620,10 +620,8 @@ __Additional Benefits of Network over Classic Load Balancer__
 
 - [AWS - How elastic load balancing works](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)
 
-https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html
-
 ### End Notes ###
 
-- <a name="network-load-balancer-instance-id-asg">10</a>[AWS Network Load Balancer Target Groups](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html)
+- <a name="network-load-balancer-instance-id-asg">10</a> - [AWS Network Load Balancer Target Groups](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html)
 
-- <a name="network-load-balancer-custom-security-policy">20</a>[AWS Docs - TLS listener for Network Load Balacers](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-tls-listener.html)
+- <a name="network-load-balancer-custom-security-policy">20</a> - [AWS Docs - TLS listener for Network Load Balacers](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-tls-listener.html)
