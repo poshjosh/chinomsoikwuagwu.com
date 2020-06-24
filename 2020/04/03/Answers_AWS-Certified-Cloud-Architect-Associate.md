@@ -288,15 +288,13 @@ if a report is requested during scale-in.__
 
   - Use sticky sessions
 
-  - Use connection draining
-  _Connection-draining for ELB_ [24a](#elb-connection-draining)
+  - Use connection draining. [24a](#elb-connection-draining)
 
   - Increase the cool down period for the auto scaling group to greater than
   1500 seconds.
 
   - `Increase the de-registration delay timeout for the target group to greater
-  than 1500 seconds`.
-  _De-registration delay for target groups_ [24b](#target-group-deregistration-delay)
+  than 1500 seconds`. [24b](#target-group-deregistration-delay)
   >If a deregistering target terminates the connection before the deregistration delay elapses, the client receives a 500-level error response. [24b](#target-group-deregistration-delay)
 
 25. __A consultant designs large scale architectures using several AWS services
@@ -411,12 +409,90 @@ the system logs.__
   - Modify setting in default options group attached to DB instance.
   - Create a new option group, attach it to DB instance and change the setting.
 
+33. __An e-commerce application is hosted in AWS. The last time a new product was
+launched, the application experienced a performance issue due to an enormous
+spike in traffic. Management decided that capacity must be doubled the week
+after the product is launched.__
+
+  __Which is the MOST efficient way for management to ensure that capacity requirements are met?__
+
+  - Add a Step Scaling policy
+  - Add a Dynamic Scaling policy
+  - `Add a Scheduled Scaling action.`
+  - Add Scheduled Reserved Instances.
+
+  Step Scaling - If you know a specific metric value (e.g CPU Utilization) one
+  week after launch, then this works. If you set step scaling, say based on
+  CPU utilization, one week after launch, how are you able to ensure the CPU
+  utilization reaches the threshold to trigger the step scaling action.
+
+  Dynamic Scaling - This may not double the scale, it may triple it or leave it
+  at 60%. Dynamic scaling is quite effective, but not specific enough. The _MUST
+  be doubled_ ruins it for Dynamic scaling as it may not double if utilization
+  does not require it.
+
+  Scheduled Scaling - If you now launch date, then this works.
+
+  Scheduled Reserved Instances - enable you to purchase capacity reservations that
+  recur on a daily, weekly, or monthly basis, with a specified start time and
+  duration, for a `one-year term`.
+
+34. __A Solutions Architect is designing a solution that includes a managed VPN connection.
+To monitor whether the VPN connection is up or down, the Architect should use:__
+
+  - An external service to ping the VPN endpoint from outside the VPC.
+  - AWS CloudTrail to monitor the endpoint.
+  - `The CloudWatch TunnelState Metric.` [34](#monitoring-vpn-cloudwatch)
+  - An AWS Lambda function triggered by CloudTrail activity event.
+
+35. __A company's development team plans to create an Amazon S3 bucket that
+contains millions of images. The team wants to maximize the read performance of
+Amazon S3.__
+
+    __Which naming scheme should the company use?__
+
+    - Add a hexadecimal hash as the prefix.
+    - `Add a date as the prefix.` [35](#s3-optimizing-performance)  
+    - Add a sequential id as the suffix.
+    - Add a hexadecimal hash as the suffix.
+
+36. __You are launching an AWS ECS instance. You would like to set the ECS
+container agent configuration during the ECS instance launch__
+
+  __What should you do?__
+
+  - Set configuration in the ECS metadata parameter during cluster creation.
+  - `Set configuration in the user data parameters of ECS instance.` [36](#ecs-bootstrap-container-instance)
+  - Define configuration in the task definition.
+  - Define configuration in the service definition.
+
+37. __A company has a legacy application using a proprietary file system and
+plans to migrate the application to AWS.__
+
+  __Which storage service should the company use?__
+
+  - Amazon DynamoDB
+  - Amazon S3
+  - `Amazon EBS`
+  Amazon EBS allows you to create storage volumes and attach them to Amazon EC2
+  instances. Once attached, you can create a file system on top of these volumes,
+  run a database, or use them in any other way you would use block storage.[37](#ebs-features)
+  - Amazon EFS
+
 ### References ###
 
-- <a name="elb-connection-draining">24a</a>[AWS - ELB connection draining](https://aws.amazon.com/blogs/aws/elb-connection-draining-remove-instances-from-service-with-care/)
+- <a name="elb-connection-draining">24a</a> - [AWS - ELB connection draining](https://aws.amazon.com/blogs/aws/elb-connection-draining-remove-instances-from-service-with-care/)
 
-- <a name="target-group-deregistration-delay">24b</a>[AWS - Target Groups - De-registration delay](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#deregistration-delay)
+- <a name="target-group-deregistration-delay">24b</a> - [AWS - Target Groups - De-registration delay](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#deregistration-delay)
 
-- <a name="sns-not-exacly-once">26a</a>[AWS FAQs - SNS](https://aws.amazon.com/sns/faqs/)
+- <a name="sns-not-exacly-once">26a</a> - [AWS FAQs - SNS](https://aws.amazon.com/sns/faqs/)
 
-- <a name="sqs-fifo-exactly-once">26b</a>[AWS FAQs - SQS](https://aws.amazon.com/sqs/faqs/)
+- <a name="sqs-fifo-exactly-once">26b</a> - [AWS FAQs - SQS](https://aws.amazon.com/sqs/faqs/)
+
+- <a name="monitoring-vpn-cloudwatch">34</a> - [Monitoring VPN - CloudWatch](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/monitoring-cloudwatch-vpn.html)
+
+- <a name="s3-optimizing-performance">35</a> - [S3 - Optimizing Performance](https://docs.aws.amazon.com/AmazonS3/latest/dev/optimizing-performance.html)
+
+- <a name="ecs-bootstrap-container-instance">36</a> - [Amazon ECS - bootstrap container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/bootstrap_container_instance.html)
+
+- <a name="ebs-features">37</a> - [Amazon EBS - Features](https://aws.amazon.com/ebs/features/)

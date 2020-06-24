@@ -392,6 +392,57 @@ the system logs.__
   - Modify setting in default options group attached to DB instance.
   - Create a new option group, attach it to DB instance and change the setting.
 
+33. __An e-commerce application is hosted in AWS. The last time a new product was
+launched, the application experienced a performance issue due to an enormous
+spike in traffic. Management decided that capacity must be doubled the week
+after the product is launched.__
+
+  __Which is the MOST efficient way for management to ensure that capacity requirements are met?__
+
+  - Add a Step Scaling policy
+  - Add a Dynamic Scaling policy
+  - Add a Scheduled Scaling action.
+  - Add Scheduled Reserved Instances.
+
+34. __A Solutions Architect is designing a solution that includes a managed VPN connection.
+To monitor whether the VPN connection is up or down, the Architect should use:__
+
+  - An external service to ping the VPN endpoint from outside the VPC.
+  - AWS CloudTrail to monitor the endpoint.
+  - The CloudWatch TunnelState Metric.
+  - An AWS Lambda function triggered by CloudTrail activity event.
+
+35. __A company's development team plans to create an Amazon S3 bucket that
+contains millions of images. The team wants to maximize the read performance of
+Amazon S3.__
+
+  __Which naming scheme should the company use?__
+
+  - Add a hexadecimal hash as the prefix.
+  - `Add a date as the prefix.`
+  - Add a sequential id as the suffix.
+  - Add a hexadecimal hash as the suffix.
+
+36. __You are launching an AWS ECS instance. You would like to set the ECS
+container agent configuration during the ECS instance launch__
+
+  __What should you do?__
+
+  - Set configuration in the ECS metadata parameter during cluster creation.
+  - Set configuration in the user data parameters of ECS instance.
+  - Define configuration in the task definition.
+  - Define configuration in the service definition.
+
+37. __A company has a legacy application using a proprietary file system and
+plans to migrate the application to AWS.__
+
+  __Which storage service should the company use?__
+
+  - Amazon DynamoDB
+  - Amazon S3
+  - Amazon EBS
+  - Amazon EFS
+
 ### Answers ###
 
 - [Click here](/2020/04/03/Answers_AWS-Certified-Cloud-Architect-Associate) for

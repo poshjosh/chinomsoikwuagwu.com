@@ -22,9 +22,14 @@ __Aurora cluster__
 
   * Single, virtual volume that uses solid state drives (SSDs)
   * Multi-AZ. Each AZ has a copy of DB cluster data.
+
+- Single master clusters: Aurora Serverless, Parallel query, Global Database.  
+
 - For multi-master clusters, all DB instances have read-write capability.
 In this case, the distinction between primary instance and Replica doesn't apply.
 
+  * To create a multi-master cluster, you choose Multiple writers under Database features when creating the cluster.
+  
 __Notes__
 
 - Aurora doesn't support local zones.

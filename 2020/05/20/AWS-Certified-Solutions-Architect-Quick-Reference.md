@@ -7,6 +7,56 @@ tags: ["AWS", "FAQ", "EC2", "VPC", "hibernate", "stop", "VPC traffic", "peering"
 lang: "en-us"
 ---
 
+__Databases__
+
+- Easily make schema changes - DynamoDB
+
+- Replicate across regions - Aurora (Redshift can only create snapshots in the different region)
+
+- Automated cross-region snapshot - Redshift.
+
+- No VPC endpoint for RDS, but for RDS Data Api for Aurora.
+[See this](https://aws.amazon.com/about-aws/whats-new/2020/02/amazon-rds-data-api-now-supports-aws-privatelink/) (6 Feb 2020),
+[and this](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html)
+
+- A gateway endpoint is a gateway that you specify as a target for a route in
+your route table for traffic destined to a supported AWS service. Supported:
+
+  * Amazon S3
+  * DynamoDB
+
+- [Scenarios for Accessing an RDS DB Instance in a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html)
+
+  `Private IP`
+  * EC2 and DB in same VPC - Use custom rule in DB security group to allow connection for EC2 security group.
+  * EC2 in different VPC - Use VPC peering.
+  * EC2 not in a VPC, DB in a VPC - Use ClassicLink
+
+  `Internet bound`
+  * Client in internet, DB in a VPC
+
+    - Configure VPC with a public subnet, and an internet gateway to enable communication over the internet.
+    - Ensure DB security group allow client application access.
+
+  * EC2 in VPC, DB not in a VPC
+
+    - Configure VPC with a public subnet, and an internet gateway to enable communication over the internet.
+    - Ensure DB is marked as publicly accessible.
+
+  * EC2 and DB not in a VPC
+
+    - Use DB endpoint and port.
+    - Ensure DB security permits access from the port specified when creating the DB.
+
+  * Client in internet, DB not in a VPC
+
+    - Ensure DB security group includes the necessary ingress rules for your client application to connect.
+
+__High Availability__
+
+- Given 2-tier applications, having EC2 instances running web layer in public
+and database layer in private subnets, how do you provide high availability.
+
 __AWS Single Sign On (SSO)__
 
 - Permission sets can control time duration for user login to the AWS Console
@@ -129,6 +179,13 @@ different AZ. In case of an infrastructure failure, Amazon RDS performs an
 - __Allocate enough RAM__ - To optimize performance, allocate enough RAM so that your working set resides almost completely in memory.
 
 - __Set TTL value of less than 30 seconds__ - If your client application is caching the Domain Name Service (DNS) data of your DB instances, set a time-to-live (TTL) value of less than 30 seconds.
+
+- Ways to improve performance of RDS:
+
+  * Increase RDS DB `instance size`
+  * Storage upgrade to `SSD/IOPs` (not Aurora)
+  * `Read Replicas`
+  * `ElastiCache`
 
 - If a DB instance is in a VPC, the option group associated with the instance is linked to that VPC. This means that you can't use the option group assigned to a DB instance if you try to restore the instance to a different VPC or a different platform.
 
@@ -305,6 +362,8 @@ Max Throughput/Volume (MB/s)  | 1,000  | 250     | 500        | 250
 
 __Simple Queue Service (SQS)__
 
+- `30 seconds` - Default visibility time out for a message. A period of time during which Amazon SQS prevents other consumers from receiving and processing the message.
+
 - Messages sent to a queue are retained for up to `14 days`.
 
 - __Visibility timeout__ for a SQS should be set to the max time it takes to
@@ -354,6 +413,10 @@ large number of distinct values for the underlying DynamoDB table.
 
 __Auto Scaling Group__
 
+- Change launch configuration of auto scaling group - you can't modify after
+creating. Rather use existing as basis for new launch configuration then update
+the ASG to use the new launch configuration.
+
 - __Scheduled scaling__ works better when you can predict the load changes and
 also know how long you need to run.
 
@@ -372,6 +435,21 @@ __Elastic Load Balancing (ELB)__
 - To route domain traffic to an ELB, use Amazon Route 53 to create an alias record
 that points to your load balancer.
 
+- Monitoring both Application & Network Load Balancers:
+Cloudwatch metrics, Access logs, CloudTrail logs
+
+- `Request Tracing` can only be use for monitoring Application Load Balancer -
+
+- `VPC flow logs` can only be used for monitoring Network Load Balancers:
+
+Property                  | Network                | Application
+--------------------------|------------------------|------------              
+Layer of OSI model        | 4                      | 7
+IP                        | Static                 | Flexible
+Supported protocols       | TCP, TLS, UDP, TCP_UDP | HTTP, HTTPS
+Support for lamda targets | No                     | Yes
+SSL server certificate    | Exactly One            | At least one
+
 __Elasticbeanstalk__
 
 - ElasticBeanstalk is an orchestration service. It orchestrates various AWS
@@ -380,6 +458,9 @@ services like EC2, S3, SNS, CloudWatch, AutoScaling and ELB.
 - Elasticbeanstalk not suitable for single long running process.
 
 __Simple Storage Service (S3)__
+
+- You no longer have to randomize prefix naming for performance, as previously
+recommended, and can use sequential date-based naming for your prefixes.
 
 - Cross region replication requires versioning to be enabled on both source
 and destination buckets.
@@ -474,6 +555,20 @@ of IP address or domain name, alias record contains a pointer to: `CloudFront`,
 `another Route53 record in same hosted zone`.
 You can create alias record for both root domain and subdomain unlike CNAME
 record which can only be created for subdomain.
+[Read this](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html)
+
+- Route traffic to S3 configured for static website hosting, to be served through custom domain name: `A record - IPv4 address with alias`
+
+- Route traffic to ELB: `A record - IPv4 address with alias`
+
+- Configure route 53 so you can use your domain name to open connection to an
+RDS instance: `CNAME record - without alias`
+
+- Types of Route 53 health checks:
+
+  * `monitor an endpoint`
+  * `monitor other health checks (calculated health checks)`
+  * `monitor cloudwatch alarms`
 
 __Storage Gateway__
 
@@ -491,6 +586,10 @@ and can be enabled post data transfer for data integrity checks and ensure
 that all data is properly copied between on-premises and EFS.
 
 ### Elastic Cloud Compute (EC2) ###
+
+- To move EC2 instance to a new region:
+  * Copy AMI of EC2 and specify a different region as destination.
+  * Copy EBS volume from S3 and launch EC2 instance in destination region using that EBS volume.
 
 - If you are using an Amazon EBS volume as a root partition, you will need to
 set the Delete On Terminate flag to "N" if you want your Amazon EBS volume to
@@ -589,6 +688,23 @@ __VPN connection__ can be used to establish communications across environments
 __Virtual private gateway__ is the Amazon VPC side of A VPN connection.
 
 ### Virtual Private Cloud (VPC) ###
+
+- __Difference between Security Groups and NACLs__
+
+__TL;DR__: _Security group is the firewall of EC2 Instances whereas Network ACL is the firewall of the Subnet._
+
+What  | Security Group | NACL
+------|----------------|-----------------     
+Scope | `EC2 instance`(s) or group of | `subnet`      
+State | Stateful - state of incoming rule applied to outgoing | Stateless - must explicitly specify both in and out going
+Rules | Deny by default. `You can only allow` |
+Order | All rules processed | Rules applied in number order (all may not be processed)
+
+- Each NACL has default deny rule one for inbound and one for outbound which
+can't be removed. This rule ensures that if a packet doesn't match any of the
+other numbered rules, it's denied.
+
+- The default NACL has an allow all inbound and also allow all outbound rule.
 
 - Traffic between two EC2 instances in:
 
@@ -873,7 +989,7 @@ instead of the default S3 endpoint.
 
 __Scope of Services__
 
-  - __Region__ - VPC, ASG, ELB, S3, KMS keys, RDS Option Groups.
+  - __Region__ - VPC, ASG, ELB, S3, ECS, KMS keys, RDS Option Groups.
     * ELB within a single AZ or multiple AZs.
 
   - __VPC__ - One Internet gateway per VPC

@@ -214,6 +214,9 @@ __Services that integrate with Lambda in other ways__ Some services integrate wi
 
 Integrating Lambda with other Services is described in detail [here](https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html#intro-core-components-event-sources)
 
+### Notes ###
+
+
 ### Troubleshooting ###
 
 - `Problem` - The Lambda runtime needs permission to read the files in your deployment package.
@@ -267,9 +270,7 @@ For more on troubleshoot [click here](https://docs.aws.amazon.com/lambda/latest/
 
 - __Autoscaling__ - Lambda integrates with Application Auto Scaling to support auto scaling for provisioned concurrency based on utilization.
 
-- Lambda functions are monitored on your behalf and reports metrics through Amazon CloudWatch. Automatically tracked include: `number of requests`, `execution duration`, `number of error requests`.
-
-- __Metrics__. Each time your function is invoked, Lambda records metrics for the request, the function's response, and the overall state of the function. You can use metrics to set alarms that are triggered when function performance degrades, or when you are close to hitting concurrency limits in the current Region.
+- __Metrics__. Lambda functions are monitored on your behalf and reports metrics through Amazon CloudWatch. Automatically tracked include: `number of requests`, `execution duration`, `number of error requests`.
 
 - __Logs__. To debug and validate that your code is working as expected, you can output logs with the standard logging functionality for your programming language. The Lambda runtime uploads your function's log output to CloudWatch Logs. You can view logs in the CloudWatch Logs console, in the Lambda console, or from the command line.
 

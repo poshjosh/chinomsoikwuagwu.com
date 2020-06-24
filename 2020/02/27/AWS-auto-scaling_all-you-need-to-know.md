@@ -226,3 +226,20 @@ You can configure Auto Scaling groups to:
 - CloudWatch Logs enable you to monitor, store, and access your log files from Amazon EC2 instances, CloudTrail, and other sources.
 - CloudWatch Logs can monitor information in the log files and notify you when certain thresholds are met.
 - Personal Health Dashboard (PHD) displays information, and also provides notifications that are triggered by changes in the health of AWS resources.
+
+### Miscellany ###
+
+- EC2 Auto Scaling lets you use two different allocation strategies for Spot Instances:
+
+  * __Lowest-price__ – Allocates instances from the Spot Instance pools that have the lowest price at the time of fulfillment. Good fit for fault-tolerant workloads with a low cost of interruption.
+
+    - Time-insensitive workloads
+    - Extremely transient workloads
+    - Workloads that are easily check-pointed and restarted
+
+  * __Capacity-optimized__ – Allocates instances from the Spot Instance pools with the optimal capacity for the number of instances that are launching, making use of real-time capacity data. good choice for workloads with a high cost of interruption, such as:
+
+    - Big data and analytics
+    - Image and media rendering
+    - Machine learning
+    - High performance computing

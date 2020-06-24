@@ -64,6 +64,7 @@ __Additional Notes on Application Load Balancer Components__
   * You can use an HTTPS listener to offload the work of encryption and decryption to your load balancer so that your applications can focus on their business logic.
   * If the listener protocol is HTTPS, you must deploy at least one SSL server certificate on the listener
   * __Listener Rules___ - The rules that you define for a listener determine how the load balancer routes requests to its registered targets.
+
     - Each rule consists of a priority (lowest to highest), one or more actions, and one or more conditions.
     - When you create a listener, you must define actions for the default rule.
     - Default rules can't have conditions.
@@ -143,7 +144,7 @@ the client must support cookies.
   * With CORS (cross-origin resource sharing) requests, some browsers require SameSite=None; Secure to enable stickiness. In this case, Elastic Load Balancing generates a second stickiness cookie, AWSALBCORS, which includes the same information as the original stickiness cookie plus this SameSite attribute. Clients receive both cookies.
   * Application Load Balancers support load balancer-generated cookies only
 
-  Considerations:
+  __Considerations:__
 
   * The clients must support cookies.
   * If you are using multiple layers of Application Load Balancers, you can enable sticky sessions on one layer only, because the load balancers would use the same cookie name.
@@ -192,17 +193,20 @@ __CloudTrail logs__
 
 - If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon S3 bucket, including events for Elastic Load Balancing.
 - Clould trail is enabled by default on your AWS account. Hence, if you don't configure a trail, you can still view the most recent events in the CloudTrail console in Event history. Using the information collected by CloudTrail, you can determine, _what_, _where_, _who_, _when_ and more:
+
   * the request that was made to Elastic Load Balancing
   * the IP address from which the request was made  
   * who made the request  
   * when it was made  
   * additional details.
+
 -  By default, when you create a trail in the console, the trail applies to all AWS Regions.
 - To monitor other actions for your load balancer, such as when a client makes a request to your load balancer, use access logs.
 
 ### Benefits of Migrating from a Classic Load Balancer to an Application Load Balancer ###
 
 Using an Application Load Balancer instead of a Classic Load Balancer has the following benefits:
+
 - `Improved load balancer performance.`
 - `Support for path-based routing.` - You can configure rules for your listener that forward requests based on the URL in the request. This enables you to structure your application as smaller services, and route requests to the correct service based on the content of the URL.
 - `Support for host-based routing.` - You can configure rules for your listener that forward requests based on the host field in the HTTP header. This enables you to route requests to - multiple domains using a single load balancer.
@@ -279,6 +283,7 @@ __Access logs__
   * The bucket must be located in the same Region as the load balancer.
   * Amazon S3-Managed Encryption Keys (SSE-S3) is required. No other encryption options are supported.
   * The bucket must have a bucket policy that grants Elastic Load Balancing permission to write the access logs to your bucket.
+
 - __Access logs are created only if the load balancer has a TLS listener and they contain information only about TLS requests.__
 
 __CloudTrail logs__
@@ -287,11 +292,13 @@ __CloudTrail logs__
 
 - If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon S3 bucket, including events for Elastic Load Balancing.
 - Clould trail is enabled by default on your AWS account. Hence, if you don't configure a trail, you can still view the most recent events in the CloudTrail console in Event history. Using the information collected by CloudTrail, you can determine, _what_, _where_, _who_, _when_ and more:
+
   * the request that was made to Elastic Load Balancing
   * the IP address from which the request was made  
   * who made the request  
   * when it was made  
   * additional details.
+
 -  By default, when you create a trail in the console, the trail applies to all AWS Regions.
 - To monitor other actions for your load balancer, such as when a client makes a request to your load balancer, use access logs.
 
@@ -324,7 +331,7 @@ __CloudTrail logs__
 - __Sticky Sessions__ - Sticky sessions are a mechanism to route requests to the same target in a target group. To use sticky sessions,
 the client must support cookies.
 
-  Considerations
+  __Considerations:__
 
   * Can lead to an uneven distribution of connections and flows, which might impact the availability of your targets. For example, all clients behind the same NAT device have the same source IP address. Therefore, all traffic from these clients is routed to the same target.
 
@@ -354,10 +361,10 @@ Load Balancers functions at the fourth (4) layer of the Open Systems
 Interconnection (OSI) model, whereas, Application Load Balancers function
 at the seventh (7) layer. This difference may seem trivial but it has implications:
 
-Property                    | Network                               | Application                   | Implication
-----------------------------|---------------------------------------|-------------------------------|-------------------------------------------------------               
-Requests directed based on  | Network and transport layer variables | HTTP request headers/content  | More informed decisions by application load balancer.
-App availability based on   | Success and content of response       | ICMP ping/3 way TCP handshake | Network load balancing cannot assure availability of the application            
+Property                    | Network                               | Application                     | Implication
+----------------------------|---------------------------------------|---------------------------------|-------------------------------------------------------               
+Requests directed based on  | Network and transport layer variables | HTTP request headers/content    | More informed decisions by application load balancer.
+App availability based on   | ICMP ping/3 way TCP handshake         | Success and content of response | Network load balancing cannot assure availability of the application            
 Multiple apps share one ip  | Can't differentiate apps unless they use different ports | Can differentiate between apps by examining application layer data |
 
 A summary of all the differences for clarity and ease of references is as follows:
@@ -561,17 +568,24 @@ the load balancer is internet-facing or the instances are registered by IP addre
 
 - __Sticky Sessions__ are not supported with TLS listeners and TLS target groups.
 
+- Monitoring Application Load Balancers:
+Cloudwatch metrics, Access logs, Request tracing, CloudTrail logs
+
+- Monitoring Network Load Balancers:
+Cloudwatch metrics, VPC flow logs, Access logs, Cloudtrail logs
+
 __Differences between Network and Application Load Balancers__
 
-Property                    | Network                               | Application                   | Implication
-----------------------------|---------------------------------------|-------------------------------|-------------------------------------------------------               
-Layer of OSI model          | 4                                     | 7                             | Application load balancer has access to more info
-App availability based on   | Success and content of response       | ICMP ping/3 way TCP handshake | Network load balancing cannot assure availability of the application            
+Property                    | Network                        | Application                   | Implication
+----------------------------|--------------------------------|-------------------------------|-------------------------------------------------------               
+Layer of OSI model          | 4                              | 7                             | Application load balancer has access to more info
+App availability based on   | ICMP ping/3 way TCP handshake  | Success and content of response  | Network load balancing cannot assure availability of the application            
 Multiple apps share one ip  | Can't differentiate apps unless they use different ports | Can differentiate between apps by examining application layer data |
-IP                          | Static                                | Flexible
-Supported protocols         | TCP, TLS, UDP, TCP_UDP                | HTTP, HTTPS
-Support for lamda targets   | No                                    | Yes
-SSL server certificate      | Exactly One                           | At least one
+IP                          | Static                         | Flexible
+Supported protocols         | TCP, TLS, UDP, TCP_UDP         | HTTP, HTTPS
+Support for lamda targets   | No                             | Yes
+SSL server certificate      | Exactly One                    | At least one
+Monitoring                  | VPC flow logs                  | Request tracing | Applicable to both: CloudWatch, CloudTrail, Access logs
 
 - A __load balancer node__ is created in an Availability Zone (AZ) when you enable that AZ for the load balancer.
 
