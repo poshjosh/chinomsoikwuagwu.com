@@ -3,7 +3,7 @@ path: "./2020/06/09/AWS-Security-Essentials.md"
 date: "2020-06-09T20:49:00"
 title: "AWS Security Essentials"
 description: "AWS Security Essentials"
-tags: ["AWS", "Security", "Identity and Access Management", "IAM", "Single Sign On", "SSO", "two-way trust", "AD connector", "signed URLs", "signed cookies", "Origin Access Identity", "OAI", "Vault lock policy", "vault access policy", "AWS Shield", "AWS Web Application Firewall", "WAF"]
+tags: ["AWS", "Security", "Identity and Access Management", "IAM", "Single Sign On", "SSO", "two-way trust", "AD connector", "signed URLs", "signed cookies", "Origin Access Identity", "OAI", "Vault lock policy", "vault access policy", "AWS Shield", "AWS Web Application Firewall", "WAF", "security token service", "AssumeRole", "AssumeRoleWithSAML", "AssumeRoleWithWebIdentity", "GetFederationToken", "GetSessionToken", "GetCallerIdentity", "GetAccessKeyInfo", "DecodeAuthorizationMessage"]
 lang: "en-us"
 ---
 
@@ -21,6 +21,41 @@ credentials for EC2 instances.
 
 - __Cross-account IAM roles__ allow customers to securely grant access to AWS
 resources in their account to a third party like an APN Partner.
+
+### Security Token Service ###
+
+AWS Security Token Service (AWS STS) is a web service that enables you to request
+temporary, limited-privilege credentials for AWS Identity and Access Management
+(IAM) users or for users that you authenticate (federated users).
+
+The following actions are supported:
+
+-    `AssumeRole` - Returns a set of temporary security credentials that you can use to access AWS resources that you might not normally have access to.
+
+-    `AssumeRoleWithSAML` - Returns a set of temporary security credentials for users who have been authenticated via a SAML authentication response.
+
+-    `AssumeRoleWithWebIdentity` - Returns a set of temporary security credentials for users who have been authenticated in a mobile or web application with a web identity provider. Example providers include Amazon Cognito, Login with Amazon, Facebook, Google, or any OpenID Connect-compatible identity provider.
+
+-    `DecodeAuthorizationMessage` - Decodes additional information about the authorization status of a request from an encoded message returned in response to an AWS request.
+
+-    `GetAccessKeyInfo` - Returns the account identifier for the specified access key ID.
+
+-    `GetCallerIdentity` - Returns details about the IAM user or role whose credentials are used to call the operation.
+
+-    `GetFederationToken` - Returns a set of temporary security credentials (consisting of an access key ID, a secret access key, and a security token) for a federated user. A typical use is in a proxy application that gets temporary security credentials on behalf of distributed applications inside a corporate network
+
+-    `GetSessionToken` - Returns a set of temporary credentials for an AWS account or IAM user. The credentials consist of an access key ID, a secret access key, and a security token. Typically, you use GetSessionToken if you want to use MFA to protect programmatic calls to specific AWS API operations like Amazon EC2 StopInstances.
+
+For `AssumeRole`, `AssumeRoleWithSAML` and `AssumeRoleWithWebIdentity`:
+
+- You cannot use AWS account root user credentials to call. You must use
+credentials for an IAM user or an IAM role to call AssumeRole.
+
+- `One hour` - default duration which the temporary credentials created lasts.
+
+- The temporary security credentials created can be used to make API calls to
+any AWS service with the following exception: You cannot call the AWS STS
+`GetFederationToken` or `GetSessionToken` API operations.
 
 ### AWS Single Sign On (SSO) ###
 

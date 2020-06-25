@@ -256,7 +256,7 @@ WAF especially useful for public facing websites.
 Management Console -> Application Integration -> SQS
 
 - Used to decouple applications
-  * Break app into seperate processing tasks
+  * Break app into separate processing tasks
   * Allows many smaller processes to form a complete solution
 
 SQS Messages
@@ -273,7 +273,7 @@ SQS Participants
 - Message consumers
 - Messaging Service (i.e SQS in this case)
 
-SQL Features
+SQS Features
 
 - Redundant accross multiple AZs
   * Queued until process
@@ -281,13 +281,16 @@ SQL Features
 
 - Automatically scales
 
-SQL Queue Types
+SQS Queue Types
 
 - Standard
+
   * Default
   * Does not guarantee sequential delivery of messages
+
 - First-in-First-Out (FIFO)
-  * Guarantees sequentlial delivery of messages
+
+  * Guarantees sequential delivery of messages
   * Supports fewer transactions per second.
 
 Standard (performance + async) vs FIFO (less performance + sequential)

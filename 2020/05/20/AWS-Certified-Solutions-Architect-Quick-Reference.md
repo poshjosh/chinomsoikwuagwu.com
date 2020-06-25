@@ -375,6 +375,8 @@ is already working on it, leading to duplicates.
 - `Ensure exactly-once delivery of messages` - Use FIFO Queue.
 - `Reduce number of empty responses` - Long polling.
 - `Isolate message failures` - Configure dead-letter queue.
+- `Avoid large backlog of messages with the same message group ID ` - Configure dead-letter queue.
+- `Reduce cost` - Send messages in batches, long polling.
 
 __NAT Gateway/instances__
 
