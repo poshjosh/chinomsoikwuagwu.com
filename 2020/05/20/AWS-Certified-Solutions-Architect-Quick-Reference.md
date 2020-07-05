@@ -7,6 +7,40 @@ tags: ["AWS", "FAQ", "EC2", "VPC", "hibernate", "stop", "VPC traffic", "peering"
 lang: "en-us"
 ---
 
+__AWS SFTP__
+
+Fully managed service enabling transfers over SFTP, while the data is stored
+in Amazon S3.
+
+SFTP - SSH File Transfer Protocol
+
+Support for VPC Security Groups and Elastic IP addresses.
+
+- Using security groups, customers can apply rules to limit SFTP access to
+specific public IPv4 addresses or IPv4 address ranges.
+
+- Elastic IP addresses with their server endpoint. This enables end users
+behind firewalls to whitelist access to the SFTP server via a static IP, or
+a pair of IPs for failover.
+
+__SageMaker__
+
+__CloudWatch__
+
+CloudWatch alarms trigger actions only when the alarm state changes and is
+maintained for a specified number of periods.
+
+There is an exception to this behavior for CloudWatch alarms that are associated
+with Amazon EC2 Auto Scaling actions. A CloudWatch alarm keeps triggering
+Auto Scaling actions when that alarm is in a specified state, even if there are
+no state changes and the alarm remains in that state.
+
+__AWS ParallelCluster__
+
+Cluster-management tool for AWS that makes it easy for scientists, researchers,
+and IT administrators to deploy and manage HPC clusters in the AWS Cloud.
+AWS ParallelCluster supports FSx for Lustre.
+
 __Databases__
 
 - Easily make schema changes - DynamoDB
@@ -19,7 +53,11 @@ __Databases__
 [See this](https://aws.amazon.com/about-aws/whats-new/2020/02/amazon-rds-data-api-now-supports-aws-privatelink/) (6 Feb 2020),
 [and this](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html)
 
-- A gateway endpoint is a gateway that you specify as a target for a route in
+- An `interface endpoint` is an elastic network interface with a private IP
+address from the IP address range of your subnet that serves as an entry point
+for traffic destined to a supported service.
+
+- A `gateway endpoint` is a gateway that you specify as a target for a route in
 your route table for traffic destined to a supported AWS service. Supported:
 
   * Amazon S3
@@ -115,6 +153,22 @@ in the region in which they were created. They cannot be transferred to another 
 IAM Policy is used to grant access to a user for AWS KMS while Key policy
 is used to control access to CMK in AWS KMS.
 
+__Cloud Hardware Security Module (HSM)__
+
+
+- KSM only uses symmetric keys, while Cloud HSM allows symmetric and asymmetric keys.
+
+- CloudHSM must be provisioned inside an Amazon VPC. However, your application
+must not be in the same VPC as the CloudHSM
+
+If an HSM fails or loses network connectivity, the HSM will be automatically replaced.
+
+CloudHSM publishes multiple CloudWatch metrics for CloudHSM Clusters and for individual HSMs. You can use the AWS CloudWatch Console, API or SDK to obtain or alarm on these metrics.
+
+AWS services integrate with AWS Key Management Service, which in turn is integrated with AWS CloudHSM through the KMS custom key store feature. If you want to use the server-side encryption offered by many AWS services (such as EBS, S3, or Amazon RDS), you can do so by configuring a custom key store in AWS KMS.
+
+If your CloudHSM cluster only has a single HSM, it is possible to lose keys that were created since the most recent daily backup. CloudHSM clusters with two or more HSMs, ideally in separate Availability Zones, will not lose keys if a single HSM fails.
+
 __Serverless__
 
 - __Lamda__ - Central to many serverless designs. automatically runs your code
@@ -139,6 +193,17 @@ manage servers.
 - Amazon SQS — a fully managed message queuing service
 
 - [Read more on AWS - Serverless](https://aws.amazon.com/serverless/)
+
+__API Gateway__
+
+Amazon API Gateway resource policies are JSON policy documents that you attach
+to an API to control whether you API can be invoked by:
+
+-    Users from a specified AWS account.
+
+-    Specified source IP address ranges or CIDR blocks.
+
+-    Specified virtual private clouds (VPCs) or VPC endpoints (in any account).
 
 __Identity and Access Management (IAM)__
 
@@ -230,10 +295,53 @@ fall behind any required maintenance updates.
 
 - Use `customer-managed key`, if you want full control over a key.
 
+- __Aurora Serverless__ allows you create a database endpoint without specifying the
+DB instance class size. You set the minimum and maximum capacity. Aurora
+Serverless auto scales.
+
+- Storage and processing are scaled separately for Aurora Serverless.  
+
+- You can choose to pause your Aurora Serverless DB cluster after a given
+amount of time with no activity. `5 minutes` is the default.
+
+- Cool down period for scaling down Aurora Serverless:
+
+  * `15 minutes` - after scaling up.
+
+  * `5 minutes` - after scaling down. (310 seconds)
+
+- No cool down period for scaling up Aurora Serverless.  
+
+- When a Aurora Serverless capacity change times out, you can specify one of the following:
+
+  * Force the capacity change – Set the capacity to the specified value as soon as possible.
+
+  * Roll back the capacity change – Cancel the capacity change.
+
+- Maintenance windows don't apply to Aurora Serverless .
+
+- Cluster volume for an Aurora Serverless cluster is always encrypted. You can
+choose the encryption key.
+
+- To copy or share a snapshot of an Aurora Serverless cluster,
+you encrypt the snapshot using your own KMS key.
+
+- If Aurora Serverless DB cluster becomes unavailable or the AZ it is in fails,
+Aurora recreates the DB instance in a different AZ. Amazon refers to this
+as `Automatic multi-AZ failover`. _It takes longer than provisioned cluster_
+
 __DataSync__
 
 - __AWS DataSync__ - move large amounts of data online between on-premises
-storage and `S3`, `EFS`, or `FSx`.
+storage and `S3`, `EFS`, or `FSx for Windows`.
+
+- `DataSync does not currently support FSx for Lustre`
+
+- `Task Scheduling` – Schedule data transfer tasks with hourly, daily, and weekly options.
+- `EFS-to-EFS Transfer` – Transfer between a pair of Amazon EFS file systems.
+- `Filtering for Data Transfers` – Use file path and object key filters to control which data.
+- `SMB File Share Support` – Transfer between a pair of SMB file shares.
+- `S3 Storage Class Support` – Choose the S3 Storage Class when transferring data to an S3 bucket.
 
 - You need not create IAM roles when transferring to S3 or ENI when transferring
 to EFS as data sync manages these for you.
@@ -257,8 +365,19 @@ __AWS Organizations__
   * Other accounts have launched instances in same AZ.
   * Note that RI scope is either `regional` or `zonal`
 
-- The `master account` cannot be `removed` from an AWS Organization. It can be moved
-to another AWS Organization.
+- Move member account to another AWS Organization:
+
+  * Remove the member account from the old organization.
+  * Send an invite from the new organization.
+  * Accept the invite to the new organization from the member account.
+
+- Move master account to another AWS Organization:
+
+  * Remove the member accounts from the organization using the preceding process.
+  * Delete the old organization.
+  * Repeat the preceding process to invite the old master account to the new organization as a member account.
+
+- The `master account` cannot be `removed` from an AWS Organization.
 
 - __Moving accounts between AWS Organizations__ Make sure you have:
 
@@ -451,6 +570,7 @@ IP                        | Static                 | Flexible
 Supported protocols       | TCP, TLS, UDP, TCP_UDP | HTTP, HTTPS
 Support for lamda targets | No                     | Yes
 SSL server certificate    | Exactly One            | At least one
+Web access via            | fixed IP               | DNS (URL)
 
 __Elasticbeanstalk__
 
@@ -491,6 +611,9 @@ for files from 5MB to 5GB.
   * SSE - C   - Customer manages encryption key.
   * SSE - KMS - AWS manages data key but customer manages the master key in AWS KMS.
 
+SSE-KMS - similar to SSE-S3 with additional benefits (additional charges too)
+SSE-KMS Integration with CloudWatch -> audit trail
+
 - __S3 select__ can be used to query subset of data in S3 using simple SQL.
 Objects need to be stored in CSV,JSON or Apache Parquet format. GZIP and
 BZIP2 compression supported with CSV/JSON.
@@ -508,12 +631,22 @@ bucket. Takes advantage of Amazon CloudFront's globally distributed edge locatio
 
 - __S3 Events__ - notifications designed to be delivered at least once.
 
-  * To ensure write event is NOT missed, enable versioning.
-  * Possible destinations for notifications are:
+  * `To ensure write event is NOT missed, enable versioning.` If two writes are
+  made to a single non-versioned object at the same time, it is possible that
+  only a single event notification will be sent.
+
+  * `Possible destinations for notifications are`:
 
     - SNS topic
-    - SQS Queue
+    - SQS Standard Queue - `FIFO queue not supported`
     - Lamda Function
+
+If your notification ends up writing to the bucket that triggers the notification,
+this could cause an execution loop. To prevent this, use 2 different buckets.
+
+```
+Write Event 1 -> Notification to Lambda 1 -> Write Event 2 -> Notification 2 ...
+```
 
 __Amazon Glacier__
 
@@ -521,6 +654,9 @@ __Amazon Glacier__
 
 - Expedited retrievals allow you to access data in 1 - 5 minutes at a flat rate of
 USD 0.03/GB retrieved.
+
+- You can't move data directly from Snowball into Glacier, you need to go through
+S3 first, and use a lifecycle policy.
 
 - __Glacier Vault Lock__ allows you to easily deploy and enforce compliance
 controls for individual S3 Glacier vaults with a __vault lock policy__. You can
@@ -545,11 +681,30 @@ __Route 53__
 
   * `Simple` - Single resource that performs given function for your domain, e.g
   a web server that serves content for the example.com website.
+  * `Failover` routing policy – Use when you want to configure active-passive failover.
+  * `Geolocation` routing policy – Use when you want to route traffic based on the location of your users.
+  * `Geoproximity` routing policy – Use when you want to route traffic based on
+  the location of your resources and, optionally, shift traffic from resources
+  in one location to resources in another.  
   * `Latency` - Resources in multiple locations and you want to route to resource
   that provides best latency.
   * `Weighted` - Multiple resources in proportions you specify.
   * `Multivalue answer` - When you want Route53 to respond to DNS queries with up
   to 8 healthy records selected at random.
+
+DNS Based Routing (Route 53)        | Elastic Load Balancer (ELB)
+------------------------------------|-----------------------------
+Balances load "Across" regions      | Balances load "in one" region
+Changes resolving address           | Reroutes actual traffic
+No Auto-Scaling                     | Auto-Scaling available
+Unhealthy targets are cached in DNS | Immediate rerouting to healthy targets
+
+- `Active-active` failover configuration (`any routing policy other than failover`) -
+When you want all of your resources to be available the majority of the time.
+
+- `Active-passive` failover configuration (`failover routing policy`) - When you
+want primary resource(s) to be available the majority of the time and secondary
+resource(s) to be on standby in case all the primary resources become unavailable.
 
 - __Alias Record__ - Route53 specific extension to DNS functionality. Instead
 of IP address or domain name, alias record contains a pointer to: `CloudFront`,
@@ -559,7 +714,23 @@ You can create alias record for both root domain and subdomain unlike CNAME
 record which can only be created for subdomain.
 [Read this](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html)
 
-- Route traffic to S3 configured for static website hosting, to be served through custom domain name: `A record - IPv4 address with alias`
+When you use an alias record to route traffic to an AWS resource, Route 53 automatically recognizes changes in the resource. For example, suppose an alias record for example.com points to an ELB load balancer at lb1-1234.us-east-2.elb.amazonaws.com. If the IP address of the load balancer changes, Route 53 automatically starts to respond to DNS queries using the new IP address.
+
+- An alias record can only redirect queries to:
+
+  * Amazon S3 buckets
+  * CloudFront distributions
+  * Another record in the same Route 53 hosted zone
+
+- A CNAME record can redirect DNS queries to any DNS record even records of
+other DNS service.
+
+- Route 53 doesn't charge for alias queries to AWS resources.
+
+- Route 53 charges for CNAME queries.  
+
+- Route traffic to S3 configured for static website hosting, to be served
+through custom domain name: `A record - IPv4 address with alias`
 
 - Route traffic to ELB: `A record - IPv4 address with alias`
 
@@ -646,6 +817,14 @@ but is only charged once for a given instance even if both are true:
   * ENA - Traditional networking capabilities
   * EFA - ENA + OS-bypass for lower latency and reliable transport
 
+- __Scheduled Instance Limits__
+
+  * `C3`, `C4`, `M4`, and `R3` - supported instance types.
+  * `365 days (one year)` - required term.
+  * `1200 hours per year` - the minimum required utilization.
+  * You can purchase a Scheduled Instance up to three months in advance.
+  * US East (N. Virginia), US West (Oregon), and Europe (Ireland) regions only.
+
 ### Security ###
 
 An option in the answers could suggest using WAF against DDoS, or AWS Shield
@@ -665,6 +844,12 @@ decrypted using the same key.
 - `Asymmetric encryption`, requires the use of two separate keys: a public key
 and private key. Data is encoded using the public key, and decoded using the private key.
 
+- `Server Name Indication (SNI)` allows the server to safely host multiple TLS
+Certificates for multiple sites, all under a single IP address. It adds the
+hostname of the server (website) in the TLS handshake as an extension in the
+CLIENT HELLO message. This way the server knows which website to present when
+using shared IPs.
+
 ### Network ###
 
 - __Internet gateway__
@@ -683,6 +868,10 @@ in network communications. This is enabled by __Elastic Network Adapter (ENA)__
 __Amazon VPC endpoints__ provide reliable connectivity to AWS services
 (for example,  Amazon S3) without requiring an internet gateway or a Network
 Address Translation (NAT) instance. __Data remains within the AWS network___
+
+- Two types of VPC endpoints: `interface` and `gateway` endpoints.
+
+- `Amazon S3`, `DynamoDB` - Only these two services use a VPC `gateway` endpoint.
 
 __VPN connection__ can be used to establish communications across environments
 (e.g between on-premises and AWS cloud) over the internet.  
@@ -878,6 +1067,20 @@ access your files through CloudFront, not directly from the S3 bucket.
     to access the files in your bucket and serve them to our users.
     - `Not applicable` to Amazon S3 bucket configured as a website endpoint
 
+__CloudFront vs GlobalAccelerator__
+
+TDLR CloudFront is caching based while GlobalAccelerator is routing based
+
+What                  |    CloudFront           | Global Accelerator
+----------------------|-------------------------|-------------------------------
+Caching               | Yes                     | No
+Lambda@Edge           | Yes                     | No
+Configuration updates | 10s of minute           | Immediately
+DNS                   | Requires using Route53 to use Alias record for domain | Does not require the use of Route53
+Origin                | AWS and Non-AWS |
+
+[Soruce](https://mxx.news/aws-global-accelerator-compared-to-cloudfront-and-route53/)
+
 ### Elastic File System (EFS) vs FSx ###
 
 NFS - Network File System
@@ -956,7 +1159,7 @@ __Bulk Data Transfer__
 
 - Online
 
-  * AWS DirectConnect - Private network connections to AWS
+  * AWS Direct Connect - Private network connections to AWS
   * Transfer Acceleration - For S3 enabled apps. Use edge locations to achieve high throughput.
   * Kinesis Data Firehose - Load streaming data into S3
   * DataSync - Transfer of actively used data
@@ -977,6 +1180,15 @@ __Bulk Data Transfer__
 
 - Snowmobile - exabyte scale storage
 
+What              | AWS-Managed VPN       | AWS Direct Connect
+-------------|-----------------------|------------------------------
+Performance  | <4 GB per VPC         | <1 GB, 1 GB, or 10 GB ports Up to 40 GB with Link Aggregation Group (LAG)
+Connectivity | 1VPN Connection to VPC | 2 port connection to multiple VPCs
+Resiliency   | 1 VPN Connection = 2 VPN tunnels | 1 AWS router = redundant connectivity to 1 AWS region
+Costs        | $0.05 per VPN Connection Hour $0.09 per GB data transfer out | $0.2 to $0.3 per GB data transfer out Port hour fees(varies based on port speed)
+
+[Source](https://www.coresite.com/blog/vpn-or-direct-connect-aws-compared)
+
 __CloudFront vs S3 Transfer Acceleration__
 
 - __CloudFront__ - `Content delivery`.
@@ -991,13 +1203,26 @@ instead of the default S3 endpoint.
 
 __Scope of Services__
 
-  - __Region__ - VPC, ASG, ELB, S3, ECS, KMS keys, RDS Option Groups.
-    * ELB within a single AZ or multiple AZs.
+- Services like IAM (user, role, group, SSL certificate), Route 53, STS are Global and available across regions
 
-  - __VPC__ - One Internet gateway per VPC
+- __Region__ - VPC, ASG, ELB, S3, ECS, KMS keys, RDS Option Groups.
+  * ELB within a single AZ or multiple AZs.
 
-  - __AZ__
+- __VPC__ - One Internet gateway per VPC
 
-    * Subnet - Each subnet must reside entirely within one AZ and cannot span zones.
-    * NAT gateway
-    * EBS volumes are automatically replicated within an Availability Zone
+- __AZ__
+
+  * Subnet - Each subnet must reside entirely within one AZ and cannot span zones.
+  * NAT gateway
+  * EBS volumes are automatically replicated within an Availability Zone
+
+    All other AWS services are limited to Region or within Region and do not exclusively copy data across regions unless configured
+    AMI are limited to region and need to be copied over to other region
+    EBS volumes are limited to the Availability Zone, and can be migrated by creating snapshots and copying them to another region
+    Reserved instances can be migrated to another AZ, can not be migrated to another region
+    RDS instances are limited to the region and can be recreated in a different region by either using snapshots or promoting a Read Replica
+    Cluster Placement groups are limited to single Availability Zones
+    Spread Placement groups can span across multiple Availability Zones
+    S3 data is replicated within the region and can be move to another region using cross region replication
+    DynamoDB maintains data within the region can be replicated to another region using DynamoDB cross region replication (using DynamoDB streams) or Data Pipeline using EMR (old method)
+    Redshift Cluster span within an Availability Zone only, and can be created in other AZ using snapshots

@@ -479,6 +479,341 @@ plans to migrate the application to AWS.__
   run a database, or use them in any other way you would use block storage.[37](#ebs-features)
   - Amazon EFS
 
+////////////////////////////////////////////////////////////////////////////////
+
+- __You are deploying a critical monolith application that must be deployed on
+a single web server, as it hasn't been created to work in distributed mode. Still,
+you want to make sure your setup can automatically recover from the failure of an
+AZ. Which of the following solutions is the MOST cost-efficient? (select three)__
+
+  - `Assign an EC2 instance Role to perform the necessary API calls.`
+  - Create a Spot Fleet request.
+  - Create an Application Load Balancer and a target group with the instance(s)
+  of the Auto Scaling Group.
+  - `Create an Elastic IP and use the EC2 user-data script to attach it.`
+  - Create an Auto Scaling Group that spans across 2 AZ, with minimum, maximum
+  and desired of 1, 2 and 2 respectively.
+  - `Create an Auto Scaling Group that spans across 2 AZ, with minimum, maximum
+  and desired of 1, 1 and 1 respectively.`
+
+  Spot Fleets requests would not fit our purpose as we are looking at a critical application. Spot instances can be terminated.
+
+  An ASG with desired=2 would create two instances, and this won't work for us as our monolith application is not made to work with two instances as per the questions.
+
+  So we have an ASG with desired=1, across two AZ, so that if an instance goes down, it is automatically recreated in another AZ.
+
+  Now, between the ALB and the Elastic IP. If we use an ALB, things will still work, but we will have to pay for the provisioned ALB which sends traffic to only one EC2 instance. Instead, to minimize costs, we must use an Elastic IP.
+
+  For that Elastic IP to be attached to our EC2 instance, we must use an EC2 user data script, and our EC2 instance must have the correct IAM permissions to perform the API call, so we need an EC2 instance role.
+
+  References: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html
+
+- __You have a team of developers in your company, and you would like to ensure they can quickly experiment with AWS Managed Policies by attaching them to their accounts, but you would like to prevent them from doing an escalation of privileges, by granting themselves the AdministratorAccess managed policy. How should you proceed?__
+
+  - Create a Service Control Policy on your AWS account that restricts Developers
+  from attaching themselves the AdministratorAccess policy.
+  - Put the developers into an IAM group and define an IAM permission boundary
+  that will restrict the managed policies they can attach to.
+  - `For each developer, define an IAM permission boundary that will restrict the
+  managed policies they can attach to themselves.`
+  - Attach an IAM policy to your developers, that prevents them from attaching
+  the AdministratorAccess policy.
+
+  _AWS Organization is not mentioned in this question, so we can't apply an SCP._
+
+  _Here we have to use a permission boundary. A permissions boundary is an advanced feature for using a managed policy to set the maximum permissions that an identity-based policy can grant to an IAM entity. An entity's permissions boundary allows it to perform only the actions that are allowed by both its identity-based policies and its permissions boundaries. A permission boundary can only be applied to IAM roles or users not groups_  
+
+- __Your company is deploying a website running on Elastic Beanstalk. That website takes over 45 minutes to install and contains both static and dynamic files that must be generated during the installation process. As a Solutions Architect, you would like to bring the time to create a new Instance in your Elastic Beanstalk deployment to being less than 2 minutes. What do you recommend? (select two)__
+
+  - Use EC2 instance data to install application at booth time
+
+- __Your company runs a website for evaluating coding skills. As a Solutions Architect, you've designed the architecture of the website to follow a serverless pattern on the API side, with API Gateway and AWS Lambda. The backend is leveraging an RDS PostgreSQL database and you have chosen to implement caching using a Redis ElastiCache cluster. You would like to increase the security of your authentication to Redis from the Lambda function, leveraging a username and password combination. As a solutions architect, which of the following options would you recommend?__
+
+  - Enable KMS Encryption
+  - `Use Redis Auth`
+  - Create an inbound rule to restrict access to Redis auth only from the lambda security group.
+  - Use an IAM Auth and attach an IAM Role to Lambda.
+
+- __A Solutions Architect is designing a Lambda function that calls an API to
+list all running Amazon RDS instances. How should the request be authorized?__
+
+  A. Create an IAM access and secret key, and store it in the Lambda function.
+  `B. Create an IAM role to the Lambda function with permissions to list all Amazon RDS instances.`
+  `C. Create an IAM role to Amazon RDS with permissions to list all Amazon RDS instances.`
+  D. Create an IAM access and secret key, and store it in an encrypted RDS database.
+
+  I thought B, site says C - Hmmm
+  https://aws.amazon.com/premiumsupport/knowledge-center/users-connect-rds-iam/
+  https://dzone.com/articles/create-an-aws-lambda-function-to-stop-and-start-an
+
+- __A company plans to use an Amazon VPC to deploy a web application consisting of
+an elastic load balancer, a fleet of web and application servers, and an Amazon
+RDS MySQL database that should not be accessible from the Internet. The proposed
+design must be highly available and distributed over two Availability Zones.__
+
+__What would be the MOST appropriate VPC design for this specific use case?__
+
+  A. Two public subnets for the elastic load balancer, two public subnets for the web servers, and two public subnets for Amazon RDS.
+  `B. One public subnet for the elastic load balancer, two private subnets for the web servers, and two private subnets for Amazon RDS.`
+  C. One public subnet for the elastic load balancer, one public subnet for the web servers, and one private subnet for the database.
+  D. Two public subnets for the elastic load balancer, two private subnets for the web servers, and two private subnets for RDS.
+
+  https://docs.aws.amazon.com/elasticloadbalancing/latest/network/network-load-balancers.html#cross-zone-load-balancing
+  >By default, each load balancer node distributes traffic across the registered targets in its Availability Zone only. If you enable cross-zone load balancing, each load balancer node distributes traffic across the registered targets in all enabled Availability Zones.
+
+  Further reading
+
+  https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-manage-subnets.html
+  >We recommend that you add one subnet per Availability Zone for at least two Availability Zones. This improves the availability of your load balancer.
+
+  https://aws.amazon.com/articles/best-practices-in-evaluating-elastic-load-balancing/
+  >You can build fault tolerant applications by placing your Amazon EC2 instances in multiple Availability Zones. To achieve even more fault tolerance with less manual intervention, you can use Elastic Load Balancing. When you place your compute instances behind an elastic load balancer, you improve fault tolerance because the load balancer can automatically balance traffic across multiple instances and multiple Availability Zones. This ensures that only healthy EC2 instances receive traffic.
+
+- __A Solutions Architect is designing a web application that will be hosted on
+Amazon EC2 instances in a public subnet. The web application uses a MySQL
+database in a private subnet. The database should be accessible to database administrators.__
+
+__Which of the following options should the Architect recommend? (Choose two.)__
+
+  A. Create a bastion host in a public subnet, and use the bastion host to connect to the database.
+  `B. Log in to the web servers in the public subnet to connect to the database.`
+  C. Perform DB maintenance after using SSH to connect to the NAT Gateway in a public subnet.
+  `D. Create an IPSec VPN tunnel between the customer site and the VPC, and use the VPN tunnel to connect to the database.`
+  E. Attach an Elastic IP address to the database.
+
+  _Since the EC2 instances are already in a public subnet, you do not need a
+  bastion host. That would be additional administration._
+
+- __A company has a popular multi-player mobile game hosted in its on-premises
+datacenter. The current infrastructure can no longer keep up with demand and the
+company is considering a move to the cloud.__
+
+__Which solution should a Solutions Architect recommend as the MOST scalable and
+cost-effective solution to meet these needs?__
+
+  A. Amazon EC2 and an Application Load Balancer
+  B. Amazon S3 and Amazon CloudFront
+  _Compute missing__
+  C. Amazon EC2 and Amazon Elastic Transcoder
+  _Plain wrong_
+  D. AWS Lambda and Amazon API Gateway
+  _Storage missing_
+
+  Meanwhile, the most scalable and cost efficient is Amazon S3.
+
+  https://aws.amazon.com/blogs/gametech/game-developers-guide-to-the-aws-sdk/
+  https://d0.awsstatic.com/whitepapers/aws-scalable-gaming-patterns.pdf
+
+- __An organization regularly backs up their application data. The application backups are required to be stored on Amazon S3 for a certain amount of time. The backups should be accessed instantly in the event of a disaster recovery.__
+
+__Which of the following Amazon S3 storage classes would be the MOST cost-effective option to meet the needs of this scenario?__
+
+  A. Glacier Storage Class
+  B. Standard Storage Class
+  `C . Standard Infrequent Access (IA)`
+  D. Reduced Redundancy Class (RRS)
+
+  RRS is cheaper but; Is it deprecated?
+
+- __An organization runs an online voting system for a television program. During broadcasts, hundreds of thousands of votes are submitted within minutes and sent to a front-end fleet of auto-scaled Amazon EC2 instances. The EC2 instances push the votes to an RDBMS database. The database is unable to keep up with the front-end connection requests.
+What is the MOST efficient and cost-effective way of ensuring that votes are processed in a timely manner?__
+
+  A. Each front-end node should send votes to an Amazon SQS queue. Provision worker instances to read the SQS queue and process the message information into RDBMS database.
+  B. As the load on the database increases, horizontally-scale the RDBMS database with additional memory-optimized instances. When voting has ended, scale down the additional instances.
+  C. Re-provision the RDBMS database with larger, memory-optimized instances. When voting ends, re-provision the back-end database with smaller instances.
+  D. Send votes from each front-end node to Amazon DynamoDB. Provision worker instances to process the votes in DynamoDB into the RDBMS database.
+
+  I say C; Site says A - Hmmm
+
+- __An application publishes Amazon SNS messages in response to several events. An AWS Lambda function subscribes to these messages. Occasionally the function will fail while processing a message, so the original event message must be preserved for root cause analysis.
+What architecture will meet these requirements without changing the workflow?__
+
+  A. Subscribe an Amazon SQS queue to the Amazon SNS topic and trigger the Lambda function from the queue.
+  B. Configure Lambda to write failures to an SQS Dead Letter Queue.
+  C. Configure a Dead Letter Queue for the Amazon SNS topic.
+  D. Configure the Amazon SNS topic to invoke the Lambda function synchronously.
+
+  A dead-letter queue is attached to an Amazon SNS subscription (rather than a topic)
+  A dead-letter queue associated with an Amazon SNS subscription is an ordinary Amazon SQS queue.
+  https://docs.aws.amazon.com/sns/latest/dg/sns-dead-letter-queues.html
+
+- __A CRM web application was written as a monolith in PHP and is facing growth issues because of performance bottlenecks. The CTO wants to re-engineer towards a microservices based approach for their website and expose their website from the same load balancer, linked to different target groups with different URLs: checkout.mycorp.com, www.mycorp.com, mycorp.com/profile and mycorp.com/search. It would like to expose all these URLs as HTTPS endpoints for security purposes. As a solutions architect, which of the following would you recommend as a solution for the given use-case?__
+
+  - Wild card SSL certificate
+  - HTTP to HTTPs redirect
+  - Use SSL certificates with SNI
+  - Change the ELB SSL security policy.
+
+- __A Solutions Architect is building an application that stores object data.
+Compliance requirements state that the data stored is immutable. Which service
+meets these requirements?__
+
+  A. Amazon S3
+  `B. Amazon Glacier`
+  C. Amazon EFS
+  D. AWS Storage Gateway
+
+  _Glacier provides immutability, whereas S3 provides object lock (effectively
+  write protection). Write protection differs from immutability in that write
+  protection can be removed (e.g by mistake). Remember this is a compliance
+  requirement - Auditors could easily shoot down your object lock argument_
+
+- __A Solutions Architect needs to allow developers to have SSH connectivity to
+web servers. The requirements are as follows:__
+
+  - Limit access to users origination from the corporate network.
+  - Web servers cannot have SSH access directly from the Internet.
+  - Web servers reside in a private subnet.
+
+__Which combination of steps must the Architect complete to meet these requirements? (Choose two.)__
+
+  - Create a bastion host that authenticates users against the corporate directory.
+  - Create a bastion host with security group rules that only allow traffic from the corporate network.
+  - Attach an IAM role to the bastion host with relevant permissions.
+  - Configure the web servers' security group to allow SSH traffic from a bastion host.
+  - Deny all SSH traffic from the corporate network in the inbound network ACL.
+
+  I chose B and D, Site says A and C - Hmmm
+
+  B& D
+  Why it is not:
+  A - Limit access based on corporate 'network' not directory(developers can still use their credentials and login from anywhere on the internet)
+  C - IAM role not required for this scenario
+  E - Inbound traffic from corporate network should be allowed, just not directly (hence we are using bastion host)
+
+  At first I agreed with B & D but I changed my mind after paying very close
+  attention to the part of the requirements that says "Limit access to users
+  origination from the corporate network" and "Web servers reside in a private
+  subnet", which I interprete as developers acccessing from anywhere to first
+  get access to the corporate network and from there they can then connect to
+  the web servers via SSH. So create a bastion host with IAM role with relevant
+  permissions to allow the developers (Option C) and then configure the bastion
+  host to authenticate the users against corporate directory (Option A).
+  The web servers' security group should not be allowing SSH traffic from a
+  bastion host but instead from the corporate network (D is wrong). The bastion
+  host should not be configured to only allow traffic from the corporate
+  network but instead from the developers (B is wrong). B and D could have
+  been right if we are assuming the developers are working on premise from
+  the corporate network in which case there would be no need for the bastion
+  host as they might as well just connect directly to the web servers.
+
+- __Your company is building a video streaming service accessible to users who have paid an ongoing subscription. The users who have paid their subscription have their data in DynamoDB. You would like to expose the users to a serverless architecture allowing them to request the video files that sit on S3 and are distributed by CloudFront, protected by an origin access identity (OAI).__
+
+__What do you recommend? (select two)__
+
+  - `Generate a CloudFront signed URL`
+  - Use AWS Lambda to generate the URL
+  - Use API Gateway to generate the URL
+  - Generate an S3 pre-signed URL
+
+  _Generating S3 pre-signed URLs would bypass CloudFront, therefore we should use
+  CloudFront signed URLs. To generate that URL we must code, and Lambda is the
+  perfect tool for running that code on the fly._
+
+- __You are looking to build an index of your files in S3, using Amazon RDS PostgreSQL. To build this index, it is necessary to read the first 250 bytes of each object in S3, which contains some metadata about the content of the file itself. There is over 100,000 files in your S3 bucket, amounting to 50TB of data. how can you build this index efficiently?__
+
+  - Use the RDS import feature to load the data from S3 to PostgreSQL, and run
+  an SQL query to build the index.
+  - Create an application that will traverse the S3 bucket. Use S3 select to get
+  first 250 bytes, and store that information in RDS.
+  - Create an application that will traverse the S3 bucket, read all the files
+  one by one, extract the first 250 bytes, and store that information in RDS.
+  - `Create an application that will traverse the S3 bucket, issue a Byte Range
+  Fetch for the first 250 bytes, and store that information in RDS.`
+
+  You cannot import data from S3 into RDS
+
+  If you build an application that loads all the files from S3, that would work, but you would read 50TB of data and that may be very expensive and slow.
+
+  S3 Select is a new Amazon S3 capability designed to pull out only the data you need from an object, which can dramatically improve the performance and reduce the cost of applications that need to access data in S3.
+
+  S3 select cannot be used to get the first bytes of a file, unfortunately.
+
+  Using the Range HTTP header in a GET Object request, you can fetch a byte-range from an object, transferring only the specified portion. You can use concurrent connections to Amazon S3 to fetch different byte ranges from within the same object. This helps you achieve higher aggregate throughput versus a single whole-object request. Fetching smaller ranges of a large object also allows your application to improve retry times when requests are interrupted.
+
+  A byte-range request is a perfect way to get the beginning of a file and ensuring we remain efficient during our scan of our S3 bucket.
+
+  Reference: https://docs.aws.amazon.com/AmazonS3/latest/dev/optimizing-performance-guidelines.html#optimizing-performance-guidelines-get-range
+
+- __As part of securing an API layer built on Amazon API gateway, a Solutions Architect has to authorize users who are currently authenticated by an existing identity provider. The users must be denied access for a period of one hour after three unsuccessful attempts.__
+
+__How can the Solutions Architect meet these requirements?__
+
+  - Use AWS IAM authorization and add least-privileged permissions to each respective IAM role.
+  - `Use an API Gateway custom authorizer to invoke an AWS Lambda function to validate each user's identity.`
+  - Use Amazon Cognito user pools to provide built-in user management.
+  - Use Amazon Cognito user pools to integrate with external identity providers.
+
+  _The users are already authenticated_
+  _Locking users out for a period of one hour after 3 unsuccessful attempts cannot
+  be achieved using Cognito__
+
+  Cognito has fixed lockout policy
+  https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-authentication-flow.html
+
+  Lambda - custom authoriser can set specific lockout rules.
+
+  https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html
+  >A Lambda authorizer (formerly known as a custom authorizer) is an API Gateway feature that uses a Lambda function to control access to your API.
+
+  >A Lambda authorizer is useful if you want to implement a custom authorization scheme that uses a bearer token authentication strategy such as OAuth or SAML, or that uses request parameters to determine the caller's identity.
+
+  >When a client makes a request to one of your API's methods, API Gateway calls your Lambda authorizer, which takes the caller's identity as input and returns an IAM policy as output
+
+- __A Solutions Architect is about to deploy an API on multiple EC2 instances
+in an Auto Scaling group behind an ELB. The support team has the following
+operational requirements:__
+
+  1. They get an alert when the requests per second go over 50,000
+  2. They get an alert when latency goes over 5 seconds
+  3. They can validate how many times a day users call the API requesting highly-sensitive data
+
+__Which combination of steps does the Architect need to take to satisfy these
+operational requirements? (Select two.)__
+
+  - Ensure that CloudTrail is enabled.
+  - Create a custom CloudWatch metric to monitor the API for data access.
+  - `Configure CloudWatch alarms for any metrics the support team requires.`
+  - `Ensure that detailed monitoring for the EC2 instances is enabled.`
+  - Create an application to export and save CloudWatch metrics for longer term trending analysis.
+
+  We don't need cloud trail at all... The API mentioned in the question is different, cloud trail does monitor the API calls for the Aws services.
+
+  The need for detailed monitoring is not obvious. There is no mention of how frequently the metrics should be logged. Detailed monitoring will give you 1-min logs instead of 5. As AWS documentation says: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html
+
+- __You have multiple AWS accounts managed by AWS Organization and you would like to ensure all EC2 instances in all these accounts can communicate privately. Which of the following solutions provides the capability at the CHEAPEST cost?__
+
+  - Create a VPC peering connection between all VPCs
+  - Create a PrivateLink between all the EC2 instances.
+  - Create a Transit Gateway and link all the VPCs in all the accounts together.
+  - `Create a VPC in an account and share it with the other accounts using
+  Resource Access Manager.`
+
+  _AWS Transit Gateway is a service that enables customers to connect their Amazon Virtual Private Clouds (VPCs) and their on-premises networks to a single gateway. A Transit Gateway will work, but will be an expensive solution. Here we want to minimize cost._
+
+  _AWS Resource Access Manager (RAM) is a service that enables you to easily and securely share AWS resources with any AWS account or within your AWS Organization. You can share AWS Transit Gateways, Subnets, AWS License Manager configurations, and Amazon Route 53 Resolver rules resources with RAM. RAM eliminates the need to create duplicate resources in multiple accounts, reducing the operational overhead of managing those resources in every single account you own. You can create resources centrally in a multi-account environment, and use RAM to share those resources across accounts in three simple steps: create a Resource Share, specify resources, and specify accounts. RAM is available to you at no additional charge._
+
+  _The correct solution is to share a VPC using RAM. This will allow all EC2 instances to be deployed in the same VPC (although from different accounts) and easily communicate with one another._
+
+- __You are establishing a monitoring solution for desktop systems, that will be sending telemetry data into AWS every 1 minute. Data for each system must be processed in order, independently, and you would like to scale the number of consumers to be possibly equal to the number of desktop systems that are being monitored. What do you recommend?__
+
+  - Use an SQS FIFO queue, and send the telemetry data as is.
+  - `Use an SQS FIFO queue and make sure the telemetry data is sent with a
+  Group ID attribute representing the value of the Desktop ID.`
+  - Use a Kinesis Data Stream, and send the telemetry data with a Partition ID
+  that uses the value of the Desktop ID.
+  - Use an SQS queue, and send the telemetry data as is.
+
+  _The following requirement rules out Kinesis: "would like to scale the number of consumers to be possibly equal to the number of desktop systems that are being monitored"_
+
+  _We can only have as many consumers as shards in Kinesis_
+
+  _The default shard quota is 500 shards per data stream for the following AWS regions: US East (N. Virginia), US West (Oregon), and Europe (Ireland). For all other regions, the default shard quota is 200 shards per data stream._
+
+
+Questions 81 and 89 -> Unresolved ?
+https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate/view/9/
+
 ### References ###
 
 - <a name="elb-connection-draining">24a</a> - [AWS - ELB connection draining](https://aws.amazon.com/blogs/aws/elb-connection-draining-remove-instances-from-service-with-care/)

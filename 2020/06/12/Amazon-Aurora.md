@@ -17,6 +17,10 @@ into Aurora by:
 
 __Aurora cluster__
 
+__Aurora Cluster Architecture__
+<br/>![Aurora Cluster Architecture](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/images/AuroraArch001.png)
+<br/>_Aurora Cluster Architecture. Source: docs.aws.amazon.com/AmazonRDS_
+
 - 1 primary instance + up to 15 replicas (read only) sharing same cluster volume.
 - Cluster volume:
 
@@ -29,7 +33,11 @@ __Aurora cluster__
 In this case, the distinction between primary instance and Replica doesn't apply.
 
   * To create a multi-master cluster, you choose Multiple writers under Database features when creating the cluster.
-  
+
+__2 Node Aurora Multi-master Architecture__
+<br/>![2 Node Aurora Multi-master Architecture](https://d2908q01vomqb2.cloudfront.net/887309d048beef83ad3eabf2a79a64a389ab1c9f/2019/06/11/A.jpg)  
+<br/>_2 Node Aurora Multi-master Architecture. Source: aws.amazon.com/blogs/database_
+
 __Notes__
 
 - Aurora doesn't support local zones.
@@ -290,44 +298,187 @@ A stream of database activity is pushed from Aurora to an Amazon Kinesis data st
 
 Database activity streams require use of AWS Key Management Service (AWS KMS). AWS KMS is required because the activity streams are always encrypted.
 
+__Aurora Serverless__
+
+When you work with Amazon Aurora without Aurora Serverless (provisioned DB
+clusters), you can choose your DB instance class size and create Aurora
+Replicas to increase read throughput. If your workload changes, you can modify
+the DB instance class size and change the number of Aurora Replicas.
+
+On the other hand,
+
+__Aurora Serverless__ allows you create a database endpoint without specifying the
+DB instance class size. You set the minimum and maximum capacity. Aurora
+Serverless database endpoint connects to a proxy fleet that routes the
+workload to a fleet of resources that are automatically scaled.
+
+- Connections are continous.
+- Resources scaled automatially based on minimum and maximum capacity.
+- Compatible with existing database client applications.
+- Connections are managed
+- Scaling is rapid because Aurora Serverless uses a pool of warm resources.
+- Storage and processing are scaled separately.  
+
+Aurora Capacity Unit (ACU) is a combination of processing and memory capacity.
+
+Aurora Serverless automatically creates scaling rules for thresholds for CPU
+utilization, connections, and available memory based on your settings for
+minimum and maximum ACU.
+
+- You can choose to pause your Aurora Serverless DB cluster after a given
+amount of time with no activity. `5 minutes` is the default.
+- Scales to zero capacity when no connections for 5 minute period.
+- Cool down period for scaling down:
+
+  * `15 minutes` - after scaling up.
+  * `5 minutes` - after scaling down. (310 seconds)
+
+- No cool down period for scaling up.  
+
+When you change the capacity, of an Aurora Serverless DB cluster, it tries to
+find a scaling point for the change. If it can't find a scaling point, it times
+out. You can specify one of the following actions to take when a capacity change
+times out:
+
+- Force the capacity change – Set the capacity to the specified value as soon as possible.
+
+- Roll back the capacity change – Cancel the capacity change.
+
+- Maintenance windows don't apply to Aurora Serverless .
+
+>Aurora Serverless and Snapshots - The cluster volume for an Aurora Serverless
+cluster is always encrypted. You can choose the encryption key, but not turn off
+encryption. To copy or share a snapshot of an Aurora Serverless cluster,
+you encrypt the snapshot using your own KMS key.
+
+Aurora Serverless and Failover
+
+>If the DB instance for an Aurora Serverless DB cluster becomes unavailable or the Availability Zone (AZ) it is in fails, Aurora recreates the DB instance in a different AZ. We refer to this capability as automatic multi-AZ failover.
+
+>This failover mechanism takes longer than for an Aurora Provisioned cluster. The Aurora Serverless failover time is currently undefined because it depends on demand and capacity availability in other AZs within the given AWS Region.
+
+>Because Aurora separates computation capacity and storage, the storage volume for the cluster is spread across multiple AZs. Your data remains available even if outages affect the DB instance or the associated AZ.
+
 ### Takeaways ###
 
 - Aurora Properties:
+
   * Auto-scales up to 64TB per database instance.
   * Point-in-time recovery
   * Continuous backup to Amazon S3
   * Replication across three Availability Zones (AZs).
+
 - 1 primary instance + up to 15 replicas (read only) sharing same cluster volume.
+
 - Cluster volume is multi-AZ. Each AZ has a copy of DB cluster data.
+
 - For multi-master clusters, all DB instances have read-write capability.
+
 - Each Aurora DB cluster has one cluster endpoint and one primary DB instance.
+
 - Crash recovery done asynchronously on parallel threads, so that your database
-is open and available immediately after a crash
+is open and available immediately after a crash.
+
 - Reduce recovery time by setting the `binlog_format` parameter to `OFF` if
 you don't need the binary log for external replication.
+
 - Supplying a value for an RDS resource tag key is optional.
+
 - A secondary cluster must be in a different AWS Region than the primary cluster.
+
 - The following features aren't supported for Aurora global databases:
-  Cloning, Backtrack, Parallel query, Aurora Serverless.
+  `Cloning`, `Backtrack`, `Parallel query`, `Aurora Serverless`.
+
 - Replica lag: Regional < 1 second,  Zonal < 100 milliseconds
+
 - If you stop your DB cluster, Aurora automatically starts your DB cluster after
 seven days so that it doesn't fall behind any required maintenance updates.
+
 - You can't stop an individual Aurora DB instance.
+
 - 300 seconds = Default scale-in or a scale-out cooldown period.
+
 - 1 - 35 days - The rang you can specify for retention period of automatic
 backups, when you create or modify a DB cluster.
-- You can't restore a DB cluster from a DB cluster snapshot that is both shared and encrypted. Instead, you can make a copy of the DB cluster snapshot and restore the DB cluster from the copy.
-- If you are copying an encrypted snapshot that has been shared from another AWS account, you must have access to the KMS encryption key that was used to encrypt the snapshot.
+
+- You can't restore a DB cluster from a DB cluster snapshot that is both shared
+and encrypted. Instead, you can make a copy of the DB cluster snapshot and
+restore the DB cluster from the copy.
+
+- If you are copying an encrypted snapshot that has been shared from another
+AWS account, you must have access to the KMS encryption key that was used to encrypt the snapshot.
+
 - You can only copy a shared DB cluster snapshot, whether encrypted or not, in the same AWS Region.
+
 - You can't share encrypted snapshots as public.
+
 - You can't share a snapshot that has been encrypted using the default AWS
 KMS encryption key of the AWS account that shared the snapshot.
+
 - Spatial indexing improves query performance on large datasets for queries on spatial data.
+
 - You can use the SPATIAL INDEX keywords in `CREATE TABLE`, `ALTER TABLE`,
 `CREATE INDEX` statements.
-- To optimize performance, allocate enough RAM so that your working set resides almost completely in memory.
-- Set TTL value of less than 30 seconds, if your client application is caching the Domain Name Service (DNS) data of your DB instances.
-- The collection, transmission, storage, and subsequent processing of the stream of database activity is beyond the access of the DBAs that manage the database.
-- A stream of database activity is pushed from Aurora to an Amazon Kinesis data stream that is created on behalf of your Aurora DB cluster.
+
+- To optimize performance, allocate enough RAM so that your working set resides
+almost completely in memory.
+
+- Set TTL value of less than 30 seconds, if your client application is caching
+the Domain Name Service (DNS) data of your DB instances.
+
+- The collection, transmission, storage, and subsequent processing of the stream
+of database activity is beyond the access of the DBAs that manage the database.
+
+- A stream of database activity is pushed from Aurora to an Amazon Kinesis data
+stream that is created on behalf of your Aurora DB cluster.
+
 - Database activity streams require use of AWS Key Management Service (AWS KMS).
+
 - AWS KMS is required because the activity streams are `always encrypted`.
+
+- __Aurora Serverless__ allows you create a database endpoint without specifying the
+DB instance class size. You set the minimum and maximum capacity. Aurora
+Serverless auto scales.
+
+  * Compatible with existing database client applications.
+
+  * Connections are managed
+
+  * Scaling is rapid because Aurora Serverless uses a pool of warm resources.
+
+  * Storage and processing are scaled separately.  
+
+- You can choose to pause your Aurora Serverless DB cluster after a given
+amount of time with no activity. `5 minutes` is the default.
+
+- Cool down period for scaling down Aurora Serverless:
+
+  * `15 minutes` - after scaling up.
+
+  * `5 minutes` - after scaling down. (310 seconds)
+
+- No cool down period for scaling up Aurora Serverless.  
+
+- When a Aurora Serverless capacity change times out, you can specify one of the following:
+
+  * Force the capacity change – Set the capacity to the specified value as soon as possible.
+
+  * Roll back the capacity change – Cancel the capacity change.
+
+- Maintenance windows don't apply to Aurora Serverless .
+
+- Cluster volume for an Aurora Serverless cluster is always encrypted. You can
+choose the encryption key.
+
+- To copy or share a snapshot of an Aurora Serverless cluster,
+you encrypt the snapshot using your own KMS key.
+
+- If Aurora Serverless DB cluster becomes unavailable or the AZ it is in fails,
+Aurora recreates the DB instance in a different AZ. Amazon refers to this
+as `Automatic multi-AZ failover`. _It takes longer than provisioned cluster_
+
+### References ###
+
+- [Amazon Aurora User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+
+- [AWS Blogs - Building Highly Available MySQL Applications](https://aws.amazon.com/blogs/database/building-highly-available-mysql-applications-using-amazon-aurora-mmsr/)

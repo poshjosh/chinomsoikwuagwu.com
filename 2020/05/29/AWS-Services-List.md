@@ -19,6 +19,24 @@ lang: "en-us"
 - SQL - Structured Query Language
 - VPC - Virtual Private Cloud
 
+__Resource Access Manager (RAM)__ Securely share AWS resources with any AWS
+account or within your AWS Organization. You can share:
+
+- AWS App Mesh
+- Amazon Aurora - DB Clusters
+- AWS CodeBuild
+- Amazon EC2 - Capacity reservations, Customer owned IPv4 addresses, dedicated
+hosts, prefix lists, traffic mirror targets, transit gateway.
+- Amazon EC2 Image Builder
+- AWS License Manager
+- AWS Resource Groups
+- Amazon Route 53
+
+- Resources are shared at no additional cost.
+- You can specify IAM policies to control access to resources shared with you.
+- All calls to RAM APIs are logged in AWS CloudTrail.
+- CloudWatch Events are triggered whenever there are changes to Resource Shares.
+
 ### Analytics ###
 
 __Amazon Athena__ - `serverless`, `query S3`
@@ -210,7 +228,244 @@ __Reserved Instance (RI) Reporting__
 __Amazon Managed Blockchain__ `fully managed`
 <br/>Create and manage scalable blockchain networks using the popular open source frameworks Hyperledger Fabric and Ethereum.
 
-Blockchain makes it possible to build applications where multiple parties can execute transactions without the need for a trusted, central authority. Today, building a scalable blockchain network with existing technologies is complex to set up and hard to manage. To create a blockchain network, each network member needs to manually provision hardware, install software, create and manage certificates for access control, and configure networking components. Once the blockchain network is running, you need to continuously monitor the infrastructure and adapt to changes, such as an increase in transaction requests, or new members joining or leaving the network.AmazonManaged Blockchain is a fully managed service that allows you to set up and manage a scalable blockchain network with just a few clicks. Amazon Managed Blockchain eliminates the overhead required to create the network, and automatically scales to meet thedemands of thousands of applications running millions of transactions. Once your network is up and running, Managed Blockchain makes it easy to manage and maintain your blockchain network. It manages your certificates, lets you easily invite new members to join the network, and tracks operational metrics such as usage of compute, memory, and storage resources. In addition, Managed Blockchain can replicate an immutable copy of your blockchain network activity into Amazon Quantum Ledger Database (QLDB), a fully managed ledger database. This allows you to easily analyze the network activity outside the network and gain insights into trends.
+### Business Applications ###
+
+__Alexa for Business__
+<br/>Enables organizations and employees to use Alexa to get more work done.
+
+__Amazon WorkDocs__ `fully managed`, `documents`, `comments`
+<br/>Secure enterprise storage and sharing service with strong administrative
+controls and feedback capabilities that improve user productivity.
+
+__Amazon WorkMail__ `managed`, `email & calender`
+<br/>Secure, managed business email and calendar service with support for existing
+desktop and mobile email client applications.
+
+__Amazon Chime__ `video conferencing`, `chat`
+<br/>Communications service you can use for online meetings, video conferencing,
+calls, chat, and to share content, both inside and outside your organization.
+
+### Compute ###
+
+__Amazon Elastic Compute Cloud (Amazon EC2)__
+<br/>Web service that provides secure, resizable compute capacity in the cloud.
+It is designed to make webscale computing easier for developers.
+
+__Amazon EC2 Auto Scaling__
+<br/>Automatically add or remove EC2 instances according to conditions you
+define.
+
+__Amazon Elastic Container Registry (Amazon ECR)__ `fully-managed`, `docker registry`
+<br/>Makes it easy for developers to store, manage, and deploy Docker container images.
+
+Amazon Elastic Container Service (Amazon ECS) is a highly scalable, highperformance container orchestration service that supports Docker containers
+and allows you to easily run and scale containerized applications on AWS.
+
+Amazon Elastic Container Service for Kubernetes (Amazon EKS) makes it easy
+to deploy, manage, and scale containerized applications using Kubernetes on
+AWS.
+
+__Amazon Lightsail__ `easily launch virtual private servers`
+<br/>Designed to be the easiest way to launch and manage a
+virtual private server with AWS. Lightsail plans include everything you need to
+jumpstart your project – a virtual machine, SSD- based storage, data transfer,
+DNS management, and a static IP address – for a low, predictable price.
+
+__AWS Batch__ `batch computing jobs`
+<br/>Enables developers, scientists, and engineers to easily and
+efficiently run hundreds of thousands of batch computing jobs on AWS. AWS
+Batch dynamically provisions the optimal quantity and type of compute
+resources (e.g., CPU or memory-optimized instances) based on the volume and
+specific resource requirements of the batch jobs submitted.
+
+AWS Elastic Beanstalk is an easy-to-use service for deploying and scaling web
+applications and services developed with Java, .NET, PHP, Node.js, Python,
+Ruby, Go, and Docker on familiar servers such as Apache, Nginx, Passenger,
+and Internet Information Services (IIS).
+
+AWS Fargate is a compute engine for Amazon ECS that allows you to
+run containers without having to manage servers or clusters.
+
+AWS Lambda lets you run code without provisioning or managing servers. You
+pay only for the compute time you consume—there is no charge when your
+code is not running.
+
+__The AWS Serverless Application Repository__
+<br/>Quickly deploy code
+samples, components, and complete applications for common use cases such
+as web and mobile back-ends, event and data processing, logging, monitoring,
+IoT, and more. Each application is packaged with an AWS Serverless
+Application Model (SAM) template that defines the AWS resources used.
+
+__AWS Outposts__
+<br/>Bring native AWS services, infrastructure, and operating models
+to virtually any data center, co-location space, or on-premises facility. You can
+use the same APIs, the same tools, the same hardware, and the same
+functionality across on-premises and the cloud to deliver a truly consistent
+hybrid experience. Outposts can be used to support workloads that need to
+remain on-premises due to low latency or local data processing needs.
+
+
+
+
+
+__Amazon Timestream__ is a fast, scalable, fully managed time series database
+service for IoT and operational applications that makes it easy to store and
+analyze trillions of events per day at 1/10th the cost of relational databases.
+
+__Amazon DocumentDB__ (with MongoDB compatibility) `fully managed`
+<br/>Fast, scalable, highly available, and fully managed document database
+service that supports MongoDB workloads.
+
+### Desktop and App Streaming ###
+
+__Amazon WorkSpaces__ `fully managed`, `desktop`
+<br/>Cloud desktop service. You can use Amazon WorkSpaces to provision either Windows or Linux desktops in
+just a few minutes and quickly scale to provide thousands of desktops to
+workers across the globe.
+
+__Amazon AppStream 2.0__ `fully managed`, `application streaming`
+<br/>Application streaming service. You centrally manage your desktop applications on AppStream 2.0 and securely
+deliver them to any computer.
+
+### Developer Tools ###
+
+__AWS CodeCommit__ `fully managed`, `git`
+<br/>Fully-managed source control service that hosts secure
+Git-based repositories.
+
+CodeBuild
+
+CodeDeploy
+
+CodePipeline
+
+__AWS CodeStar__
+<br/>Enables you to quickly develop, build, and deploy applications
+on AWS. AWS CodeStar provides a unified user interface, enabling you to
+easily manage your software development activities in one place. With AWS
+CodeStar, you can set up your entire continuous delivery toolchain in minutes,
+allowing you to start releasing code faster.
+
+__Amazon Corretto__ `Java Development Kit`
+<br/>No-cost, multiplatform, production-ready distribution of the
+Open Java Development Kit (OpenJDK). Corretto comes with long-term support
+that will include performance enhancements and security fixes.
+
+__AWS Cloud9__ `IDE`
+<br/>Cloud-based integrated development environment (IDE)
+
+__AWS X-Ray__ `monitor`, `distributed applications`
+<br/>Helps developers analyze and debug distributed applications in
+production or under development, such as those built using a microservices
+architecture.
+
+### Game Tech ###
+
+__Amazon GameLift__ `managed`, `deploy game servers`
+<br/>Managed service for deploying, operating, and scaling
+dedicated game servers for session-based multiplayer games.
+
+__Amazon Lumberyard__ `3D game engine`
+<br/>Free, cross-platform, 3D game engine for you to
+create the highest-quality games, connect your games to the vast compute and
+storage of the AWS Cloud, and engage fans on Twitch.
+
+### Internet of Things (IoT) ###
+
+__AWS IoT Core__ `managed`
+<br/>Cloud service that lets connected devices easily
+and securely interact with cloud applications and other devices.
+
+__Amazon FreeRTOS (a:FreeRTOS)__ `OS for microcontrollers`
+<br/>Operating system for microcontrollers
+that makes small, low-power edge devices easy to program, deploy, secure,
+connect, and manage.
+
+__AWS IoT Greengrass__
+<br/>Seamlessly extends AWS to devices so they can act
+locally on the data they generate, while still using the cloud for management,
+analytics, and durable storage. With AWS IoT Greengrass, connected devices
+can run AWS Lambda functions, execute predictions based on machine
+learning models, keep device data in sync, and communicate with other devices
+securely – even when not connected to the Internet.
+
+__AWS IoT 1-Click__ `IoT`, `trigger Lambda`
+<br/>ervice that enables simple devices to trigger AWS
+Lambda functions that can execute an action.
+
+__AWS IoT Analytics__ `fully-managed`
+<br/?Service that makes it easy to run and
+operationalize sophisticated analytics on massive volumes of IoT data
+
+The AWS IoT Button is a programmable button based on the Amazon Dash
+Button hardware. This simple Wi-Fi device is easy to configure, and it’s
+designed for developers to get started with AWS IoT Core, AWS Lambda,
+Amazon DynamoDB, Amazon SNS, and many other Amazon Web Services
+without writing device-specific code.
+
+AWS IoT Device Defender is a fully managed service that helps you secure
+your fleet of IoT devices. AWS IoT Device Defender continuously audits your
+IoT configurations to make sure that they aren’t deviating from security best
+practices.
+
+
+### Machine Learning###
+
+__Amazon SageMaker__ `fully-managed`, `machine learning`
+<br/>Machine learning platform that enables developers and
+data scientists to quickly and easily build, train, and deploy machine learning
+models at any scale.
+
+__Amazon Comprehend__ `natural language processing (NLP)`
+<br/>Natural language processing (NLP) service that uses
+machine learning to find insights and relationships in text. No machine learning
+experience required.
+
+__Amazon Lex__ `speech to text`
+<br/>Service for building conversational interfaces into any
+application using voice and text. Lex provides the advanced deep learning
+functionalities of automatic speech recognition (ASR) for converting speech to
+text, and natural language understanding (NLU) to recognize the intent of the
+text.
+
+__Amazon Polly__ `text to speech`
+<br/>Service that turns text into lifelike speech. Polly lets you
+create applications that talk
+
+__Amazon Rekognition__ `image analysis`
+<br/>A service that makes it easy to add image analysis to
+your applications. With Rekognition, you can detect objects, scenes, and faces
+in images.
+
+__Amazon Translate__ `language text translation`
+<br/>Neural machine translation service that delivers fast,
+high-quality, and affordable language translation.
+
+__Amazon Transcribe__ `speech to text`, `development`
+<br/>Automatic speech recognition (ASR) service that
+makes it easy for developers to add speech-to-text capability to their
+applications.
+
+Amazon Elastic Inference allows you to attach low-cost GPU-powered
+acceleration to Amazon EC2 and Amazon SageMaker instances to reduce the
+cost of running deep learning inference by up to 75%. Amazon Elastic Inference
+supports TensorFlow, Apache MXNet, and ONNX models, with more
+frameworks coming soon.
+
+__Amazon Forecast__ `fully managed`, `prediction`
+<br/>Fully managed service that uses machine learning to
+deliver highly accurate forecasts.
+
+__Amazon Textract__ `optical character recognition`
+<br/>Service that automatically extracts text and data from
+scanned documents. Amazon Textract goes beyond simple optical character
+recognition (OCR) to also identify the contents of fields in forms and information
+stored in tables
+
+Amazon Personalize is a machine learning service that makes it easy for
+developers to create individualized `recommendations` for customers using their
+applications.
 
 ### References ###
 

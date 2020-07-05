@@ -376,6 +376,14 @@ IP                        | Static                 | Flexible
 Supported protocols       | TCP, TLS, UDP, TCP_UDP | HTTP, HTTPS
 Support for lamda targets | No                     | Yes
 SSL server certificate    | Exactly One            | At least one
+Web access via            | fixed IP               | DNS (URL)
+
+Network Load Balancers expose a fixed IP to the public web, therefore allowing
+your application to be predictably reached using these IPs, while allowing you
+to scale your application behind the Network Load Balancer using an ASG.
+
+Application and Classic Load Balancers expose a fixed DNS (=URL) rather than
+the IP address. So these are incorrect options for the given use-case.
 
 ### Load Balancing and Availability Zones ###
 
