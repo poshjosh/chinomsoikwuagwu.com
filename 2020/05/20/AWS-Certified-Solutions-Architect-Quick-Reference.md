@@ -7,6 +7,24 @@ tags: ["AWS", "FAQ", "EC2", "VPC", "hibernate", "stop", "VPC traffic", "peering"
 lang: "en-us"
 ---
 
+__Resource Access Manager (RAM)__ Securely share AWS resources with any AWS
+account or within your AWS Organization. You can share:
+
+- AWS App Mesh
+- Amazon Aurora - DB Clusters
+- AWS CodeBuild
+- Amazon EC2 - Capacity reservations, Customer owned IPv4 addresses, dedicated
+hosts, prefix lists, traffic mirror targets, transit gateway.
+- Amazon EC2 Image Builder
+- AWS License Manager
+- AWS Resource Groups
+- Amazon Route 53
+
+- Resources are shared at no additional cost.
+- You can specify IAM policies to control access to resources shared with you.
+- All calls to RAM APIs are logged in AWS CloudTrail.
+- CloudWatch Events are triggered whenever there are changes to Resource Shares.
+
 __AWS SFTP__
 
 Fully managed service enabling transfers over SFTP, while the data is stored
@@ -240,6 +258,10 @@ different AZ. In case of an infrastructure failure, Amazon RDS performs an
 - Multi-AZ replication - `synchronous`; - Read replica - `asynchronous`.
 
 - The type of storage for a read replica is independent of that on the master DB instance.
+
+- You cannot use a standby replica to serve read traffic. Multi-AZ maintains a
+standby replica for HA/failover. It is available for use only when RDS promotes
+the standby instance as the primary. 
 
 - __Allocate enough RAM__ - To optimize performance, allocate enough RAM so that your working set resides almost completely in memory.
 

@@ -1,8 +1,8 @@
 ---
-path: "./2020/06/13/AWS-Certified-Solutions-Architect-Quick-Reference.md"
+path: "./2020/06/13/Amazon-DynamoDB.md"
 date: "2020-06-13T10:18:39"
-title: "AWS Certified Solutions Architect - Quick Reference"
-description: "Quick Reference, Cheat sheet - AWS Certified Solutions Architect Certification"
+title: "Amazon DynamoDB - Quick Reference"
+description: "Quick Reference, Cheat sheet - Amazon DynamoDB"
 tags: ["AWS", "DynamoDB", "DynamoDB Secondary Indexes", "DynamoDB Global secondary index", "DynamoDB Local secondary index", "DynamoDB Streams", "DynamoDB Read Consistency", "DynamoDB Backup and Restore", "DynamoDB Global Tables", "DynamoDB Transactions", "DynamoDB Acceleration (DAX)", "DAX Cluster", "NoSQL Workbench for Amazon DynamoDB", "time series data"]
 lang: "en-us"
 ---

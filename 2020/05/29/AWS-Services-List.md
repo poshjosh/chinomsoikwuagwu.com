@@ -19,24 +19,6 @@ lang: "en-us"
 - SQL - Structured Query Language
 - VPC - Virtual Private Cloud
 
-__Resource Access Manager (RAM)__ Securely share AWS resources with any AWS
-account or within your AWS Organization. You can share:
-
-- AWS App Mesh
-- Amazon Aurora - DB Clusters
-- AWS CodeBuild
-- Amazon EC2 - Capacity reservations, Customer owned IPv4 addresses, dedicated
-hosts, prefix lists, traffic mirror targets, transit gateway.
-- Amazon EC2 Image Builder
-- AWS License Manager
-- AWS Resource Groups
-- Amazon Route 53
-
-- Resources are shared at no additional cost.
-- You can specify IAM policies to control access to resources shared with you.
-- All calls to RAM APIs are logged in AWS CloudTrail.
-- CloudWatch Events are triggered whenever there are changes to Resource Shares.
-
 ### Analytics ###
 
 __Amazon Athena__ - `serverless`, `query S3`
