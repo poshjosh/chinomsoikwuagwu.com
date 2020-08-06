@@ -1,7 +1,7 @@
 ---
 path: "./2020/08/06/maven-dependency-convergence-quick-reference.md"
 date: "2020-08-06T18:41:00"
-title: "Maven Dependency Conversion - quick reference"
+title: "Maven Dependency Convergence - quick reference"
 description: "Quick Reference - Maven dependency convergene, Cheat sheet"
 tags: ["Maven", "depencency convergence", "nested dependencies"]
 lang: "en-us"
@@ -244,7 +244,7 @@ because it is nested i.e `problem-spring-web` does not depend directly on it.
 
 __Here is what we do to resolve this__
 
-Here is the problem tree:
+Consider the problem tree:
 
 `webstore` -> `problem-sring-web` -> `problem` -> `apiguardian`
 
@@ -311,7 +311,7 @@ Here is the problem tree:
 ```
 
 I know what you are thinking... ok I don't. Just, ...just take it and if not
-...just
+...just keep calm.
 
 ### Reference ###
 
