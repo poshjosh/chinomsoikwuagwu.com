@@ -101,7 +101,7 @@ Without the above, `@media` is a no-op.
 
 - <a name="hostingtribunal-mobile-traffic">10</a>. [Hositing Tribunal - mobile traffic](https://hostingtribunal.com/blog/mobile-percentage-of-traffic/)
 
-- <a name="broadbandsearch-mobile-traffic">20</>. [Broadband Search - mobile traffic](https://www.broadbandsearch.net/blog/mobile-desktop-internet-usage-statistics)
+- <a name="broadbandsearch-mobile-traffic">20</a>. [Broadband Search - mobile traffic](https://www.broadbandsearch.net/blog/mobile-desktop-internet-usage-statistics)
 
 - <a name="cnbc-mobile-traffic-projection">30</a>. [CNBC - smartphone usage projection](https://www.cnbc.com/2019/01/24/smartphones-72percent-of-people-will-use-only-mobile-for-internet-by-2025.html)
 
