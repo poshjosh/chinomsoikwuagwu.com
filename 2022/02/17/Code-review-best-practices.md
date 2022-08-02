@@ -37,7 +37,7 @@ Code Review is a wide topic. Therefore, this article will be kept short and (hop
 
 **Goal**
 
-The aim of this article is to highlight code review best practices, so as to improve code review processes.
+The aim of this article is to highlight code review best practices, so as to improve code review processes of developer teams.
 
 **Authors**
 
@@ -92,24 +92,24 @@ One of the hardest parts of getting a code review right is communicating the hum
 
 Commit messages should include what and if necessary why
 
-- ![bad](./check-bad.png) Make compile again
-- ![good](./check-good.png) Add jcsv dependency to fix IntelliJ compilation
+- &#10060; Make compile again
+- &#9989; Add jcsv dependency to fix IntelliJ compilation
 
 Commit messages do not need to include how
 
-- ![bad](./check-bad.png)  Add jcsv dependency to fix IntelliJ compilation by formatting csv before compilation
-- ![good](./check-good.png) Add jcsv dependency to fix IntelliJ compilation
+- &#10060;  Add jcsv dependency to fix IntelliJ compilation by formatting csv before compilation
+- &#9989; Add jcsv dependency to fix IntelliJ compilation
 
 **Comments**
 
 Avoid meaningless comments. Comments should be actionable
 
-- ![bad](./check-bad.png) // FIXME Should we delay a second or two before retrying?
-- ![good](./check-good.png) The answer to the FIXME question is probably best answered by the author of the code (after consultations) or the reviewer.
+- &#10060; // FIXME Should we delay a second or two before retrying?
+- &#9989; The answer to the FIXME question is probably best answered by the author of the code (after consultations) or the reviewer.
 
 Avoid useless TODOs
 
-- ![bad](./check-bad.png)
+- &#10060;
 ```java
 // TODO Replace this condition with a function
 
@@ -118,7 +118,7 @@ if (user.isActive() && user.getCountry().equals(“Nigeria”)) {
 }
 ```
 
-- ![good](./check-good.png)
+- &#9989;
 ```java
 if (isActiveUserFromIreland(user)) { 
     
@@ -135,131 +135,131 @@ Do not use absolutes
 
 Do not say: "This is wrong" or "This is bad" etc
 
-- ![bad](./check-bad.png) This is wrong! This goes against the basic DRY principle.
-- ![good](./check-good.png) This is repeated elsewhere, thus violating the DRY principle. I would prefer you... Meanwhile, is there a reason why you chose to go the way you did?
+- &#10060; This is wrong! This goes against the basic DRY principle.
+- &#9989; This is repeated elsewhere, thus violating the DRY principle. I would prefer you... Meanwhile, is there a reason why you chose to go the way you did?
 
 (In ascending order of evilness: could, should, need to, must)
 
 - This should be renamed to *fetchUserData.* Let's be clear exactly what the method is doing.
 - The method could be renamed to *fetchUserData to explicitly capture what it does.*
-- ![bad](./check-bad.png) Rename this to *fetchUserData*
-- ![bad](./check-bad.png) This has to be renamed to *fetchUserData*
-- ![bad](./check-bad.png)This should be renamed to *fetchUserData*
+- &#10060; Rename this to *fetchUserData*
+- &#10060; This has to be renamed to *fetchUserData*
+- &#10060;This should be renamed to *fetchUserData*
 
 (Avoid very, too etc)
 
-- ![bad](./check-bad.png)This method is tool long
-- ![bad](./check-bad.png)You should split this method into smaller methods
+- &#10060;This method is tool long
+- &#10060;You should split this method into smaller methods
 - This method could be split into smaller methods to make the code easier to understand.
 
 Do not use condescending comments.
 
 - Help me understand why this code prefers mutable to immutable data
-- ![bad](./check-bad.png) Any good developer should know that immutability is important
+- &#10060; Any good developer should know that immutability is important
 
 Words such as “just”, “easy”, “only”, or “obvious” can come across belittling and condescending.
 
-- ![bad](./check-bad.png) Why don’t you just create a separate function
-- ![bad](./check-bad.png) You should create a separate function for obvious reasons
+- &#10060; Why don’t you just create a separate function
+- &#10060; You should create a separate function for obvious reasons
 - Creating a separate function would make this code cleaner
 - Why don’t you create a separate function to make this code cleaner
 
 Praise the developer where necessary. Don't add but after your praise
 
-- ![bad](./check-bad.png) This is OK but it could be better.
-- ![bad](./check-bad.png) I am aware you have spent much time working on this, but...
+- &#10060; This is OK but it could be better.
+- &#10060; I am aware you have spent much time working on this, but...
 - I am impressed by this. You have created reusable code. Let's make it better by...
 
 Praise works well before critical reviews.
 
 - I enjoyed reading your code. Well done. Meanwhile, this logic is repeated elsewhere (I counted 9 places already), thus violating the DRY principle.
-- ![bad](./check-bad.png) This logic repeated elsewhere (I counted 9 places already), thus violating the DRY principle.
+- &#10060; This logic repeated elsewhere (I counted 9 places already), thus violating the DRY principle.
 
 Give room for manoeuvre.
 
 Questions are a good way to give room for continuous communications
 
-- ![bad](./check-bad.png) Replace this with an enum
+- &#10060; Replace this with an enum
 - This could be replaced with an enum, except if there is a good reason to use Strings.
-- ![bad](./check-bad.png) This should be replaced with an enum
+- &#10060; This should be replaced with an enum
 
 Use questions
 
 - This method could be split into smaller methods. Let me know if there is a reason not to.
-- ![bad](./check-bad.png) This method is tool long
+- &#10060; This method is tool long
 - Is there anything preventing this method from being split into smaller methods? Let me know
-- ![bad](./check-bad.png) Please split this method into smaller methods
+- &#10060; Please split this method into smaller methods
 
 Be impersonal
 
 - This code forgot to close the connection.
-- ![bad](./check-bad.png) You did not close the connection
+- &#10060; You did not close the connection
 - This connection was not closed
-- ![bad](./check-bad.png) You forgot to close the connection
+- &#10060; You forgot to close the connection
 
 Do not make reference to others' experience
 
-- ![bad](./check-bad.png) I understand that you are inexperienced at this, but you... Rather than allude to the author's inexperience, provide documentation/links to documentation that would help
+- &#10060; I understand that you are inexperienced at this, but you... Rather than allude to the author's inexperience, provide documentation/links to documentation that would help
 
 Show involvement. Prefer “we” to “you”
 
-- ![bad](./check-bad.png) You need to improve this
+- &#10060; You need to improve this
 - We could improve this by...
 - We need to improve this
-- ![bad](./check-bad.png) Your code breaks existing...
-- ![bad](./check-bad.png) Your code may break existing...
+- &#10060; Your code breaks existing...
+- &#10060; Your code may break existing...
 - Our code may break existing...
 
 Reviewers perspective
 
-- ![bad](./check-bad.png) It's hard to understand your code
+- &#10060; It's hard to understand your code
 - Help me understand this code.
-- ![bad](./check-bad.png) This code is hard to understand
+- &#10060; This code is hard to understand
 - It’s hard for me to understand this code
 
 Explain why
 
-- ![bad](./check-bad.png) You forgot to close the connection
+- &#10060; You forgot to close the connection
 - This code forgot to close the connection which causes a leak of a file descriptor. Because the socket is bound to an address, no other socket will be able to bind to the same address.
 
 Don't assume the author knows why
 
-- ![bad](./check-bad.png) Your code breaks existing...
-- ![bad](./check-bad.png) This code may break existing...
+- &#10060; Your code breaks existing...
+- &#10060; This code may break existing...
 - This code may break existing... as it does not take into account...
 
 Do not make assumptions.
 
 - Help me understand why this code uses a BigDecimal here?
 - Is there a good reason why you used a BigDecimal here?
-- ![bad](./check-bad.png) This should be an integer. (Assumes the developer cannot see that this should be an integer)
+- &#10060; This should be an integer. (Assumes the developer cannot see that this should be an integer)
 
 Questions could be made more respectful
 
-- ![bad](./check-bad.png) Is this necessary?
+- &#10060; Is this necessary?
 - Help me understand why this is necessary.
-- ![bad](./check-bad.png) This is irrelevant
+- &#10060; This is irrelevant
 
 The word "please" could be misleading
 
-- ![bad](./check-bad.png) Change this to an enum.
-- ![bad](./check-bad.png) Please change this to an enum.
+- &#10060; Change this to an enum.
+- &#10060; Please change this to an enum.
 - Help me understand why you chose to use strings rather than enums.
 
 Again, questions to the rescue
 
-- ![bad](./check-bad.png) Use explicit variable names.
-- ![bad](./check-bad.png) Please don't use cryptic variable names.
+- &#10060; Use explicit variable names.
+- &#10060; Please don't use cryptic variable names.
 - I see you used appropriate variable names elsewhere. Did you miss this?
 
 Avoid useless opinions. Simply confirm and state the fact, even if the fact is not clear.
 
-- ![bad](./check-bad.png) I am not sure, but I think it might be better to...
+- &#10060; I am not sure, but I think it might be better to...
 - The documentation here (INSERT_LINK) and here (INSERT_LINK) suggests... However, there is ongoing discussion about this issue here (INSERT_LINK). I suggest you...
 
 Add value
 
-- ![bad](./check-bad.png) Point out the same typographical error which occurs 15 times
+- &#10060; Point out the same typographical error which occurs 15 times
 - This code contains multiple spell check errors, and could benefit from xyz plugin
 
 **Exercise**

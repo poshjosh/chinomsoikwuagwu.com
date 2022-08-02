@@ -16,11 +16,11 @@ tests; they also represent requirements and acceptance criteria.
 
 **Rules of Thumb**
 
-1. Write Declarative Features
+**1. Write Declarative Features**
 
 Imperative testing/programming involves essentially spelling out in detail how to accomplish something.
 
-![BAD](./check-bad.png)
+&#10060;
 
 ```gherkin
 Given I open a browser
@@ -29,15 +29,15 @@ And I navigate to https://mywebsite.com/login
 
 Declarative testing/programming involves only specifying what needs to be accomplished.
 
-![GOOD](./check-good.png)
+&#9989;
 
 ```gherkin
 Given I am on the login page
 ```
 
-2. Cover One Behavior per Scenario.
+**2. Cover One Behavior per Scenario.**
 
-![BAD](./check-bad.png)
+&#10060;
 
 ```gherkin
 Scenario: Should let me select payment options in the checkout process
@@ -56,9 +56,9 @@ Scenario: Should let me select payment options in the checkout process
     Then I am on the checkout overview page
 ```
 
-:warning: The above scenario tests multiple behaviours. Each `when -> then` statement tests a behavior, and thus violates the behavior per scenario principle.
+**WARNING** &#9888; The above scenario tests multiple behaviours. Each `when -> then` statement tests a behavior, and thus violates the behavior per scenario principle.
 
-![GOOD](./check-good.png)
+&#9989;
 
 ```gherkin
 Scenario: Display additional information for direct debit payment method
@@ -67,7 +67,7 @@ Scenario: Display additional information for direct debit payment method
     Then additional information is displayed
 ```
 
-3. Respect the Integrity of Step Types:
+**3. Respect the Integrity of Step Types:**
 
 - **Usage.** Use each step as follows:
 
@@ -79,9 +79,9 @@ Scenario: Display additional information for direct debit payment method
     - A `Given` may not follow a `When` or a `Then`
     - A `When` may not follow a `Then`
 
-4. Each Step should be Written as a Subject-Predicate Phrase:
+**4. Each Step should be Written as a Subject-Predicate Phrase:**
 
-![BAD](./check-bad.png)
+&#10060;
 
 ```gherkin
 Scenario: Product search result page views
@@ -91,7 +91,7 @@ Scenario: Product search result page views
     And producer-view links related to "copy paper"
 ```
 
-:warning: In the above scenario, the final `And` step is not written as a subject-predicate phrase and is more likely to be reused improperly. For instance, what are the answers to the following questions:
+**WARNING** &#9888;  In the above scenario, the final `And` step is not written as a subject-predicate phrase and is more likely to be reused improperly. For instance, what are the answers to the following questions:
 
 - What is "producer-view links related to "copy paper"" doing?
 - Are the _links_ meant to be the subjects, meaning that they perform some action, or are they some objects actually receiving the action?
@@ -101,7 +101,7 @@ The following snippet shows the corrected version of the above scenario:
 a. It splits the scenario following the "Cover One Behavior per Scenario" recommendation, and
 b. fixes the subject-predicate phrase issue in the `And` statement.
 
-![GOOD](./check-good.png)
+&#9989;
 
 ```gherkin
 Feature: Product search
@@ -117,27 +117,27 @@ Feature: Product search
       Then the results page shows producer-view links related to "copy paper"
 ```
 
-5. Don't use Action Statements in the `Given` Step
+**5. Don't use Action Statements in the `Given` Step**
 
 `Given` statements are supposed to establish an initial state, and thus should not exercise behavior.
 
-![BAD](./check-bad.png)
+&#10060;
 
 ```gherkin
 Scenario: Product search
     Given the user navigates to the UPP home page
 ```
 
-![GOOD](./check-good.png)
+&#9989;
 
 ```gherkin
 Scenario: Product search
     Given the user is on the UPP home page
 ```
 
-6. Hide Data in the Automation
+**6. Hide Data in the Automation**
 
-![BAD](./check-bad.png)
+&#10060;
 
 ```gherkin
 Scenario: Log in
@@ -148,7 +148,7 @@ Scenario: Log in
     And "LoggedIn" should be “true”
 ```
 
-![GOOD](./check-good.png)
+&#9989;
 
 ```gherkin
 Scenario: Log in
@@ -157,9 +157,9 @@ Scenario: Log in
     Then I should be greeted with my name
 ```
 
-7. Don't mix First-person and Third-person
+**7. Don't mix First-person and Third-person**
 
-![BAD](./check-bad.png)
+&#10060;
 
 ```gherkin
 Scenario: Product search
@@ -168,9 +168,9 @@ Scenario: Product search
     Then Then I see links related to "copy paper"
 ```
 
-:warning: The above scenario is confusing. Am I `the user`, or is `the user` a different person? Should there be a second browser for `the user`? Why do I see what `the user` sees? The English is poorly written due to the mixed point of view.
+**WARNING** &#9888;  The above scenario is confusing. Am I `the user`, or is `the user` a different person? Should there be a second browser for `the user`? Why do I see what `the user` sees? The English is poorly written due to the mixed point of view.
 
-![GOOD](./check-good.png)
+&#9989;
 
 ```gherkin
 Scenario: Product search
@@ -179,9 +179,9 @@ Scenario: Product search
     Then Then I see links related to "copy paper"
 ```
 
-8. Prefer Third-person to First-person
+**8. Prefer Third-person to First-person**
 
-![GOOD](./check-good.png)
+&#9989;
 
 ```gherkin
 Scenario: Product search
@@ -190,9 +190,9 @@ Scenario: Product search
     Then the results page shows links related to "copy paper"
 ```
 
-9. Use Present Tense
+**9. Use Present Tense**
 
-![BAD](./check-bad.png)
+&#10060;
 
 ```gherkin
 Scenario: Product search
@@ -201,9 +201,9 @@ Scenario: Product search
     Then the results page will show links related to "copy paper"
 ```
 
-:warning: The `When` step above uses past tense when it says, `“The user searched.”` This indicates that an action has already happened. However, `When` steps should indicate that an action is presently happening. Plus, past tense here conflicts with the tenses used in the other steps. The `Then` step above uses future tense when it says, `“The results will show.”` Future tense seems practical for `Then` steps because it indicates what the result should be after the current action is taken. However, future tense reinforces a procedure-driven approach because it treats the scenario as a time sequence. A behavior, on the other hand, is a present-tense aspect of the product or feature. Thus, it is better to write `Then` steps in the present tense.
+**WARNING** &#9888;  The `When` step above uses past tense when it says, `“The user searched.”` This indicates that an action has already happened. However, `When` steps should indicate that an action is presently happening. Plus, past tense here conflicts with the tenses used in the other steps. The `Then` step above uses future tense when it says, `“The results will show.”` Future tense seems practical for `Then` steps because it indicates what the result should be after the current action is taken. However, future tense reinforces a procedure-driven approach because it treats the scenario as a time sequence. A behavior, on the other hand, is a present-tense aspect of the product or feature. Thus, it is better to write `Then` steps in the present tense.
 
-![GOOD](./check-good.png)
+&#9989;
 
 ```gherkin
 Scenario: Product search
@@ -212,12 +212,12 @@ Scenario: Product search
     Then the results page shows links related to "copy paper"
 ```
 
-10. Avoid Conjunctive Steps
+**10. Avoid Conjunctive Steps**
 
 When you encounter a Cucumber step that contains two actions joined with an “and”, you should probably break it into two steps.
 Sticking to one action per step makes your steps more modular and increases re-usability.
 
-![BAD](./check-bad.png)
+&#10060;
 
 ```gherkin
 Scenario: Display additional information for direct debit payment method
@@ -226,7 +226,7 @@ Scenario: Display additional information for direct debit payment method
     Then additional information is displayed
 ```
 
-![GOOD](./check-good.png)
+&#9989;
 
 ```gherkin
 Scenario: Display additional information for direct debit payment method
