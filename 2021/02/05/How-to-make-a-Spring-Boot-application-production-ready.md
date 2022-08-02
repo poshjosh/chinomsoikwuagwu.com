@@ -56,7 +56,7 @@ It is important to ensure that an application is usable, secure, scalable, and r
 
 - __Maintain a history table__ In addition to an audit log, we often need to maintain a history table. This could be important for compliance, audit, or analytics as well as the ability to trace issues by looking into the history of records.
 
-##$ FRAMEWORKS, LIBRARIES, TOOLS THAT COULD BENEFIT SPRING BOOT APPLICATIONS
+### FRAMEWORKS, LIBRARIES, TOOLS THAT COULD BENEFIT SPRING BOOT APPLICATIONS
 
 - EhCache/Redis
 - Spring boot starter thymeleaf as template engine.
