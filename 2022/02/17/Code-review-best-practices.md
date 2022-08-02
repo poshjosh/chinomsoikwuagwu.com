@@ -138,64 +138,63 @@ Do not say: "This is wrong" or "This is bad" etc
 - &#10060; This is wrong! This goes against the basic DRY principle.
 - &#9989; This is repeated elsewhere, thus violating the DRY principle. I would prefer you... Meanwhile, is there a reason why you chose to go the way you did?
 
-(In ascending order of evilness: could, should, need to, must)
+(In ascending order of evilness: could, should, has to, must)
 
-- This should be renamed to *fetchUserData.* Let's be clear exactly what the method is doing.
-- The method could be renamed to *fetchUserData to explicitly capture what it does.*
+- &#10060;This must be renamed to *fetchUserData*
 - &#10060; Rename this to *fetchUserData*
 - &#10060; This has to be renamed to *fetchUserData*
-- &#10060;This should be renamed to *fetchUserData*
+- &#9989; This should be renamed to *fetchUserData.* Let's be clear exactly what the method is doing.
+- &#9989; This could be renamed to *fetchUserData to explicitly capture what it does.*
 
 (Avoid very, too etc)
 
 - &#10060;This method is tool long
-- &#10060;You should split this method into smaller methods
-- This method could be split into smaller methods to make the code easier to understand.
+- &#9989; This method could be split into smaller methods to make the code easier to understand.
 
 Do not use condescending comments.
 
-- Help me understand why this code prefers mutable to immutable data
 - &#10060; Any good developer should know that immutability is important
+- &#9989; Help me understand why this code prefers mutable to immutable data
 
 Words such as “just”, “easy”, “only”, or “obvious” can come across belittling and condescending.
 
 - &#10060; Why don’t you just create a separate function
 - &#10060; You should create a separate function for obvious reasons
-- Creating a separate function would make this code cleaner
-- Why don’t you create a separate function to make this code cleaner
+- &#9989; Creating a separate function would make this code cleaner
+- &#9989; Why don’t you create a separate function to make this code cleaner
 
 Praise the developer where necessary. Don't add but after your praise
 
 - &#10060; This is OK but it could be better.
 - &#10060; I am aware you have spent much time working on this, but...
-- I am impressed by this. You have created reusable code. Let's make it better by...
+- &#9989; I am impressed by this. You have created reusable code. Let's make it better by...
 
 Praise works well before critical reviews.
 
-- I enjoyed reading your code. Well done. Meanwhile, this logic is repeated elsewhere (I counted 9 places already), thus violating the DRY principle.
 - &#10060; This logic repeated elsewhere (I counted 9 places already), thus violating the DRY principle.
+- &#9989; I enjoyed reading your code. Well done. Meanwhile, this logic is repeated elsewhere (I counted 9 places already), thus violating the DRY principle.
 
 Give room for manoeuvre.
 
 Questions are a good way to give room for continuous communications
 
 - &#10060; Replace this with an enum
-- This could be replaced with an enum, except if there is a good reason to use Strings.
 - &#10060; This should be replaced with an enum
+- &#9989; This could be replaced with an enum, except if there is a good reason to use Strings.
 
 Use questions
 
-- This method could be split into smaller methods. Let me know if there is a reason not to.
 - &#10060; This method is tool long
-- Is there anything preventing this method from being split into smaller methods? Let me know
 - &#10060; Please split this method into smaller methods
+- &#9989; Is there anything preventing this method from being split into smaller methods? Let me know
+- &#9989; This method could be split into smaller methods. Let me know if there is a reason not to.
 
 Be impersonal
 
-- This code forgot to close the connection.
 - &#10060; You did not close the connection
-- This connection was not closed
 - &#10060; You forgot to close the connection
+- &#9989; This code forgot to close the connection.
+- &#9989; This connection was not closed
 
 Do not make reference to others' experience
 
@@ -204,63 +203,63 @@ Do not make reference to others' experience
 Show involvement. Prefer “we” to “you”
 
 - &#10060; You need to improve this
-- We could improve this by...
-- We need to improve this
 - &#10060; Your code breaks existing...
 - &#10060; Your code may break existing...
-- Our code may break existing...
+- &#9989; We could improve this by...
+- &#9989; We need to improve this
+- &#9989; Our code may break existing...
 
 Reviewers perspective
 
 - &#10060; It's hard to understand your code
-- Help me understand this code.
 - &#10060; This code is hard to understand
-- It’s hard for me to understand this code
+- &#9989; It’s hard for me to understand this code
+- &#9989; Help me understand this code.
 
 Explain why
 
 - &#10060; You forgot to close the connection
-- This code forgot to close the connection which causes a leak of a file descriptor. Because the socket is bound to an address, no other socket will be able to bind to the same address.
+- &#9989; This code forgot to close the connection which causes a leak of a file descriptor. Because the socket is bound to an address, no other socket will be able to bind to the same address.
 
 Don't assume the author knows why
 
 - &#10060; Your code breaks existing...
 - &#10060; This code may break existing...
-- This code may break existing... as it does not take into account...
+- &#9989; This code may break existing... as it does not take into account...
 
 Do not make assumptions.
 
-- Help me understand why this code uses a BigDecimal here?
-- Is there a good reason why you used a BigDecimal here?
 - &#10060; This should be an integer. (Assumes the developer cannot see that this should be an integer)
+- &#9989; Help me understand why this code uses a BigDecimal here?
+- &#9989; Is there a good reason why you used a BigDecimal here?
 
 Questions could be made more respectful
 
 - &#10060; Is this necessary?
-- Help me understand why this is necessary.
 - &#10060; This is irrelevant
+- &#9989; Help me understand why this is necessary.
 
 The word "please" could be misleading
 
 - &#10060; Change this to an enum.
 - &#10060; Please change this to an enum.
-- Help me understand why you chose to use strings rather than enums.
+- &#9989; Help me understand why you chose to use strings rather than enums.
 
 Again, questions to the rescue
 
 - &#10060; Use explicit variable names.
 - &#10060; Please don't use cryptic variable names.
-- I see you used appropriate variable names elsewhere. Did you miss this?
+- &#9989; I see you used appropriate variable names elsewhere. Did you miss this?
 
 Avoid useless opinions. Simply confirm and state the fact, even if the fact is not clear.
 
 - &#10060; I am not sure, but I think it might be better to...
-- The documentation here (INSERT_LINK) and here (INSERT_LINK) suggests... However, there is ongoing discussion about this issue here (INSERT_LINK). I suggest you...
+- &#9989; The documentation here (INSERT_LINK) and here (INSERT_LINK) suggests... However, there is ongoing discussion about this issue here (INSERT_LINK). I suggest you...
 
 Add value
 
 - &#10060; Point out the same typographical error which occurs 15 times
-- This code contains multiple spell check errors, and could benefit from xyz plugin
+- &#9989; This code contains multiple spell check errors, and could benefit from xyz plugin
 
 **Exercise**
 
