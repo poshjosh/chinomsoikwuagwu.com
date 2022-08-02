@@ -113,14 +113,14 @@ Avoid useless TODOs
 ```java
 // TODO Replace this condition with a function
 
-if (user.isActive() && user.getCountry().equals(“Nigeria”)) {
+if (user.isActive() && user.getCountry().equals("Nigeria")) {
 
 }
 ```
 
 - &#9989;
 ```java
-if (isActiveUserFromIreland(user)) { 
+if (isActiveUserFromNigeria(user)) { 
     
 }
 ```
