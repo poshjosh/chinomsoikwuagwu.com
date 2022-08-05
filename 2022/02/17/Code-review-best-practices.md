@@ -19,7 +19,7 @@ What Is a Code Review?
 
 **Code review** (sometimes referred to as peer review) is a software quality assurance activity in which one or several people check a program mainly by viewing and reading parts of its source code... At least one of the persons must not be the code's author. The persons performing the checking, excluding the author, are called "reviewers.
 
-*Source: https://en.wikipedia.org/wiki/Code\_review*
+*Source: https://en.wikipedia.org/wiki/Code_review*
 
 Why Review Each Others Code?
 
