@@ -3,7 +3,7 @@ path: "./2022/08/10/Modifying-legacy-applications-using-domain-driven-design-DDD
 date: "2022-08-10T12:01:46"
 title: "Modifying legacy applications using domain driven design (DDD)"
 description: "Modifying-legacy-applications-using-domain-driven-design-DDD"
-tags: ["domain driven design", "DDD", "domains", "domain model", "entity", "value object", "service object"]
+tags: ["domain driven design", "DDD", "domains", "domain model", "entity", "value object", "service object", "domain events"]
 lang: "en-us"
 ---
 
@@ -81,7 +81,28 @@ public class Subscription {
 }
 ```
 
+The `CustomerService` class below is an example of how a legacy application
+(i.e. an application without DDD) may handle the adding of subscription for a customer.
+
+```java
+public class CustomerService {
+    
+    public Subscription addSubscriptionToCustomer(Customer customer, Product product, BigDecimal amount) {
+        Subscription subscription = new Subscription();
+        subscription.setStatus(SubscriptionStatus.Active);
+        subscription.setCustomer(customer);
+        subscription.setProduct(product);
+        subscription.setAmount(amount);
+		customer.getSubscriptions().add(subscription);
+		customer.setMoneySpent(customer.getMoneySpent().add(amount));
+		return subscription;
+    }
+}
+```
+
 **Step 1 - Move construction behaviour**
+
+Our subscription model becomes:
 
 ```java
 public class Subscription {
@@ -122,14 +143,11 @@ We moved the construction behaviour to be part of the domain model. The consumer
 
 **Step 2 - Move related domain behaviour** 
 
-The `CustomerService` class below is an example of how a legacy application 
-(i.e. an application without DDD) may handle the adding of subscription for a customer. 
-
 ```java
 public class CustomerService {
     
     public Subscription addSubscriptionToCustomer(Customer customer, Product product, BigDecimal amount) {
-		Subscription subscription = createSubscription(customer, product, amount);
+		Subscription subscription = new Subscription(customer, product, amount);
 		customer.getSubscriptions().add(subscription);
 		customer.setMoneySpent(customer.getMoneySpent().add(amount));
 		return subscription;
@@ -187,7 +205,7 @@ customer.getSubscriptions().add(subscription);
 public class CustomerService {
 
     public Subscription addSubscriptionToCustomer(Customer customer, Product product, BigDecimal amount) {
-        Subscription subscription = createSubscription(customer, product, amount);
+        Subscription subscription = new Subscription(customer, product, amount);
         customer.getSubscriptions().add(subscription);
         customer.setMoneySpent(customer.getMoneySpent().add(amount));
         return subscription;
@@ -209,8 +227,8 @@ Instant calculateBillingPeriodEndDate(Product product) {
 The above method could be moved to the `Product` domain model, since it has a single dependency 
 i.e. `Product`
 
-- **Consider moving cross-cutting behaviour to a domain service.** If the behaviour does not match any 
-of the existing entities, we can move it to a domain service. This is a class that handles 
+- **Consider moving cross-cutting behaviour to a domain service.** If the behaviour does not match 
+any of the existing entities, we can move it to a domain service. This is a class that handles 
 cross-cutting behaviour. 
 
 Let's go back to our customer service, which we transformed from:
@@ -224,7 +242,7 @@ public class CustomerService {
     }
 
     public Subscription addSubscriptionToCustomer(Customer customer, Product product, BigDecimal amount) {
-        Subscription subscription = createSubscription(customer, product, amount);
+        Subscription subscription = new Subscription(customer, product, amount);
         customer.getSubscriptions().add(subscription);
         customer.setMoneySpent(customer.getMoneySpent().add(amount));
         return subscription;
@@ -280,8 +298,7 @@ What happens if we want to notify the customer after their subscription. This is
 post subscription action. We can deduce the following requirements for designing such an action:
 
 - The post subscription action needs to be done asynchronously.
-- The post subscription action should be decoupled from any particular action (e.g. notifying the 
-customer) This way we can specify other actions that may happen post subscription.
+- The post subscription action should be decoupled from any particular action (e.g. notifying the customer) This way, we can specify other actions that may happen post subscription.
 
 The above requirements could be met by the observer pattern using events and event listeners.
 Springframework makes using application events easy. Instances of 
