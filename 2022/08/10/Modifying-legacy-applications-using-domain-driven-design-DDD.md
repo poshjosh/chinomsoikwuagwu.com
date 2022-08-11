@@ -143,7 +143,24 @@ We moved the construction behaviour to be part of the domain model. The consumer
 - A `null` `Product`.
 - A `null` `Customer`.
 
+Now we use the above construction behaviour to simplify our `CustomerService` as follows:
+
+```java
+public class CustomerService {
+    
+    public Subscription addSubscriptionToCustomer(Customer customer, Product product, BigDecimal amount) {
+        Subscription subscription = new Subscription(customer, product, amount);
+        customer.getSubscriptions().add(subscription);
+        customer.setMoneySpent(customer.getMoneySpent().add(amount));
+        return subscription;
+    }
+}
+```
+
 **2. Move related domain behaviour** 
+
+Next we need to move the behaviour whereby a subscription is added for a customer. This behaviour
+is captured by the `addSubscriptionToCustomer` method below:
 
 ```java
 public class CustomerService {
@@ -168,7 +185,7 @@ import static java.util.Collections.unmodifiableList;
 public class Customer {
 
 	private BigDecimal moneySpent = BigDecimal.ZERO;
-	private List<Subscription> subscriptions; 
+	private List<Subscription> subscriptions = new ArrayList<>(); 
 
 	public Customer() {  }
 
@@ -201,7 +218,7 @@ customer.getSubscriptions().add(subscription);
 
 ### How do I know which domain model to move a behaviour to?
 
-- **Consider the properties of the domain model in relation to the behaviour you are trying to move.**
+- **Consider the domain model that will be mutated by the behaviour you are trying to move.**
 
 ```java
 public class CustomerService {
@@ -244,7 +261,11 @@ public class CustomerService {
     }
 
     public Subscription addSubscriptionToCustomer(Customer customer, Product product, BigDecimal amount) {
-        Subscription subscription = new Subscription(customer, product, amount);
+        Subscription subscription = new Subscription();
+        subscription.setStatus(SubscriptionStatus.Active);
+        subscription.setCustomer(customer);
+        subscription.setProduct(product);
+        subscription.setAmount(amount);
         customer.getSubscriptions().add(subscription);
         customer.setMoneySpent(customer.getMoneySpent().add(amount));
         return subscription;
@@ -344,11 +365,11 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NotifyStakeholdersOnCustomerSubscribed {
+public class StakeholdersNotifierOnCustomerSubscribed {
     
     private final EmailService emailService;
     
-    public NotifyStakeholdersOnCustomerSubscribed(EmailService emailService) {
+    public StakeholdersNotifierOnCustomerSubscribed(EmailService emailService) {
         this.emailService = emailService;
     }
     
