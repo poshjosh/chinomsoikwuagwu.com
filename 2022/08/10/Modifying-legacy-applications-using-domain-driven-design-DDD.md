@@ -7,12 +7,45 @@ tags: ["domain driven design", "DDD", "domains", "domain model", "entity", "valu
 lang: "en-us"
 ---
 
-### A brief introduction to Domain Driven Design
+### Why?
 
-This article aims to provide an overview of how legacy code could be refactored in line with
-Domain Driven design (DDD).
+I have written 2 whys. Which do you think best fits this article? Let me know in the comment 
+section below :). 
+
+Oh, shoot! I forgot that this is a statically generated site. Hmmmn. I have 
+to think about accepting comments. 
+
+**Candidate 1**
+
+On being introduced to the definition of Democracy as: "Government for the people, of the people 
+and by the people", Akpos jocularly replied "What a selfish bunch of people!". Ironically,
+the most popular definition of democracy may not be understood by the vast majority of "the people".
+Could we then say that "the people" are out of sync with the understanding of democracy?
+Domain driven design (DDD) is an effective way, to determine and record the strategic
+understanding (behaviour, model etc), of a system, towards keeping various levels of that
+system, in sync with that understanding.
+
+**Candidate 2**
+
+Any complex system has 2 enemies. How well it is expressed, and time.
+Language and its short-comings. Time, and the changes it brings. These breed complexity.
+Soon, their assault on our code base leads to "developer" pointing out to his colleagues:
+
+```
+No one knows exactly how that works!
+```
+
+Domain driven design (DDD) is an effective way, to determine and record the strategic 
+understanding (behaviour, model etc), of a system, towards keeping various levels of that 
+system, in sync with that understanding.
+
+### What
+
+This article provides an overview of how legacy code could be refactored in line with DDD.
 
 A basic understanding of DDD is required to fully understand this article.
+
+### A brief introduction to Domain Driven Design
 
 **What is Domain Driven Design (DDD)?**
 
@@ -466,6 +499,14 @@ Advantages
 
 - We could switch from `String`, to say `Integer` or `UUID` without breaking existing code.
 - We are prevented from accidentally using a `CustomerId` in place of a `SubscriptionId`
+
+### Conclusion
+
+Domain driven design (DDD) is an effective way, to determine and record the strategic
+understanding (behaviour, model etc), of a system, towards keeping various levels of that
+system, in sync with that understanding.
+ 
+Legacy code could be refactored in line with DDD by moving behaviour to the domain model.
 
 ### References
 
