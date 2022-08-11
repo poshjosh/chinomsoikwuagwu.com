@@ -21,9 +21,9 @@ On being introduced to the definition of Democracy as: "Government for the peopl
 and by the people", Akpos jocularly replied "What a selfish bunch of people!". Ironically,
 the most popular definition of democracy may not be understood by the vast majority of "the people".
 Could we then say that "the people" are out of sync with the understanding of democracy?
-Domain driven design (DDD) is an effective way, to determine and record the strategic
-understanding (behaviour, model etc), of a system, towards keeping various levels of that
-system, in sync with that understanding.
+Domain driven design (DDD) is an effective way, to determine and record the understanding
+(behaviour, model etc), of a system and its subsystems, towards keeping various levels and
+parts of that system, in sync with that understanding.
 
 **Candidate 2**
 
@@ -35,9 +35,9 @@ Soon, their assault on our code base leads to "developer" pointing out to his co
 No one knows exactly how that works!
 ```
 
-Domain driven design (DDD) is an effective way, to determine and record the strategic 
-understanding (behaviour, model etc), of a system, towards keeping various levels of that 
-system, in sync with that understanding.
+Domain driven design (DDD) is an effective way, to determine and record the understanding 
+(behaviour, model etc), of a system and its subsystems, towards keeping various levels and 
+parts of that system, in sync with that understanding.
 
 ### What
 
@@ -502,9 +502,9 @@ Advantages
 
 ### Conclusion
 
-Domain driven design (DDD) is an effective way, to determine and record the strategic
-understanding (behaviour, model etc), of a system, towards keeping various levels of that
-system, in sync with that understanding.
+Domain driven design (DDD) is an effective way, to determine and record the understanding
+(behaviour, model etc), of a system and its subsystems, towards keeping various levels and
+parts of that system, in sync with that understanding.
  
 Legacy code could be refactored in line with DDD by moving behaviour to the domain model.
 
